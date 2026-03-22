@@ -241,6 +241,35 @@
       }, 350);
     }
 
+    // Kit (ConvertKit) tag IDs for each archetype result
+    const KIT_TAG_IDS = {
+      magician: 17757527,
+      caregiver: 17757530,
+      rebel: 17757531,
+      sage: 17757534,
+      hero: 17757536,
+      lover: 17757537,
+      creator: 17757538,
+      explorer: 17757539,
+      ruler: 17757540,
+      innocent: 17757543,
+      jester: 17757544,
+      everyperson: 17757547
+    };
+    const KIT_FORM_ID = '4bc3225d05';
+
+    function subscribeToKit(email, archetype) {
+      const tagId = KIT_TAG_IDS[archetype];
+      const formData = new FormData();
+      formData.append('email_address', email);
+      if (tagId) formData.append('tags[]', tagId);
+
+      fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
+        method: 'POST',
+        body: formData,
+      }).catch(err => console.warn('Kit subscription error:', err));
+    }
+
     function submitEmail() {
       const val = document.getElementById('emailVal').value.trim();
       const input = document.getElementById('emailVal');
@@ -252,8 +281,11 @@
       emailAddress = val;
       saveProgress(answers, emailAddress);
 
-      // TODO: Connect to your email platform here
-      // Example: await fetch('https://your-email-api.com/subscribe', { method:'POST', body: JSON.stringify({ email: val }) })
+      // Calculate result early so we can tag the subscriber
+      const result = calculateResult(answers);
+
+      // Subscribe to Kit with archetype tag (fire and forget)
+      subscribeToKit(emailAddress, result.primary);
 
       showOnly('scalc');
       const msgs = ["Reading your answers", "Mapping your personality", "Finding your archetype", "Almost ready..."];
@@ -266,7 +298,6 @@
 
       setTimeout(() => {
         clearInterval(iv);
-        const result = calculateResult(answers);
         saveProgress(answers, emailAddress);
         window.location.href = getResultURL(result.primary);
       }, 2800);
