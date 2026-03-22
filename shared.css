@@ -1,0 +1,215 @@
+/* ============================================
+   SITE IN 8 - BRAND QUIZ
+   Shared Styles
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,800&family=Caveat:wght@400;600;700&display=swap');
+
+/* Brand Tokens */
+:root {
+  --hot-pink: #E8346B;
+  --electric-yellow: #FFD23F;
+  --pop-blue: #3B82F6;
+  --mint: #34D399;
+  --coral: #FF6B6B;
+  --deep-purple: #1E1038;
+  --lavender: #C4B5FD;
+  --peach: #FBBF77;
+  --off-white: #FFFDF7;
+  --charcoal: #1a1a2e;
+  --text: #2D2B3D;
+  --text-light: #6B6980;
+
+  --font-serif: 'Fraunces', serif;
+  --font-sans: 'Bricolage Grotesque', sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared Nav */
+.quiz-nav {
+  background: var(--deep-purple);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,253,247,0.06);
+}
+
+.quiz-nav-logo {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--off-white);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.quiz-nav-logo span {
+  color: var(--hot-pink);
+}
+
+/* Shared Back Button */
+.back-link {
+  font-size: 13px;
+  color: rgba(255,253,247,0.4);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-link:hover {
+  color: var(--off-white);
+}
+
+/* Shared CTA Button */
+.btn-primary {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--electric-yellow);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(255,210,63,0.3);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--hot-pink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid var(--hot-pink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--hot-pink);
+  color: white;
+}
+
+/* Palette Switcher */
+.pal-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.pal-card {
+  flex: 1;
+  min-width: 120px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.pal-card.active {
+  transform: translateY(-2px);
+}
+
+.pal-swatches {
+  display: flex;
+  height: 32px;
+}
+
+.pal-sw {
+  flex: 1;
+}
+
+.pal-name {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 5px 8px;
+  background: #fff;
+}
+
+/* Marquee */
+.marquee-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: marqueeScroll 18s linear infinite;
+}
+
+.marquee-item {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 24px;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Result page inspo grid */
+.inspo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.inspo-mockup {
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: all 0.25s ease;
+}
+
+.inspo-mockup:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .inspo-grid {
+    grid-template-columns: 1fr;
+  }
+  .pal-row {
+    flex-direction: column;
+  }
+}

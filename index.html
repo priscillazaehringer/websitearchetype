@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's Your Brand Archetype? | Free Quiz | Site in 8</title>
+  <meta name="description" content="Take the free 15-question brand archetype quiz. Discover your design system, color palettes, typography, and website personality in under 5 minutes.">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1E1038; color: #FFFDF7; font-family: var(--font-sans); }
+
+    /* Nav */
+    .nav {
+      padding: 20px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,253,247,0.06);
+    }
+    .nav-logo { font-family: var(--font-serif); font-weight: 900; font-size: 22px; color: #FFFDF7; text-decoration: none; }
+    .nav-logo span { color: #E8346B; }
+
+    /* Hero */
+    .hero {
+      padding: 80px 32px 64px;
+      position: relative; overflow: hidden;
+      max-width: 680px; margin: 0 auto;
+      text-align: center;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-hand); font-size: 20px; font-weight: 600;
+      color: #FFD23F; margin-bottom: 16px; display: block;
+    }
+    .hero-headline {
+      font-family: var(--font-serif); font-weight: 900; font-size: clamp(2.4rem, 8vw, 3.6rem);
+      color: #FFFDF7; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px;
+    }
+    .hero-headline em { font-style: italic; color: #E8346B; }
+    .hero-sub {
+      font-size: 16px; color: rgba(255,253,247,0.6); line-height: 1.75;
+      max-width: 480px; margin: 0 auto 36px;
+    }
+    .hero-cta {
+      display: inline-block; padding: 18px 48px;
+      background: #FFD23F; color: #1a1a2e;
+      font-family: var(--font-sans); font-size: 17px; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .hero-cta:hover { transform: translateY(-3px) rotate(1deg) scale(1.03); box-shadow: 0 12px 32px rgba(255,210,63,0.25); }
+    .hero-note { font-size: 12px; color: rgba(255,253,247,0.3); margin-top: 12px; font-family: var(--font-hand); font-size: 15px; font-weight: 600; }
+
+    /* Marquee */
+    .marquee-section {
+      background: #FFD23F; border-top: 3px solid #1a1a2e; border-bottom: 3px solid #1a1a2e;
+      overflow: hidden; white-space: nowrap; padding: 12px 0;
+    }
+    .marquee-inner { display: inline-block; animation: marqueeScroll 20s linear infinite; }
+    .marquee-item { display: inline-block; font-family: var(--font-sans); font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #1a1a2e; padding: 0 24px; }
+    .marquee-star { color: #E8346B; padding: 0 4px; }
+    @keyframes marqueeScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
+    /* What you get */
+    .what-section { background: #FFFDF7; padding: 80px 32px; }
+    .what-inner { max-width: 640px; margin: 0 auto; }
+    .section-eyebrow { font-family: var(--font-hand); font-size: 17px; font-weight: 600; color: #E8346B; margin-bottom: 10px; }
+    .section-headline { font-family: var(--font-serif); font-weight: 700; font-size: 2rem; color: #2D2B3D; line-height: 1.2; margin-bottom: 40px; letter-spacing: -0.5px; }
+    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .what-card { padding: 24px; background: #fff; border: 1.5px solid rgba(45,43,61,0.08); }
+    .what-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .what-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: #2D2B3D; margin-bottom: 6px; }
+    .what-desc { font-size: 12px; color: #6B6980; line-height: 1.65; }
+
+    /* Archetypes preview */
+    .arch-section { background: #1E1038; padding: 80px 32px; }
+    .arch-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .arch-eyebrow { font-family: var(--font-hand); font-size: 17px; font-weight: 600; color: #FFD23F; margin-bottom: 10px; }
+    .arch-headline { font-family: var(--font-serif); font-weight: 700; font-size: 1.8rem; color: #FFFDF7; line-height: 1.2; margin-bottom: 8px; }
+    .arch-sub { font-size: 13px; color: rgba(255,253,247,0.5); margin-bottom: 32px; }
+    .arch-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+    .arch-pill {
+      padding: 6px 16px; font-size: 12px; font-weight: 600;
+      border: 1.5px solid rgba(255,253,247,0.15); color: rgba(255,253,247,0.6);
+      font-family: var(--font-sans); cursor: default;
+      transition: all 0.2s ease;
+    }
+    .arch-pill:hover { border-color: #E8346B; color: #E8346B; }
+    .arch-cta {
+      display: inline-block; padding: 18px 48px;
+      background: #E8346B; color: #FFFDF7;
+      font-family: var(--font-sans); font-size: 16px; font-weight: 600;
+      text-decoration: none; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .arch-cta:hover { background: #d42a5c; transform: translateY(-2px) rotate(-1deg); }
+
+    /* How it works */
+    .how-section { background: #FFFDF7; padding: 80px 32px; }
+    .how-inner { max-width: 640px; margin: 0 auto; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+    .how-step { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid rgba(45,43,61,0.07); }
+    .how-step:last-child { border-bottom: none; }
+    .how-num { font-family: var(--font-serif); font-weight: 900; font-size: 2.5rem; color: #E8346B; line-height: 1; flex-shrink: 0; width: 48px; }
+    .how-content {}
+    .how-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: #2D2B3D; margin-bottom: 4px; }
+    .how-desc { font-size: 12px; color: #6B6980; line-height: 1.65; }
+
+    /* CTA section */
+    .cta-section { background: #1E1038; padding: 96px 32px; text-align: center; position: relative; overflow: hidden; }
+    .cta-eyebrow { font-family: var(--font-hand); font-size: 18px; font-weight: 600; color: #FFD23F; margin-bottom: 16px; display: block; }
+    .cta-headline { font-family: var(--font-serif); font-weight: 900; font-size: clamp(2rem,7vw,3.2rem); color: #FFFDF7; line-height: 1.05; letter-spacing: -1px; margin-bottom: 36px; }
+    .cta-headline em { font-style: italic; color: #E8346B; }
+    .cta-btn {
+      display: inline-block; padding: 20px 56px;
+      background: #FFD23F; color: #1a1a2e;
+      font-family: var(--font-sans); font-size: 18px; font-weight: 600;
+      text-decoration: none; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cta-btn:hover { transform: translateY(-3px) scale(1.03); }
+    .cta-free { font-family: var(--font-hand); font-size: 16px; color: rgba(255,253,247,0.35); margin-top: 12px; font-weight: 600; }
+
+    /* Footer */
+    .footer { background: #1a1a2e; padding: 32px; text-align: center; border-top: 1px solid rgba(255,253,247,0.06); }
+    .footer-logo { font-family: var(--font-serif); font-weight: 900; font-size: 20px; color: #FFFDF7; margin-bottom: 8px; }
+    .footer-logo span { color: #E8346B; }
+    .footer-text { font-size: 12px; color: rgba(255,253,247,0.25); }
+    .footer-link { color: rgba(255,253,247,0.4); text-decoration: none; }
+    .footer-link:hover { color: rgba(255,253,247,0.7); }
+
+    @media (max-width: 600px) {
+      .what-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 24px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">site<span>in</span>8</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-blob" style="width:240px;height:240px;background:#E8346B;opacity:0.07;top:-80px;right:-60px;"></div>
+    <div class="hero-blob" style="width:180px;height:180px;background:#FFD23F;opacity:0.05;bottom:-40px;left:-40px;"></div>
+    <span class="hero-eyebrow">free brand quiz ✨</span>
+    <h1 class="hero-headline">What kind of brand <em>are</em> you?</h1>
+    <p class="hero-sub">15 questions. 5 minutes. Your complete brand identity - archetype, color palettes, design system, and website personality - delivered instantly.</p>
+    <a href="quiz.html" class="hero-cta">Take the free quiz →</a>
+    <p class="hero-note">free · no login required · results in under 5 minutes</p>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-section">
+    <div class="marquee-inner">
+      <span class="marquee-item">The Magician</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Caregiver</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Rebel</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Sage</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Hero</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Lover</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Creator</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Explorer</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Ruler</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Innocent</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Jester</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Everyperson</span><span class="marquee-star">★</span>
+      <!-- Repeat for seamless loop -->
+      <span class="marquee-item">The Magician</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Caregiver</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Rebel</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Sage</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Hero</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Lover</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Creator</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Explorer</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Ruler</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Innocent</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Jester</span><span class="marquee-star">★</span>
+      <span class="marquee-item">The Everyperson</span><span class="marquee-star">★</span>
+    </div>
+  </div>
+
+  <!-- What you get -->
+  <section class="what-section">
+    <div class="what-inner">
+      <p class="section-eyebrow">what you actually get</p>
+      <h2 class="section-headline">Not just a label. A full brand system.</h2>
+      <div class="what-grid">
+        <div class="what-card">
+          <span class="what-icon">🎭</span>
+          <div class="what-title">Your Brand Archetype</div>
+          <div class="what-desc">Which of the 12 brand personalities you are - and why it matters for every design decision you make.</div>
+        </div>
+        <div class="what-card">
+          <span class="what-icon">🎨</span>
+          <div class="what-title">3 Color Palettes</div>
+          <div class="what-desc">Three complete color systems designed specifically for your archetype - dark, rich, and light options.</div>
+        </div>
+        <div class="what-card">
+          <span class="what-icon">✍️</span>
+          <div class="what-title">Typography Guidance</div>
+          <div class="what-desc">What your fonts should feel like and why - described in plain English, not design jargon.</div>
+        </div>
+        <div class="what-card">
+          <span class="what-icon">🖥️</span>
+          <div class="what-title">Website Personality</div>
+          <div class="what-desc">Corners, white space, animations, photos, dividers - every design decision specific to you.</div>
+        </div>
+        <div class="what-card">
+          <span class="what-icon">💡</span>
+          <div class="what-title">Brand Inspo</div>
+          <div class="what-desc">Real brands doing your archetype right - so you can see exactly what yours could look like.</div>
+        </div>
+        <div class="what-card">
+          <span class="what-icon">🚀</span>
+          <div class="what-title">Next Steps</div>
+          <div class="what-desc">How to actually use all of this to build your website - starting tonight if you want.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Archetypes -->
+  <section class="arch-section">
+    <div class="arch-inner">
+      <p class="arch-eyebrow">12 archetypes</p>
+      <h2 class="arch-headline">Which one are you?</h2>
+      <p class="arch-sub">Every brand has a personality. Most people just haven't named theirs yet.</p>
+      <div class="arch-pills">
+        <div class="arch-pill">The Magician ✨</div>
+        <div class="arch-pill">The Caregiver 🤝</div>
+        <div class="arch-pill">The Rebel 🔥</div>
+        <div class="arch-pill">The Sage 📚</div>
+        <div class="arch-pill">The Hero 💪</div>
+        <div class="arch-pill">The Lover 💛</div>
+        <div class="arch-pill">The Creator 🎨</div>
+        <div class="arch-pill">The Explorer 🗺️</div>
+        <div class="arch-pill">The Ruler 👑</div>
+        <div class="arch-pill">The Innocent 🌱</div>
+        <div class="arch-pill">The Jester 🎉</div>
+        <div class="arch-pill">The Everyperson 👋</div>
+      </div>
+      <a href="quiz.html" class="arch-cta">Find out which one you are →</a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-section">
+    <div class="how-inner">
+      <p class="section-eyebrow">how it works</p>
+      <h2 class="section-headline">Seriously, 5 minutes.</h2>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-num">01</div>
+          <div class="how-content">
+            <div class="how-title">Answer 15 honest questions</div>
+            <div class="how-desc">Not what sounds good - what's actually true. The questions are designed to surface your real brand personality, not your aspirational one.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">02</div>
+          <div class="how-content">
+            <div class="how-title">Enter your email</div>
+            <div class="how-desc">So we can send you your full results. No spam - just your archetype report and how to use it.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">03</div>
+          <div class="how-content">
+            <div class="how-title">Get your complete brand system</div>
+            <div class="how-desc">Your archetype, 3 color palettes, typography guidance, design decisions, and inspiration - all specific to you.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">04</div>
+          <div class="how-content">
+            <div class="how-title">Build your website</div>
+            <div class="how-desc">Use it yourself, or let Site in 8 turn it into a real website this weekend.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-section">
+    <span class="cta-eyebrow">ready?</span>
+    <h2 class="cta-headline">Your brand has a personality.<br><em>Let's find it.</em></h2>
+    <a href="quiz.html" class="cta-btn">Take the free quiz →</a>
+    <p class="cta-free">free · 5 minutes · no login required</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">site<span>in</span>8</div>
+    <p class="footer-text">Your website. Done this weekend. $8. · <a href="https://sitein8.com" class="footer-link">sitein8.com</a></p>
+  </footer>
+
+</body>
+</html>

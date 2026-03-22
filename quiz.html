@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's Your Brand Archetype? | Site in 8</title>
+  <meta name="description" content="Take the free brand archetype quiz and discover your design system, color palettes, and website personality in minutes.">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    body { background: #1E1038; min-height: 100vh; }
+
+    /* Progress */
+    .prog-wrap { padding: 14px 24px 0; }
+    .prog-track { height: 3px; background: rgba(255,253,247,0.1); overflow: hidden; }
+    .prog-fill { height: 100%; background: #E8346B; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+    .prog-label { font-family: var(--font-hand); font-size: 13px; color: rgba(255,253,247,0.4); margin-top: 6px; font-weight: 600; }
+
+    /* Screens */
+    .screen { display: none; padding: 28px 24px 40px; animation: fadeUp 0.35s ease forwards; }
+    .screen.active { display: block; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+    /* Question */
+    .q-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #E8346B; font-weight: 600; margin-bottom: 12px; }
+    .q-text { font-family: var(--font-serif); font-weight: 700; font-size: 1.4rem; color: #FFFDF7; line-height: 1.35; margin-bottom: 8px; }
+    .q-hint { font-family: var(--font-hand); font-size: 17px; color: rgba(196,181,253,0.65); margin-bottom: 24px; font-weight: 600; }
+    .q-opts { display: flex; flex-direction: column; gap: 8px; }
+    .q-opt {
+      display: block; width: 100%; padding: 15px 18px;
+      background: rgba(255,253,247,0.04); border: 1.5px solid rgba(255,253,247,0.12);
+      color: #FFFDF7; font-family: var(--font-sans); font-size: 13px; font-weight: 400;
+      line-height: 1.5; text-align: left; cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .q-opt:hover { background: rgba(232,52,107,0.1); border-color: #E8346B; transform: translateX(4px); }
+    .q-opt.picked { background: rgba(232,52,107,0.15); border-color: #E8346B; font-weight: 600; }
+    .q-opt:disabled { cursor: default; }
+
+    /* Resume banner */
+    .resume-banner {
+      margin: 16px 24px 0;
+      padding: 14px 18px;
+      background: rgba(255,210,63,0.08);
+      border: 1.5px solid rgba(255,210,63,0.3);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .resume-text { font-size: 13px; color: rgba(255,253,247,0.7); font-family: var(--font-hand); font-size: 16px; font-weight: 600; }
+    .resume-btns { display: flex; gap: 8px; flex-shrink: 0; }
+    .resume-yes, .resume-no {
+      padding: 6px 14px; font-size: 11px; font-weight: 600; cursor: pointer;
+      font-family: var(--font-sans); letter-spacing: 0.5px;
+    }
+    .resume-yes { background: #FFD23F; color: #1a1a2e; border: none; }
+    .resume-no { background: transparent; color: rgba(255,253,247,0.4); border: 1px solid rgba(255,253,247,0.15); }
+
+    /* Email gate */
+    .email-wrap { text-align: center; padding: 40px 24px; }
+    .email-eyebrow { font-family: var(--font-hand); font-size: 18px; color: #FFD23F; font-weight: 600; margin-bottom: 12px; }
+    .email-headline { font-family: var(--font-serif); font-weight: 900; font-size: 1.9rem; color: #FFFDF7; line-height: 1.1; margin-bottom: 10px; }
+    .email-sub { font-size: 13px; color: rgba(255,253,247,0.55); margin-bottom: 28px; line-height: 1.7; max-width: 380px; margin-left: auto; margin-right: auto; }
+    .email-input {
+      display: block; width: 100%; max-width: 360px; margin: 0 auto 10px;
+      padding: 15px 18px; border: 1.5px solid rgba(255,253,247,0.2);
+      background: rgba(255,253,247,0.07); color: #FFFDF7;
+      font-family: var(--font-sans); font-size: 15px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-input::placeholder { color: rgba(255,253,247,0.3); }
+    .email-input:focus { border-color: #E8346B; }
+    .email-input.error { border-color: #E8346B; animation: shake 0.3s ease; }
+    @keyframes shake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-6px); } 75% { transform:translateX(6px); } }
+    .email-btn {
+      display: block; width: 100%; max-width: 360px; margin: 0 auto 12px;
+      padding: 16px; background: #E8346B; color: #FFFDF7;
+      font-family: var(--font-sans); font-size: 15px; font-weight: 600;
+      border: none; cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .email-btn:hover { background: #d42a5c; transform: translateY(-2px); }
+    .email-note { font-size: 11px; color: rgba(255,253,247,0.25); }
+
+    /* Calculating */
+    .calc-wrap { text-align: center; padding: 80px 24px; }
+    .calc-spinner {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(232,52,107,0.2); border-top-color: #E8346B;
+      border-radius: 50%; animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .calc-title { font-family: var(--font-serif); font-weight: 900; font-size: 1rem; color: #E8346B; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .calc-sub { font-family: var(--font-hand); font-size: 18px; color: rgba(255,253,247,0.4); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <nav class="quiz-nav">
+    <a href="index.html" class="quiz-nav-logo">site<span>in</span>8</a>
+  </nav>
+
+  <div id="resumeBanner" style="display:none;"></div>
+
+  <div class="prog-wrap" id="progWrap">
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:6.67%"></div></div>
+    <div class="prog-label" id="progLabel">question 1 of 15</div>
+  </div>
+
+  <div id="screensOuter"></div>
+
+  <script src="js/quiz.js"></script>
+  <script>
+    let answers = new Array(QUESTIONS.length).fill(null);
+    let currentQ = 0;
+    let emailAddress = '';
+
+    const outer = document.getElementById('screensOuter');
+
+    // Check for saved progress
+    const saved = loadProgress();
+    if (saved && saved.answers && saved.answers.some(a => a !== null)) {
+      const answeredCount = saved.answers.filter(a => a !== null).length;
+      if (answeredCount > 0 && answeredCount < QUESTIONS.length) {
+        const banner = document.getElementById('resumeBanner');
+        banner.style.display = 'block';
+        banner.innerHTML = `
+          <div class="resume-banner">
+            <div class="resume-text">👋 Welcome back - you're on question ${answeredCount + 1} of 15</div>
+            <div class="resume-btns">
+              <button class="resume-yes" onclick="resumeQuiz()">Continue</button>
+              <button class="resume-no" onclick="startFresh()">Start over</button>
+            </div>
+          </div>
+        `;
+      } else if (answeredCount === QUESTIONS.length && saved.email) {
+        // Completed - redirect to result
+        const result = calculateResult(saved.answers);
+        window.location.href = getResultURL(result.primary);
+      }
+    }
+
+    function resumeQuiz() {
+      answers = saved.answers;
+      emailAddress = saved.email || '';
+      document.getElementById('resumeBanner').style.display = 'none';
+      // Find first unanswered
+      const firstNull = answers.findIndex(a => a === null);
+      currentQ = firstNull >= 0 ? firstNull : QUESTIONS.length - 1;
+      updateProgress(currentQ + 1);
+      showOnly(`q${currentQ}`);
+    }
+
+    function startFresh() {
+      clearProgress();
+      answers = new Array(QUESTIONS.length).fill(null);
+      document.getElementById('resumeBanner').style.display = 'none';
+      updateProgress(1);
+      showOnly('q0');
+    }
+
+    // Build all screens
+    function buildScreens() {
+      QUESTIONS.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.id = `q${i}`;
+        div.className = 'screen';
+        div.innerHTML = `
+          <div class="q-eyebrow">Question ${i + 1} of ${QUESTIONS.length}</div>
+          <div class="q-text">${q.q}</div>
+          <div class="q-hint">${q.hint}</div>
+          <div class="q-opts">
+            ${q.options.map((o, j) => `
+              <button class="q-opt" onclick="pick(${i},${j})">${o.t}</button>
+            `).join('')}
+          </div>
+        `;
+        outer.appendChild(div);
+      });
+
+      // Email gate
+      const emailDiv = document.createElement('div');
+      emailDiv.id = 'semail';
+      emailDiv.className = 'screen';
+      emailDiv.innerHTML = `
+        <div class="email-wrap">
+          <div class="email-eyebrow">almost there...</div>
+          <div class="email-headline">Where should we<br>send your results?</div>
+          <div class="email-sub">Enter your email and we'll reveal your brand archetype - plus your full design system, color palettes, and everything you need to build a website that actually feels like you.</div>
+          <input class="email-input" type="email" placeholder="your@email.com" id="emailVal">
+          <button class="email-btn" onclick="submitEmail()">Reveal my archetype ✨</button>
+          <div class="email-note">No spam. Just your results.</div>
+        </div>
+      `;
+      outer.appendChild(emailDiv);
+
+      // Calculating
+      const calcDiv = document.createElement('div');
+      calcDiv.id = 'scalc';
+      calcDiv.className = 'screen';
+      calcDiv.innerHTML = `
+        <div class="calc-wrap">
+          <div class="calc-spinner"></div>
+          <div class="calc-title">Calculating...</div>
+          <div class="calc-sub" id="calcSub">Reading your answers</div>
+        </div>
+      `;
+      outer.appendChild(calcDiv);
+    }
+
+    function showOnly(id) {
+      outer.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }
+
+    function updateProgress(n) {
+      const pct = Math.round((n / QUESTIONS.length) * 100);
+      document.getElementById('progFill').style.width = pct + '%';
+      document.getElementById('progLabel').textContent = `question ${n} of ${QUESTIONS.length}`;
+    }
+
+    function pick(qi, ai) {
+      answers[qi] = ai;
+      saveProgress(answers, emailAddress);
+
+      // Visual feedback
+      const btns = document.querySelectorAll(`#q${qi} .q-opt`);
+      btns.forEach((b, j) => {
+        if (j === ai) b.classList.add('picked');
+        else b.style.opacity = '0.4';
+        b.disabled = true;
+      });
+
+      setTimeout(() => {
+        if (qi < QUESTIONS.length - 1) {
+          currentQ = qi + 1;
+          updateProgress(currentQ + 1);
+          showOnly(`q${currentQ}`);
+        } else {
+          document.getElementById('progWrap').style.opacity = '0';
+          showOnly('semail');
+        }
+      }, 350);
+    }
+
+    function submitEmail() {
+      const val = document.getElementById('emailVal').value.trim();
+      const input = document.getElementById('emailVal');
+      if (!val || !val.includes('@') || !val.includes('.')) {
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 500);
+        return;
+      }
+      emailAddress = val;
+      saveProgress(answers, emailAddress);
+
+      // TODO: Connect to your email platform here
+      // Example: await fetch('https://your-email-api.com/subscribe', { method:'POST', body: JSON.stringify({ email: val }) })
+
+      showOnly('scalc');
+      const msgs = ["Reading your answers", "Mapping your personality", "Finding your archetype", "Almost ready..."];
+      let t = 0;
+      const iv = setInterval(() => {
+        t++;
+        const el = document.getElementById('calcSub');
+        if (el && t < msgs.length) el.textContent = msgs[t];
+      }, 650);
+
+      setTimeout(() => {
+        clearInterval(iv);
+        const result = calculateResult(answers);
+        saveProgress(answers, emailAddress);
+        window.location.href = getResultURL(result.primary);
+      }, 2800);
+    }
+
+    buildScreens();
+    showOnly('q0');
+  </script>
+</body>
+</html>
