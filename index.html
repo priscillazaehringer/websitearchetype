@@ -44,7 +44,7 @@
     }
     .hero-sub {
       font-size: 17px; color: rgba(255,253,247,0.55); line-height: 1.8;
-      max-width: 500px; margin: 0 auto 40px;
+      max-width: 520px; margin: 0 auto 40px;
     }
     .hero-cta {
       display: inline-block; padding: 20px 56px;
@@ -107,21 +107,34 @@
 
     /* Archetypes preview */
     .arch-section { background: #1E1038; padding: 96px 32px; position: relative; }
-    .arch-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .arch-inner { max-width: 740px; margin: 0 auto; text-align: center; }
     .arch-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #FFD23F; margin-bottom: 12px; }
     .arch-headline {
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
       color: #FFFDF7; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.5px;
     }
-    .arch-sub { font-size: 14px; color: rgba(255,253,247,0.45); margin-bottom: 36px; line-height: 1.6; }
-    .arch-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 44px; }
-    .arch-pill {
-      padding: 8px 18px; font-size: 13px; font-weight: 600;
-      border: 1.5px solid rgba(255,253,247,0.12); color: rgba(255,253,247,0.5);
-      font-family: var(--font-sans); cursor: default;
-      transition: all 0.2s ease;
+    .arch-sub { font-size: 14px; color: rgba(255,253,247,0.45); margin-bottom: 40px; line-height: 1.6; }
+    .arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 48px; }
+    .arch-card {
+      padding: 20px 16px; text-align: left;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,253,247,0.08);
+      cursor: default; transition: all 0.3s ease; position: relative; overflow: hidden;
     }
-    .arch-pill:hover { border-color: #E8346B; color: #E8346B; transform: translateY(-1px); }
+    .arch-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: var(--accent); opacity: 0; transition: opacity 0.3s ease;
+    }
+    .arch-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .arch-card:hover::before { opacity: 1; }
+    .arch-name {
+      font-family: var(--font-serif); font-weight: 700; font-size: 1rem;
+      color: #FFFDF7; margin-bottom: 6px; transition: color 0.3s ease;
+    }
+    .arch-card:hover .arch-name { color: var(--accent); }
+    .arch-tagline {
+      font-size: 12px; color: rgba(255,253,247,0.4); line-height: 1.55;
+      font-family: var(--font-sans);
+    }
 
     /* How it works */
     .how-section { background: #FFFDF7; padding: 96px 32px; }
@@ -173,9 +186,13 @@
 
     @media (max-width: 600px) {
       .what-grid { grid-template-columns: 1fr; }
+      .arch-grid { grid-template-columns: 1fr 1fr; }
       .hero { padding: 72px 24px 60px; }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
+    }
+    @media (max-width: 400px) {
+      .arch-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -192,9 +209,9 @@
     <div class="hero-glow" style="width:200px;height:200px;background:#C4B5FD;top:40%;left:50%;transform:translateX(-50%);"></div>
     <div class="hero-inner">
       <span class="hero-eyebrow">free brand quiz ✨</span>
-      <h1 class="hero-headline">Stop <span class="struck">guessing</span><br>your brand.<br><em>Know it.</em></h1>
-      <p class="hero-sub">15 honest questions. Your full brand identity — archetype, color palettes, typography, website personality — delivered instantly.</p>
-      <a href="quiz.html" class="hero-cta">Take the quiz →</a>
+      <h1 class="hero-headline">Your website<br>doesn't need more <span class="struck">templates.</span><br>It needs <em>you.</em></h1>
+      <p class="hero-sub">15 honest questions. Your full brand identity, color palettes, typography, and website personality. Delivered instantly.</p>
+      <a href="quiz.html" class="hero-cta">Take the quiz</a>
       <p class="hero-note">free · no login · under 5 minutes</p>
     </div>
   </section>
@@ -235,9 +252,9 @@
     <div class="story-inner">
       <p class="story-eyebrow">sound familiar?</p>
       <h2 class="story-headline">You've been staring at your website for <em>weeks.</em></h2>
-      <p class="story-text">You know you need one. You've probably started building one. But every time you sit down to pick colors, choose fonts, figure out the vibe — you freeze.</p>
-      <p class="story-text"><strong>Not because you don't have taste.</strong> Because you don't have a system. You don't know what your brand actually is yet — so every decision feels like a guess.</p>
-      <p class="story-text">This quiz fixes that. In 5 minutes, you'll know your brand archetype — and you'll walk away with the exact colors, typography, and design decisions that match it.</p>
+      <p class="story-text">You know you need one. You've probably started building one. But every time you sit down to pick colors, choose fonts, figure out the vibe... you freeze.</p>
+      <p class="story-text"><strong>Not because you don't have taste.</strong> Because you don't have a system. You don't know what your brand actually is yet, so every decision feels like a guess.</p>
+      <p class="story-text">This quiz fixes that. In 5 minutes you'll know your brand archetype and walk away with the exact colors, typography, and design decisions your website actually needs.</p>
     </div>
   </section>
 
@@ -245,37 +262,37 @@
   <section class="what-section">
     <div class="what-inner">
       <p class="what-eyebrow">what you walk away with</p>
-      <h2 class="what-headline">Not a vague label. A full brand system.</h2>
+      <h2 class="what-headline">Not a vague label. A full website blueprint.</h2>
       <div class="what-grid">
         <div class="what-card">
           <div class="what-num">01</div>
           <div class="what-title">Your Brand Archetype</div>
-          <div class="what-desc">Which of the 12 brand personalities you actually are — and why it matters for every design decision.</div>
+          <div class="what-desc">Which of the 12 brand personalities you actually are, and why it matters for every design decision.</div>
         </div>
         <div class="what-card">
           <div class="what-num">02</div>
           <div class="what-title">3 Color Palettes</div>
-          <div class="what-desc">Three complete color systems designed for your archetype — dark, rich, and light. Ready to use.</div>
+          <div class="what-desc">Three complete color systems designed for your archetype. Dark, rich, and light. Ready to use.</div>
         </div>
         <div class="what-card">
           <div class="what-num">03</div>
           <div class="what-title">Typography Direction</div>
-          <div class="what-desc">What your fonts should feel like and why — in plain English, not design jargon.</div>
+          <div class="what-desc">What your fonts should feel like and why. In plain English, not design jargon.</div>
         </div>
         <div class="what-card">
           <div class="what-num">04</div>
           <div class="what-title">Website Personality</div>
-          <div class="what-desc">Corners, white space, animations, photos, dividers — every design detail, decided for you.</div>
+          <div class="what-desc">Corners, white space, animations, photos, dividers. Every design detail, decided for you.</div>
         </div>
         <div class="what-card">
           <div class="what-num">05</div>
           <div class="what-title">Voice & Tone</div>
-          <div class="what-desc">How your brand should sound — the words, the energy, the feeling people get when they read your site.</div>
+          <div class="what-desc">How your brand should sound. The words, the energy, the feeling people get when they read your site.</div>
         </div>
         <div class="what-card">
           <div class="what-num">06</div>
           <div class="what-title">Brand Inspiration</div>
-          <div class="what-desc">Real brands doing your archetype right — so you can see exactly what yours could look like.</div>
+          <div class="what-desc">Real brands doing your archetype right, so you can see exactly what yours could look like.</div>
         </div>
       </div>
     </div>
@@ -287,21 +304,57 @@
       <p class="arch-eyebrow">12 archetypes</p>
       <h2 class="arch-headline">Which one are you?</h2>
       <p class="arch-sub">Every brand has a personality. Most people just haven't named theirs yet.</p>
-      <div class="arch-pills">
-        <div class="arch-pill">The Magician</div>
-        <div class="arch-pill">The Caregiver</div>
-        <div class="arch-pill">The Rebel</div>
-        <div class="arch-pill">The Sage</div>
-        <div class="arch-pill">The Hero</div>
-        <div class="arch-pill">The Lover</div>
-        <div class="arch-pill">The Creator</div>
-        <div class="arch-pill">The Explorer</div>
-        <div class="arch-pill">The Ruler</div>
-        <div class="arch-pill">The Innocent</div>
-        <div class="arch-pill">The Jester</div>
-        <div class="arch-pill">The Everyperson</div>
+      <div class="arch-grid">
+        <div class="arch-card" style="--accent:#7c3aed;">
+          <div class="arch-name">The Magician</div>
+          <div class="arch-tagline">You make the impossible feel inevitable.</div>
+        </div>
+        <div class="arch-card" style="--accent:#f9a8d4;">
+          <div class="arch-name">The Caregiver</div>
+          <div class="arch-tagline">You make people feel safe enough to grow.</div>
+        </div>
+        <div class="arch-card" style="--accent:#dc2626;">
+          <div class="arch-name">The Rebel</div>
+          <div class="arch-tagline">You break the rules that needed breaking.</div>
+        </div>
+        <div class="arch-card" style="--accent:#0891b2;">
+          <div class="arch-name">The Sage</div>
+          <div class="arch-tagline">You turn confusion into clarity.</div>
+        </div>
+        <div class="arch-card" style="--accent:#f59e0b;">
+          <div class="arch-name">The Hero</div>
+          <div class="arch-tagline">You rise to every challenge and bring others with you.</div>
+        </div>
+        <div class="arch-card" style="--accent:#d97706;">
+          <div class="arch-name">The Lover</div>
+          <div class="arch-tagline">You create beauty and deep connection in everything.</div>
+        </div>
+        <div class="arch-card" style="--accent:#f97316;">
+          <div class="arch-name">The Creator</div>
+          <div class="arch-tagline">Your work couldn't have come from anyone else.</div>
+        </div>
+        <div class="arch-card" style="--accent:#d97706;">
+          <div class="arch-name">The Explorer</div>
+          <div class="arch-tagline">You forge your own path and invite others to follow.</div>
+        </div>
+        <div class="arch-card" style="--accent:#64748b;">
+          <div class="arch-name">The Ruler</div>
+          <div class="arch-tagline">You build empires with precision and vision.</div>
+        </div>
+        <div class="arch-card" style="--accent:#4ade80;">
+          <div class="arch-name">The Innocent</div>
+          <div class="arch-tagline">There's a simpler way. You show people what it is.</div>
+        </div>
+        <div class="arch-card" style="--accent:#fbbf24;">
+          <div class="arch-name">The Jester</div>
+          <div class="arch-tagline">You turn the serious into something people enjoy.</div>
+        </div>
+        <div class="arch-card" style="--accent:#4ade80;">
+          <div class="arch-name">The Everyperson</div>
+          <div class="arch-tagline">You make people feel like they belong.</div>
+        </div>
       </div>
-      <a href="quiz.html" class="hero-cta">Find yours →</a>
+      <a href="quiz.html" class="hero-cta">Find yours</a>
     </div>
   </section>
 
@@ -315,7 +368,7 @@
           <div class="how-num">01</div>
           <div class="how-content">
             <div class="how-title">Answer 15 honest questions</div>
-            <div class="how-desc">Not what sounds good — what's actually true. These questions surface your real brand personality, not your aspirational one.</div>
+            <div class="how-desc">Not what sounds good. What's actually true. These questions surface your real brand personality, not your aspirational one.</div>
           </div>
         </div>
         <div class="how-step">
@@ -328,8 +381,8 @@
         <div class="how-step">
           <div class="how-num">03</div>
           <div class="how-content">
-            <div class="how-title">Get your complete brand system</div>
-            <div class="how-desc">Archetype, 3 color palettes, typography, design specs, voice & tone, inspiration — all built around you.</div>
+            <div class="how-title">Get your complete website blueprint</div>
+            <div class="how-desc">Archetype, 3 color palettes, typography, design specs, voice and tone, inspiration. All built around you.</div>
           </div>
         </div>
       </div>
@@ -342,8 +395,8 @@
     <div class="cta-glow" style="width:280px;height:280px;background:#FFD23F;bottom:-60px;right:-60px;"></div>
     <div class="cta-inner">
       <span class="cta-eyebrow">ready?</span>
-      <h2 class="cta-headline">Your brand has a personality.<br><em>Let's find it.</em></h2>
-      <a href="quiz.html" class="cta-btn">Take the quiz →</a>
+      <h2 class="cta-headline">Your website has a personality.<br><em>Let's find it.</em></h2>
+      <a href="quiz.html" class="cta-btn">Take the quiz</a>
       <p class="cta-note">free · 5 minutes · no login required</p>
     </div>
   </section>
