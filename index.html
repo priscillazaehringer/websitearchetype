@@ -105,36 +105,7 @@
     .what-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: #FFFDF7; margin-bottom: 6px; }
     .what-desc { font-size: 12px; color: rgba(255,253,247,0.7); line-height: 1.7; }
 
-    /* Archetypes preview */
-    .arch-section { background: #1E1038; padding: 96px 32px; position: relative; }
-    .arch-inner { max-width: 740px; margin: 0 auto; text-align: center; }
-    .arch-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #FFD23F; margin-bottom: 12px; }
-    .arch-headline {
-      font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
-      color: #FFFDF7; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.5px;
-    }
-    .arch-sub { font-size: 14px; color: rgba(255,253,247,0.45); margin-bottom: 40px; line-height: 1.6; }
-    .arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 48px; }
-    .arch-card {
-      padding: 20px 16px; text-align: left;
-      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,253,247,0.08);
-      cursor: default; transition: all 0.3s ease; position: relative; overflow: hidden;
-    }
-    .arch-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-      background: var(--accent); opacity: 0; transition: opacity 0.3s ease;
-    }
-    .arch-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
-    .arch-card:hover::before { opacity: 1; }
-    .arch-name {
-      font-family: var(--font-serif); font-weight: 700; font-size: 1rem;
-      color: #FFFDF7; margin-bottom: 6px; transition: color 0.3s ease;
-    }
-    .arch-card:hover .arch-name { color: var(--accent); }
-    .arch-tagline {
-      font-size: 12px; color: rgba(255,253,247,0.4); line-height: 1.55;
-      font-family: var(--font-sans);
-    }
+    /* Archetypes preview (unused - merged into preview section) */
 
     /* How it works */
     .how-section { background: #FFFDF7; padding: 96px 32px; }
@@ -264,18 +235,6 @@
       padding: 4px 8px; background: rgba(255,255,255,0.06);
       color: rgba(255,253,247,0.4); font-family: var(--font-sans); font-weight: 600;
     }
-    .preview-card-link {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-top: 1px solid rgba(255,253,247,0.06);
-    }
-    .preview-card-link-text {
-      font-size: 11px; color: rgba(255,253,247,0.3); font-family: var(--font-sans);
-      font-weight: 600; letter-spacing: 0.5px;
-    }
-    .preview-card-link-arrow {
-      font-size: 14px; color: rgba(255,253,247,0.2); transition: color 0.2s;
-    }
-    .preview-card:hover .preview-card-link-arrow { color: var(--card-accent, #FFD23F); }
     .preview-hint {
       font-size: 12px; color: rgba(255,253,247,0.25); margin-top: 8px;
       font-family: var(--font-hand); font-weight: 600;
@@ -318,18 +277,131 @@
       font-size: 14px; color: #6B6980; line-height: 1.8;
     }
 
+    /* Report Mockup Section */
+    .mockup-section {
+      background: #FFFDF7; padding: 96px 32px;
+    }
+    .mockup-inner {
+      max-width: 520px; margin: 0 auto; text-align: center;
+    }
+    .mockup-eyebrow {
+      font-family: var(--font-hand); font-size: 20px; font-weight: 600;
+      color: #E8346B; margin-bottom: 12px;
+    }
+    .mockup-headline {
+      font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 40px;
+    }
+    .mockup-frame {
+      background: #fff; border: 1px solid #e0ddd6;
+      box-shadow: 0 8px 40px rgba(45,43,61,0.08), 0 1px 3px rgba(45,43,61,0.06);
+      padding: 0; overflow: hidden;
+      transform: perspective(800px) rotateY(-2deg);
+      transition: transform 0.4s ease;
+    }
+    .mockup-frame:hover {
+      transform: perspective(800px) rotateY(0deg);
+    }
+    .mockup-content {
+      padding: 24px; filter: blur(0.5px); opacity: 0.85;
+    }
+    /* Header block - archetype hero area */
+    .mockup-header {
+      height: 96px; border-radius: 4px; margin-bottom: 20px;
+      background: linear-gradient(135deg, #2D2B3D 0%, #4a3870 40%, rgba(232,52,107,0.3) 100%);
+      position: relative; overflow: hidden;
+    }
+    .mockup-header::after {
+      content: ''; position: absolute; bottom: 14px; left: 20px;
+      width: 55%; height: 14px; background: rgba(255,255,255,0.2); border-radius: 2px;
+    }
+    .mockup-header::before {
+      content: ''; position: absolute; bottom: 36px; left: 20px;
+      width: 35%; height: 8px; background: rgba(255,255,255,0.12); border-radius: 2px;
+    }
+    /* Color palette row */
+    .mockup-palette {
+      display: flex; gap: 6px; margin-bottom: 20px;
+    }
+    .mockup-swatch {
+      flex: 1; height: 24px; border-radius: 3px;
+    }
+    /* Two columns - typography + voice */
+    .mockup-columns {
+      display: flex; gap: 12px; margin-bottom: 20px;
+    }
+    .mockup-col {
+      flex: 1; height: 72px; border-radius: 4px; background: #e5e5e5;
+      position: relative; overflow: hidden;
+    }
+    .mockup-col::after {
+      content: ''; position: absolute; top: 12px; left: 12px;
+      width: 50%; height: 6px; background: rgba(0,0,0,0.08); border-radius: 2px;
+    }
+    .mockup-col::before {
+      content: ''; position: absolute; top: 26px; left: 12px;
+      width: 70%; height: 4px; background: rgba(0,0,0,0.05); border-radius: 2px;
+    }
+    /* Design decision cards */
+    .mockup-decisions {
+      display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;
+    }
+    .mockup-decision {
+      height: 22px; border-radius: 3px; background: #ececec;
+      position: relative;
+    }
+    .mockup-decision::after {
+      content: ''; position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
+      width: 40%; height: 5px; background: rgba(0,0,0,0.06); border-radius: 2px;
+    }
+    .mockup-decision:nth-child(2)::after { width: 55%; }
+    .mockup-decision:nth-child(3)::after { width: 35%; }
+    /* Brand inspiration row */
+    .mockup-inspiration {
+      display: flex; gap: 12px;
+    }
+    .mockup-inspo-block {
+      flex: 1; height: 56px; border-radius: 4px; background: #d4d4d4;
+      position: relative; overflow: hidden;
+    }
+    .mockup-inspo-block::after {
+      content: ''; position: absolute; bottom: 8px; left: 10px;
+      width: 60%; height: 5px; background: rgba(0,0,0,0.06); border-radius: 2px;
+    }
+    /* Accent hints on mockup blocks */
+    .mockup-col:first-child { background: linear-gradient(135deg, #e5e5e5 70%, rgba(232,52,107,0.08) 100%); }
+    .mockup-col:last-child { background: linear-gradient(135deg, #e5e5e5 70%, rgba(255,210,63,0.1) 100%); }
+    .mockup-inspo-block:first-child { background: linear-gradient(180deg, #d4d4d4 60%, rgba(232,52,107,0.1) 100%); }
+    .mockup-inspo-block:last-child { background: linear-gradient(180deg, #d4d4d4 60%, rgba(196,181,253,0.12) 100%); }
+
+    .mockup-note {
+      font-family: var(--font-hand); font-size: 16px; font-weight: 600;
+      color: #6B6980; margin-top: 28px; margin-bottom: 24px;
+    }
+    .mockup-cta {
+      display: inline-block; padding: 18px 48px;
+      background: #E8346B; color: #FFFDF7;
+      font-family: var(--font-sans); font-size: 16px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .mockup-cta:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(232,52,107,0.25);
+    }
+
     @media (max-width: 600px) {
       .what-grid { grid-template-columns: 1fr; }
-      .arch-grid { grid-template-columns: 1fr 1fr; }
       .hero { padding: 72px 24px 60px; }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
       .preview-card { min-width: 220px; max-width: 220px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
+      .mockup-frame { transform: perspective(800px) rotateY(0deg); }
+      .mockup-header { height: 72px; }
     }
     @media (max-width: 400px) {
-      .arch-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -435,6 +507,46 @@
     </div>
   </section>
 
+  <!-- Report Mockup -->
+  <section class="mockup-section">
+    <div class="mockup-inner">
+      <p class="mockup-eyebrow">sneak peek</p>
+      <h2 class="mockup-headline">Your report looks something like this.</h2>
+      <div class="mockup-frame">
+        <div class="mockup-content">
+          <!-- Hero/archetype name area -->
+          <div class="mockup-header"></div>
+          <!-- Color palette swatches -->
+          <div class="mockup-palette">
+            <div class="mockup-swatch" style="background: #d4d4d4;"></div>
+            <div class="mockup-swatch" style="background: rgba(232,52,107,0.18);"></div>
+            <div class="mockup-swatch" style="background: rgba(255,210,63,0.2);"></div>
+            <div class="mockup-swatch" style="background: rgba(196,181,253,0.2);"></div>
+            <div class="mockup-swatch" style="background: #e5e5e5;"></div>
+          </div>
+          <!-- Typography + voice columns -->
+          <div class="mockup-columns">
+            <div class="mockup-col"></div>
+            <div class="mockup-col"></div>
+          </div>
+          <!-- Design decision cards -->
+          <div class="mockup-decisions">
+            <div class="mockup-decision"></div>
+            <div class="mockup-decision"></div>
+            <div class="mockup-decision"></div>
+          </div>
+          <!-- Brand inspiration -->
+          <div class="mockup-inspiration">
+            <div class="mockup-inspo-block"></div>
+            <div class="mockup-inspo-block"></div>
+          </div>
+        </div>
+      </div>
+      <p class="mockup-note">every archetype gets a different one</p>
+      <a href="quiz.html" class="mockup-cta">Take the quiz</a>
+    </div>
+  </section>
+
   <!-- Stats -->
   <section class="stats-section">
     <div class="stats-inner">
@@ -458,75 +570,18 @@
     </div>
   </section>
 
-  <!-- Preview Gallery -->
+  <!-- Archetypes Preview -->
   <section class="preview-section">
     <div class="preview-inner">
-      <p class="preview-eyebrow">see what you get</p>
-      <h2 class="preview-headline">Here's exactly what you walk away with.</h2>
-      <p class="preview-sub">Every archetype gets a complete, ready-to-use website blueprint. Scroll through to see them all.</p>
+      <p class="preview-eyebrow">12 archetypes</p>
+      <h2 class="preview-headline">Which one are you?</h2>
+      <p class="preview-sub">Every brand has a personality. Most people just haven't named theirs yet. Scroll through to find the one that feels like you.</p>
       <div class="preview-scroll" id="previewScroll">
       </div>
       <p class="preview-hint">scroll to explore all 12 &rarr;</p>
-    </div>
-  </section>
-
-  <!-- Archetypes -->
-  <section class="arch-section">
-    <div class="arch-inner">
-      <p class="arch-eyebrow">12 archetypes</p>
-      <h2 class="arch-headline">Which one are you?</h2>
-      <p class="arch-sub">Every brand has a personality. Most people just haven't named theirs yet.</p>
-      <div class="arch-grid">
-        <div class="arch-card" style="--accent:#7c3aed;">
-          <div class="arch-name">The Magician</div>
-          <div class="arch-tagline">You make the impossible feel inevitable.</div>
-        </div>
-        <div class="arch-card" style="--accent:#f9a8d4;">
-          <div class="arch-name">The Caregiver</div>
-          <div class="arch-tagline">You make people feel safe enough to grow.</div>
-        </div>
-        <div class="arch-card" style="--accent:#dc2626;">
-          <div class="arch-name">The Rebel</div>
-          <div class="arch-tagline">You break the rules that needed breaking.</div>
-        </div>
-        <div class="arch-card" style="--accent:#0891b2;">
-          <div class="arch-name">The Sage</div>
-          <div class="arch-tagline">You turn confusion into clarity.</div>
-        </div>
-        <div class="arch-card" style="--accent:#f59e0b;">
-          <div class="arch-name">The Hero</div>
-          <div class="arch-tagline">You rise to every challenge and bring others with you.</div>
-        </div>
-        <div class="arch-card" style="--accent:#d97706;">
-          <div class="arch-name">The Lover</div>
-          <div class="arch-tagline">You create beauty and deep connection in everything.</div>
-        </div>
-        <div class="arch-card" style="--accent:#f97316;">
-          <div class="arch-name">The Creator</div>
-          <div class="arch-tagline">Your work couldn't have come from anyone else.</div>
-        </div>
-        <div class="arch-card" style="--accent:#d97706;">
-          <div class="arch-name">The Explorer</div>
-          <div class="arch-tagline">You forge your own path and invite others to follow.</div>
-        </div>
-        <div class="arch-card" style="--accent:#64748b;">
-          <div class="arch-name">The Ruler</div>
-          <div class="arch-tagline">You build empires with precision and vision.</div>
-        </div>
-        <div class="arch-card" style="--accent:#4ade80;">
-          <div class="arch-name">The Innocent</div>
-          <div class="arch-tagline">There's a simpler way. You show people what it is.</div>
-        </div>
-        <div class="arch-card" style="--accent:#fbbf24;">
-          <div class="arch-name">The Jester</div>
-          <div class="arch-tagline">You turn the serious into something people enjoy.</div>
-        </div>
-        <div class="arch-card" style="--accent:#4ade80;">
-          <div class="arch-name">The Everyperson</div>
-          <div class="arch-tagline">You make people feel like they belong.</div>
-        </div>
+      <div style="margin-top: 40px;">
+        <a href="quiz.html" class="hero-cta">Find yours</a>
       </div>
-      <a href="quiz.html" class="hero-cta">Find yours</a>
     </div>
   </section>
 
@@ -629,8 +684,7 @@
 
   var scroll = document.getElementById('previewScroll');
   archetypes.forEach(function(a) {
-    var card = document.createElement('a');
-    card.href = a.slug + '.html';
+    var card = document.createElement('div');
     card.className = 'preview-card';
     card.style.setProperty('--card-accent', a.accent);
     var swatches = a.colors.map(function(c) {
@@ -650,10 +704,6 @@
           '<span class="preview-card-feat">Design</span>' +
           '<span class="preview-card-feat">Inspo</span>' +
         '</div>' +
-      '</div>' +
-      '<div class="preview-card-link">' +
-        '<span class="preview-card-link-text">View full result</span>' +
-        '<span class="preview-card-link-arrow">&rarr;</span>' +
       '</div>';
     scroll.appendChild(card);
   });
