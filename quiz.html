@@ -398,6 +398,22 @@
     };
     const KIT_FORM_ID = '4bc3225d05';
 
+    // Supabase logging
+    const SUPABASE_URL = 'https://uisxftfhdepbishsvhsf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpc3hmdGZoZGVwYmlzaHN2aHNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMjYwMjAsImV4cCI6MjA4OTgwMjAyMH0.yx4ci1SEV2O2aev_vJRTWgWg4BhAOdoHnjx2gUOE_Nw';
+
+    function logToSupabase(email, archetype, answers) {
+      fetch(`${SUPABASE_URL}/rest/v1/quiz_submissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({ email, archetype, answers })
+      }).catch(err => console.warn('Supabase log error:', err));
+    }
+
     function subscribeToKit(email, archetype) {
       const tagId = KIT_TAG_IDS[archetype];
       const formData = new FormData();
@@ -441,6 +457,9 @@
 
       // Subscribe to Kit with archetype tag (fire and forget)
       subscribeToKit(emailAddress, result.primary);
+
+      // Log submission to Supabase
+      logToSupabase(emailAddress, result.primary, answers);
 
       showOnly('scalc');
       const msgs = ["Reading your answers", "Mapping your personality", "Finding your archetype", "Almost ready..."];
