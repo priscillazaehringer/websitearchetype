@@ -292,88 +292,27 @@
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
       color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 40px;
     }
-    .mockup-frame {
-      background: #fff; border: 1px solid #e0ddd6;
-      box-shadow: 0 8px 40px rgba(45,43,61,0.08), 0 1px 3px rgba(45,43,61,0.06);
-      padding: 0; overflow: hidden;
-      transform: perspective(800px) rotateY(-2deg);
+    .mockup-iframe-container {
+      position: relative; max-width: 400px; margin: 0 auto;
+      overflow: hidden; border-radius: 8px;
+      box-shadow: 0 12px 48px rgba(45,43,61,0.12), 0 2px 6px rgba(45,43,61,0.08);
+      transform: perspective(900px) rotateY(-2deg) rotateX(1deg);
       transition: transform 0.4s ease;
     }
-    .mockup-frame:hover {
-      transform: perspective(800px) rotateY(0deg);
+    .mockup-iframe-container:hover {
+      transform: perspective(900px) rotateY(0deg) rotateX(0deg);
     }
-    .mockup-content {
-      padding: 24px; filter: blur(0.5px); opacity: 0.85;
+    .mockup-iframe-container iframe {
+      display: block; width: 100%; height: 600px; border: none;
+      filter: blur(6px);
+      pointer-events: none;
     }
-    /* Header block - archetype hero area */
-    .mockup-header {
-      height: 96px; border-radius: 4px; margin-bottom: 20px;
-      background: linear-gradient(135deg, #2D2B3D 0%, #4a3870 40%, rgba(232,52,107,0.3) 100%);
-      position: relative; overflow: hidden;
+    .mockup-iframe-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, #FFFDF7 0%, transparent 12%, transparent 85%, #FFFDF7 100%);
     }
-    .mockup-header::after {
-      content: ''; position: absolute; bottom: 14px; left: 20px;
-      width: 55%; height: 14px; background: rgba(255,255,255,0.2); border-radius: 2px;
-    }
-    .mockup-header::before {
-      content: ''; position: absolute; bottom: 36px; left: 20px;
-      width: 35%; height: 8px; background: rgba(255,255,255,0.12); border-radius: 2px;
-    }
-    /* Color palette row */
-    .mockup-palette {
-      display: flex; gap: 6px; margin-bottom: 20px;
-    }
-    .mockup-swatch {
-      flex: 1; height: 24px; border-radius: 3px;
-    }
-    /* Two columns - typography + voice */
-    .mockup-columns {
-      display: flex; gap: 12px; margin-bottom: 20px;
-    }
-    .mockup-col {
-      flex: 1; height: 72px; border-radius: 4px; background: #e5e5e5;
-      position: relative; overflow: hidden;
-    }
-    .mockup-col::after {
-      content: ''; position: absolute; top: 12px; left: 12px;
-      width: 50%; height: 6px; background: rgba(0,0,0,0.08); border-radius: 2px;
-    }
-    .mockup-col::before {
-      content: ''; position: absolute; top: 26px; left: 12px;
-      width: 70%; height: 4px; background: rgba(0,0,0,0.05); border-radius: 2px;
-    }
-    /* Design decision cards */
-    .mockup-decisions {
-      display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;
-    }
-    .mockup-decision {
-      height: 22px; border-radius: 3px; background: #ececec;
-      position: relative;
-    }
-    .mockup-decision::after {
-      content: ''; position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
-      width: 40%; height: 5px; background: rgba(0,0,0,0.06); border-radius: 2px;
-    }
-    .mockup-decision:nth-child(2)::after { width: 55%; }
-    .mockup-decision:nth-child(3)::after { width: 35%; }
-    /* Brand inspiration row */
-    .mockup-inspiration {
-      display: flex; gap: 12px;
-    }
-    .mockup-inspo-block {
-      flex: 1; height: 56px; border-radius: 4px; background: #d4d4d4;
-      position: relative; overflow: hidden;
-    }
-    .mockup-inspo-block::after {
-      content: ''; position: absolute; bottom: 8px; left: 10px;
-      width: 60%; height: 5px; background: rgba(0,0,0,0.06); border-radius: 2px;
-    }
-    /* Accent hints on mockup blocks */
-    .mockup-col:first-child { background: linear-gradient(135deg, #e5e5e5 70%, rgba(232,52,107,0.08) 100%); }
-    .mockup-col:last-child { background: linear-gradient(135deg, #e5e5e5 70%, rgba(255,210,63,0.1) 100%); }
-    .mockup-inspo-block:first-child { background: linear-gradient(180deg, #d4d4d4 60%, rgba(232,52,107,0.1) 100%); }
-    .mockup-inspo-block:last-child { background: linear-gradient(180deg, #d4d4d4 60%, rgba(196,181,253,0.12) 100%); }
-
     .mockup-note {
       font-family: var(--font-hand); font-size: 16px; font-weight: 600;
       color: #6B6980; margin-top: 28px; margin-bottom: 24px;
@@ -398,8 +337,8 @@
       .preview-card { min-width: 220px; max-width: 220px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
-      .mockup-frame { transform: perspective(800px) rotateY(0deg); }
-      .mockup-header { height: 72px; }
+      .mockup-iframe-container { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
+      .mockup-iframe-container iframe { height: 450px; }
     }
     @media (max-width: 400px) {
     }
@@ -512,35 +451,9 @@
     <div class="mockup-inner">
       <p class="mockup-eyebrow">sneak peek</p>
       <h2 class="mockup-headline">Your report looks something like this.</h2>
-      <div class="mockup-frame">
-        <div class="mockup-content">
-          <!-- Hero/archetype name area -->
-          <div class="mockup-header"></div>
-          <!-- Color palette swatches -->
-          <div class="mockup-palette">
-            <div class="mockup-swatch" style="background: #d4d4d4;"></div>
-            <div class="mockup-swatch" style="background: rgba(232,52,107,0.18);"></div>
-            <div class="mockup-swatch" style="background: rgba(255,210,63,0.2);"></div>
-            <div class="mockup-swatch" style="background: rgba(196,181,253,0.2);"></div>
-            <div class="mockup-swatch" style="background: #e5e5e5;"></div>
-          </div>
-          <!-- Typography + voice columns -->
-          <div class="mockup-columns">
-            <div class="mockup-col"></div>
-            <div class="mockup-col"></div>
-          </div>
-          <!-- Design decision cards -->
-          <div class="mockup-decisions">
-            <div class="mockup-decision"></div>
-            <div class="mockup-decision"></div>
-            <div class="mockup-decision"></div>
-          </div>
-          <!-- Brand inspiration -->
-          <div class="mockup-inspiration">
-            <div class="mockup-inspo-block"></div>
-            <div class="mockup-inspo-block"></div>
-          </div>
-        </div>
+      <div class="mockup-iframe-container">
+        <iframe src="hero.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="mockup-iframe-overlay"></div>
       </div>
       <p class="mockup-note">every archetype gets a different one</p>
       <a href="quiz.html" class="mockup-cta">Take the quiz</a>
