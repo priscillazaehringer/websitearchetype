@@ -11,6 +11,8 @@
     .pal-card.active { border-color: #f59e0b !important; }
     .inspo-mockup { border: 1px solid rgba(255,255,255,0.1); }
     .inspo-mockup:hover { border-color: #f59e0b; }
+    .pal-sw { position: relative; }
+    .pal-hex { font-size: 8px; font-family: var(--font-sans); font-weight: 600; letter-spacing: 0.3px; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); white-space: nowrap; opacity: 0.8; }
   </style>
 </head>
 <body>
@@ -33,16 +35,35 @@
 <div style="background:#fffbeb;padding:56px 0 0;"><div class="arch-wrap">
   <div style="font-family:var(--font-hand);font-size:24px;font-weight:600;color:#f59e0b;margin-bottom:20px;">Your 3 palette options</div>
   <div class="pal-row">
-    <div class="pal-card active" id="pal0" onclick="switchPal(0)" style="border-color:#92400e;"><div class="pal-swatches"><div class="pal-sw" style="background:#1c1917;"></div><div class="pal-sw" style="background:#92400e;"></div><div class="pal-sw" style="background:#f59e0b;"></div><div class="pal-sw" style="background:#fffbeb;"></div><div class="pal-sw" style="background:#fef3c7;"></div></div><div class="pal-name" style="color:#92400e;">Iron and Gold</div></div><div class="pal-card " id="pal1" onclick="switchPal(1)" style=""><div class="pal-swatches"><div class="pal-sw" style="background:#0c0a09;"></div><div class="pal-sw" style="background:#b91c1c;"></div><div class="pal-sw" style="background:#dc2626;"></div><div class="pal-sw" style="background:#fef2f2;"></div><div class="pal-sw" style="background:#fff5f5;"></div></div><div class="pal-name" style="color:#b91c1c;">Forge</div></div><div class="pal-card " id="pal2" onclick="switchPal(2)" style=""><div class="pal-swatches"><div class="pal-sw" style="background:#0f172a;"></div><div class="pal-sw" style="background:#1e40af;"></div><div class="pal-sw" style="background:#3b82f6;"></div><div class="pal-sw" style="background:#f8fafc;"></div><div class="pal-sw" style="background:#eff6ff;"></div></div><div class="pal-name" style="color:#1e40af;">Command</div></div>
+    <div class="pal-card active" id="pal0" onclick="switchPal(0)" style="border-color:#92400e;"><div class="pal-swatches"><div class="pal-sw" style="background:#1c1917;"><span class="pal-hex" style="color:#fef3c7;">#1c1917</span></div><div class="pal-sw" style="background:#92400e;"><span class="pal-hex" style="color:#fef3c7;">#92400e</span></div><div class="pal-sw" style="background:#f59e0b;"><span class="pal-hex" style="color:#1c1917;">#f59e0b</span></div><div class="pal-sw" style="background:#fffbeb;"><span class="pal-hex" style="color:#92400e;">#fffbeb</span></div><div class="pal-sw" style="background:#fef3c7;"><span class="pal-hex" style="color:#92400e;">#fef3c7</span></div></div><div class="pal-name" style="color:#92400e;">Iron and Gold</div></div><div class="pal-card " id="pal1" onclick="switchPal(1)" style=""><div class="pal-swatches"><div class="pal-sw" style="background:#0c0a09;"><span class="pal-hex" style="color:#fef2f2;">#0c0a09</span></div><div class="pal-sw" style="background:#b91c1c;"><span class="pal-hex" style="color:#fff;">#b91c1c</span></div><div class="pal-sw" style="background:#dc2626;"><span class="pal-hex" style="color:#fff;">#dc2626</span></div><div class="pal-sw" style="background:#fef2f2;"><span class="pal-hex" style="color:#b91c1c;">#fef2f2</span></div><div class="pal-sw" style="background:#fff5f5;"><span class="pal-hex" style="color:#b91c1c;">#fff5f5</span></div></div><div class="pal-name" style="color:#b91c1c;">Forge</div></div><div class="pal-card " id="pal2" onclick="switchPal(2)" style=""><div class="pal-swatches"><div class="pal-sw" style="background:#0f172a;"><span class="pal-hex" style="color:#eff6ff;">#0f172a</span></div><div class="pal-sw" style="background:#1e40af;"><span class="pal-hex" style="color:#fff;">#1e40af</span></div><div class="pal-sw" style="background:#3b82f6;"><span class="pal-hex" style="color:#fff;">#3b82f6</span></div><div class="pal-sw" style="background:#f8fafc;"><span class="pal-hex" style="color:#1e40af;">#f8fafc</span></div><div class="pal-sw" style="background:#eff6ff;"><span class="pal-hex" style="color:#1e40af;">#eff6ff</span></div></div><div class="pal-name" style="color:#1e40af;">Command</div></div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
     <div style="padding:28px;background:#fff;border:2px solid #1c1917;">
       <div style="font-family:var(--font-hand);font-size:18px;font-weight:600;color:#92400e;margin-bottom:8px;">Typography</div>
-      <div style="font-size:14px;line-height:1.75;color:#1c1917;">Bold, commanding, built for impact. Headlines in a heavy serif or strong sans-serif that fills the space and demands attention. Body text clean and direct - no flourishes, no decoration. Think Nike's typography - every word earns its place. Fonts that feel like they've done the work.</div>
+      <div style="font-size:14px;line-height:1.75;color:#1c1917;margin-bottom:18px;">Bold, commanding, built for impact. Headlines in a heavy serif or strong sans-serif that fills the space and demands attention. Body text clean and direct - no flourishes, no decoration.</div>
+      <div style="background:#1c1917;padding:20px 24px;margin-bottom:12px;">
+        <div style="font-family:var(--font-serif);font-weight:900;font-size:2rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:4px;">Stop waiting.</div>
+        <div style="font-family:var(--font-serif);font-weight:900;font-size:2rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
+      </div>
+      <div style="background:#fef3c7;padding:14px 18px;">
+        <div style="font-family:var(--font-sans);font-size:13px;line-height:1.7;color:#1c1917;">Your results speak louder than promises. <strong>Every word earns its place.</strong> Clean, direct, no flourishes.</div>
+      </div>
+      <div style="margin-top:10px;font-size:10px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.5px;">Headlines: Heavy serif, 900 weight &nbsp;·&nbsp; Body: Clean sans-serif, 400 weight</div>
     </div>
     <div style="padding:28px;background:#1c1917;border:2px solid #f59e0b;">
       <div style="font-family:var(--font-hand);font-size:18px;font-weight:600;color:#f59e0b;margin-bottom:8px;">Voice and tone</div>
-      <div style="font-size:14px;line-height:1.75;color:#fffbeb;">Direct, confident, results-focused. You don't promise - you prove. Short, punchy sentences. Active voice always. Your copy should feel like a coach who believes in you but won't let you make excuses. No fluff, no filler - every word moves toward the outcome.</div>
+      <div style="font-size:14px;line-height:1.75;color:#fffbeb;margin-bottom:18px;">Direct, confident, results-focused. Short, punchy sentences. Active voice always. Your copy should feel like a coach who believes in you but won't let you make excuses.</div>
+      <div style="display:flex;gap:12px;margin-bottom:14px;">
+        <div style="flex:1;padding:14px;background:rgba(245,158,11,0.1);border-left:3px solid #f59e0b;">
+          <div style="font-size:10px;font-weight:800;color:#f59e0b;letter-spacing:1px;margin-bottom:6px;">DO THIS</div>
+          <div style="font-size:13px;color:#fef3c7;line-height:1.5;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+        </div>
+        <div style="flex:1;padding:14px;background:rgba(220,38,38,0.08);border-left:3px solid rgba(220,38,38,0.4);">
+          <div style="font-size:10px;font-weight:800;color:rgba(220,38,38,0.7);letter-spacing:1px;margin-bottom:6px;">NOT THIS</div>
+          <div style="font-size:13px;color:rgba(254,243,199,0.5);line-height:1.5;font-style:italic;">"We'd love to help you on your journey towards maybe possibly reaching your goals someday!"</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:rgba(254,243,199,0.4);font-family:var(--font-sans);letter-spacing:0.5px;">Short sentences &nbsp;·&nbsp; Active voice &nbsp;·&nbsp; Assume capability &nbsp;·&nbsp; No hedging</div>
     </div>
   </div>
   <div style="padding:28px;background:#f59e0b;border:1px solid #1c1917;border-left:4px solid #f59e0b;margin-bottom:24px;">
@@ -94,24 +115,18 @@
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:#92400e;margin-bottom:10px;">Photography &amp; Imagery</div>
       <div style="font-size:15px;line-height:1.6;color:#1c1917;margin-bottom:18px;">Your visuals should feel earned, not staged. High contrast, dark backgrounds, real moments of intensity. Every image on your site should look like it belongs in the middle of a story — not before it starts.</div>
 
-      <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:8px;">DO THIS</div>
-      <div style="display:flex;gap:10px;margin-bottom:6px;">
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400" alt="Gym fitness dramatic" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400" alt="Athletic determination" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400" alt="Dramatic mountain landscape" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px;">
+        <div style="display:flex;gap:12px;min-width:max-content;padding-bottom:4px;">
+          <div style="width:200px;height:140px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/john-livingstone-OuR-FvCQV8Y-unsplash-scaled.jpg" alt="Hero photography example" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div style="width:200px;height:140px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/zafree-pinano-FIpFzF8IfFA-unsplash-scaled.jpg" alt="Hero photography example" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div style="width:200px;height:140px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;"><img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/hero3-scaled.jpg" alt="Hero photography example" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        </div>
       </div>
-      <div style="font-size:11px;color:#92400e;margin-bottom:20px;font-style:italic;">Dark backgrounds, real movement, earned moments</div>
-
-      <div style="font-size:12px;font-weight:800;color:rgba(220,38,38,0.7);margin-bottom:8px;">NOT THIS</div>
-      <div style="display:flex;gap:10px;margin-bottom:6px;">
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;position:relative;"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=400&fit=crop" alt="Soft pastel scene" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.5;"></div>
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;position:relative;"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&fit=crop" alt="Corporate portrait" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.5;"></div>
-        <div style="width:150px;height:100px;border:1px solid #1c1917;overflow:hidden;flex-shrink:0;position:relative;"><img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400&fit=crop" alt="Cozy flat lay" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.5;"></div>
-      </div>
-      <div style="font-size:11px;color:rgba(220,38,38,0.7);margin-bottom:0;font-style:italic;">Too soft, too posed, too pretty</div>
+      <div style="font-size:11px;color:#92400e;font-style:italic;">Dark backgrounds, real movement, earned moments</div>
     </div>
   </div>
 </div></div>
+<div style="height:48px;background:#fffbeb;"></div>
 <div style="background:#1c1917;padding:48px 0;"><div class="arch-wrap">
     <div style="font-family:var(--font-hand);font-size:24px;font-weight:600;color:#f59e0b;margin-bottom:24px;">Hero brands doing it right</div>
     <div class="inspo-grid">
@@ -170,6 +185,21 @@
     </a>
     </div>
 </div></div>
+
+<div style="background:#f59e0b;padding:48px 0;"><div class="arch-wrap" style="text-align:center;">
+  <div style="font-family:var(--font-serif);font-weight:900;font-size:2rem;color:#1c1917;line-height:1.2;margin-bottom:8px;">Now go build it.</div>
+  <div style="font-size:15px;color:#78350f;line-height:1.7;max-width:480px;margin:0 auto 24px;">You have the palette. You have the direction. You have the voice. The only thing standing between you and a brand that hits — is starting.</div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+    <a href="index.html" style="display:inline-block;padding:12px 28px;background:#1c1917;color:#f59e0b;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;">Retake the quiz</a>
+    <a href="#" onclick="if(navigator.share){navigator.share({title:'I\'m The Hero archetype',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);this.textContent='Link copied!';}" style="display:inline-block;padding:12px 28px;background:transparent;color:#1c1917;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;border:2px solid #1c1917;cursor:pointer;">Share your result</a>
+  </div>
+  <div style="font-family:var(--font-hand);font-size:17px;color:#78350f;opacity:0.7;transform:rotate(-1deg);">heroes don't wait for permission</div>
+</div></div>
+
+<div style="background:#1c1917;padding:24px 0;"><div class="arch-wrap" style="text-align:center;">
+  <div style="font-size:12px;color:rgba(254,243,199,0.3);font-family:var(--font-sans);">Brand Archetype Quiz · Built for people who give a damn about their brand</div>
+</div></div>
+
 <script>
 function switchPal(i){[0,1,2].forEach(j=>{const el=document.getElementById('pal'+j);if(el)el.classList.toggle('active',j===i);});}
 </script>
