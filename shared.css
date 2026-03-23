@@ -204,8 +204,56 @@ body {
   transform: translateY(-2px);
 }
 
+/* ====== Archetype Landing Page Layout ====== */
+
+.arch-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.pal-row {
+  gap: 14px;
+}
+
+.pal-swatches {
+  height: 40px;
+}
+
+.pal-name {
+  font-size: 12px;
+  padding: 7px 10px;
+}
+
+.inspo-grid {
+  gap: 16px;
+}
+
+.inspo-mockup .inspo-bar span {
+  font-size: 9px;
+}
+
+.inspo-mockup .inspo-body {
+  padding: 16px;
+}
+
+.inspo-mockup .inspo-body h4 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.inspo-mockup .inspo-body p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
+  .arch-wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .inspo-grid {
     grid-template-columns: 1fr;
   }
