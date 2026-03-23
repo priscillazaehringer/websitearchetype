@@ -414,16 +414,19 @@
       }).catch(err => console.warn('Supabase log error:', err));
     }
 
+    const KIT_API_KEY = 'qGQAW2cZGyKzMo4-6G4EIw';
+
     function subscribeToKit(email, archetype) {
       const tagId = KIT_TAG_IDS[archetype];
-      const formData = new FormData();
-      formData.append('email_address', email);
-      if (tagId) formData.append('tags[]', tagId);
 
-      // Try both Kit endpoints (kit.com is the new domain)
-      fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscribe`, {
+      fetch(`https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          api_key: KIT_API_KEY,
+          email: email,
+          tags: tagId ? [tagId] : []
+        })
       }).then(res => {
         if (!res.ok) console.warn('Kit response:', res.status);
       }).catch(err => console.warn('Kit subscription error:', err));
