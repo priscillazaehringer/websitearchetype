@@ -11,14 +11,40 @@
 
     /* Progress */
     .prog-wrap { padding: 14px 24px 0; }
-    .prog-track { height: 3px; background: rgba(255,253,247,0.1); overflow: hidden; }
-    .prog-fill { height: 100%; background: #E8346B; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+    .prog-track { height: 3px; background: rgba(255,253,247,0.1); overflow: visible; position: relative; }
+    .prog-fill { height: 100%; background: #E8346B; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+
+    /* Progress sparkle particles */
+    .prog-sparkle {
+      position: absolute; right: -2px; top: 50%;
+      width: 0; height: 0; pointer-events: none;
+    }
+    .prog-sparkle .spark {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: #E8346B; opacity: 0;
+    }
+    .prog-sparkle.burst .spark {
+      animation: sparkBurst 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .prog-sparkle .spark:nth-child(1) { --sx: -6px; --sy: -12px; animation-delay: 0s; background: #FFD23F; }
+    .prog-sparkle .spark:nth-child(2) { --sx: 8px; --sy: -10px; animation-delay: 0.03s; background: #E8346B; }
+    .prog-sparkle .spark:nth-child(3) { --sx: -3px; --sy: -16px; animation-delay: 0.06s; background: #C4B5FD; }
+    .prog-sparkle .spark:nth-child(4) { --sx: 5px; --sy: -8px; animation-delay: 0.02s; background: #FFD23F; }
+    .prog-sparkle .spark:nth-child(5) { --sx: -8px; --sy: -6px; animation-delay: 0.05s; background: #E8346B; width: 2px; height: 2px; }
+    .prog-sparkle .spark:nth-child(6) { --sx: 3px; --sy: -14px; animation-delay: 0.04s; background: #C4B5FD; width: 2px; height: 2px; }
+    @keyframes sparkBurst {
+      0% { opacity: 1; transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
+    }
     .prog-label { font-family: var(--font-hand); font-size: 13px; color: rgba(255,253,247,0.4); margin-top: 6px; font-weight: 600; }
 
     /* Screens */
-    .screen { display: none; padding: 28px 24px 40px; animation: fadeUp 0.35s ease forwards; }
+    .screen { display: none; padding: 28px 24px 40px; animation: slideInRight 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
     .screen.active { display: block; }
+    .screen.slide-out { animation: slideOutLeft 0.3s cubic-bezier(0.22,1,0.36,1) forwards; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes slideInRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes slideOutLeft { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(-40px); } }
 
     /* Question */
     .q-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #E8346B; font-weight: 600; margin-bottom: 12px; }
@@ -31,9 +57,21 @@
       color: #FFFDF7; font-family: var(--font-sans); font-size: 13px; font-weight: 400;
       line-height: 1.5; text-align: left; cursor: pointer;
       transition: all 0.18s ease;
+      position: relative; overflow: hidden;
     }
-    .q-opt:hover { background: rgba(232,52,107,0.1); border-color: #E8346B; transform: translateX(4px); }
-    .q-opt.picked { background: rgba(232,52,107,0.15); border-color: #E8346B; font-weight: 600; }
+    .q-opt::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(232,52,107,0.08) 50%, transparent 60%);
+      transform: translateX(-100%); transition: none;
+    }
+    .q-opt:hover::before { transform: translateX(100%); transition: transform 0.6s ease; }
+    .q-opt:hover { background: rgba(232,52,107,0.1); border-color: #E8346B; transform: translateX(4px); box-shadow: 0 0 20px rgba(232,52,107,0.12), inset 0 0 20px rgba(232,52,107,0.03); }
+    .q-opt.picked { background: rgba(232,52,107,0.15); border-color: #E8346B; font-weight: 600; animation: optionPop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes optionPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.035); box-shadow: 0 0 24px rgba(232,52,107,0.3); }
+      100% { transform: scale(1); box-shadow: none; }
+    }
     .q-opt:disabled { cursor: default; }
 
     /* Resume banner */
@@ -80,21 +118,50 @@
 
     /* Calculating */
     .calc-wrap { text-align: center; padding: 80px 24px; }
+    .calc-spinner-container { position: relative; width: 90px; height: 90px; margin: 0 auto 24px; }
     .calc-spinner {
-      width: 44px; height: 44px;
+      position: absolute; left: 50%; top: 50%; width: 44px; height: 44px;
+      margin: -22px 0 0 -22px;
       border: 3px solid rgba(232,52,107,0.2); border-top-color: #E8346B;
       border-radius: 50%; animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
+    }
+    .calc-ring {
+      position: absolute; border-radius: 50%; border: 1.5px solid transparent;
+    }
+    .calc-ring-1 {
+      inset: 0; border-top-color: rgba(232,52,107,0.25); border-right-color: rgba(232,52,107,0.1);
+      animation: spin 3s linear infinite reverse;
+    }
+    .calc-ring-2 {
+      inset: 8px; border-bottom-color: rgba(196,181,253,0.2); border-left-color: rgba(196,181,253,0.1);
+      animation: spin 2s linear infinite;
+    }
+    .calc-ring-3 {
+      inset: 16px; border-top-color: rgba(255,210,63,0.15);
+      animation: spin 2.5s linear infinite reverse;
+    }
+    .calc-dot {
+      position: absolute; width: 4px; height: 4px; border-radius: 50%;
+      background: #E8346B; top: 50%; left: 50%; margin: -2px 0 0 -2px;
+    }
+    .calc-dot-1 { animation: orbitDot 2s linear infinite; }
+    .calc-dot-2 { animation: orbitDot 2s linear infinite 0.67s; background: #C4B5FD; }
+    .calc-dot-3 { animation: orbitDot 2s linear infinite 1.33s; background: #FFD23F; }
+    @keyframes orbitDot {
+      0% { transform: rotate(0deg) translateX(38px) scale(1); opacity: 0.8; }
+      50% { transform: rotate(180deg) translateX(38px) scale(0.6); opacity: 0.3; }
+      100% { transform: rotate(360deg) translateX(38px) scale(1); opacity: 0.8; }
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .calc-title { font-family: var(--font-serif); font-weight: 900; font-size: 1rem; color: #E8346B; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-    .calc-sub { font-family: var(--font-hand); font-size: 18px; color: rgba(255,253,247,0.4); font-weight: 600; }
+    .calc-title { font-family: var(--font-serif); font-weight: 900; font-size: 1rem; color: #E8346B; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; animation: calcPulse 1.5s ease-in-out infinite; }
+    @keyframes calcPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+    .calc-sub { font-family: var(--font-hand); font-size: 18px; color: rgba(255,253,247,0.4); font-weight: 600; transition: opacity 0.3s ease; }
   </style>
 </head>
 <body>
 
   <nav class="quiz-nav">
-    <a href="index.html" class="quiz-nav-logo"><img src="logo.svg" alt="Brand Archetype Quiz" style="height:28px;"></a>
+    <a href="index.html" class="quiz-nav-logo"><img src="logo.svg" alt="Brand Archetype Quiz" style="height:24px;"></a>
   </nav>
 
   <div id="resumeBanner" style="display:none;"></div>
@@ -197,7 +264,15 @@
       calcDiv.className = 'screen';
       calcDiv.innerHTML = `
         <div class="calc-wrap">
-          <div class="calc-spinner"></div>
+          <div class="calc-spinner-container">
+            <div class="calc-ring calc-ring-1"></div>
+            <div class="calc-ring calc-ring-2"></div>
+            <div class="calc-ring calc-ring-3"></div>
+            <div class="calc-spinner"></div>
+            <div class="calc-dot calc-dot-1"></div>
+            <div class="calc-dot calc-dot-2"></div>
+            <div class="calc-dot calc-dot-3"></div>
+          </div>
           <div class="calc-title">Calculating...</div>
           <div class="calc-sub" id="calcSub">Reading your answers</div>
         </div>
@@ -206,15 +281,51 @@
     }
 
     function showOnly(id) {
-      outer.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      const el = document.getElementById(id);
-      if (el) el.classList.add('active');
+      const currentActive = outer.querySelector('.screen.active');
+      const nextEl = document.getElementById(id);
+      if (!nextEl) return;
+
+      if (currentActive && currentActive.id !== id) {
+        // Slide out current, then slide in next
+        currentActive.classList.add('slide-out');
+        currentActive.addEventListener('animationend', function handler() {
+          currentActive.removeEventListener('animationend', handler);
+          currentActive.classList.remove('active', 'slide-out');
+          nextEl.style.animation = 'none';
+          nextEl.offsetHeight; // reflow
+          nextEl.style.animation = '';
+          nextEl.classList.add('active');
+        }, { once: true });
+      } else {
+        outer.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        nextEl.classList.add('active');
+      }
+    }
+
+    function triggerSparkle() {
+      const fill = document.getElementById('progFill');
+      let sparkle = fill.querySelector('.prog-sparkle');
+      if (!sparkle) {
+        sparkle = document.createElement('div');
+        sparkle.className = 'prog-sparkle';
+        for (let i = 0; i < 6; i++) {
+          const s = document.createElement('div');
+          s.className = 'spark';
+          sparkle.appendChild(s);
+        }
+        fill.appendChild(sparkle);
+      }
+      // Reset animation
+      sparkle.classList.remove('burst');
+      void sparkle.offsetHeight;
+      sparkle.classList.add('burst');
     }
 
     function updateProgress(n) {
       const pct = Math.round((n / QUESTIONS.length) * 100);
       document.getElementById('progFill').style.width = pct + '%';
       document.getElementById('progLabel').textContent = `question ${n} of ${QUESTIONS.length}`;
+      triggerSparkle();
     }
 
     function pick(qi, ai) {

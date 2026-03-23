@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="120" height="160">
-  <!-- Top left brace - pink -->
-  <text x="5" y="95" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="900" fill="#E8346B">{</text>
-  <!-- Top right brace - yellow -->
-  <text x="58" y="95" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="900" fill="#F7C948">}</text>
-  <!-- Bottom left brace - yellow -->
-  <text x="5" y="165" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="900" fill="#F7C948">{</text>
-  <!-- Bottom right brace - pink -->
-  <text x="58" y="165" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="900" fill="#E8346B">}</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 80" width="60" height="80">
+  <!-- Top-left { pink -->
+  <path d="M22 4 C16 4 13 7 13 12 L13 20 C13 24 10 27 5 27 L5 31 C10 31 13 34 13 38 L13 46 C13 51 16 54 22 54" fill="none" stroke="#E8346B" stroke-width="5" stroke-linecap="round"/>
+  <!-- Top-right } yellow -->
+  <path d="M38 4 C44 4 47 7 47 12 L47 20 C47 24 50 27 55 27 L55 31 C50 31 47 34 47 38 L47 46 C47 51 44 54 38 54" fill="none" stroke="#F7C948" stroke-width="5" stroke-linecap="round"/>
+  <!-- Bottom-left { yellow -->
+  <path d="M22 28 C16 28 13 31 13 36 L13 44 C13 48 10 51 5 51 L5 55 C10 55 13 58 13 62 L13 70 C13 75 16 78 22 78" fill="none" stroke="#F7C948" stroke-width="5" stroke-linecap="round"/>
+  <!-- Bottom-right } pink -->
+  <path d="M38 28 C44 28 47 31 47 36 L47 44 C47 48 50 51 55 51 L55 55 C50 55 47 58 47 62 L47 70 C47 75 44 78 38 78" fill="none" stroke="#E8346B" stroke-width="5" stroke-linecap="round"/>
 </svg>
