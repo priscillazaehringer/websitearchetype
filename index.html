@@ -184,91 +184,101 @@
     .footer-logo span { color: #E8346B; }
     .footer-text { font-size: 12px; color: rgba(255,253,247,0.2); }
 
-    /* Preview Carousel */
+    /* Stats Section */
+    .stats-section {
+      background: #1E1038; padding: 80px 32px; position: relative; overflow: hidden;
+      border-top: 1px solid rgba(255,253,247,0.04);
+    }
+    .stats-inner { max-width: 740px; margin: 0 auto; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; }
+    .stat-card {
+      padding: 32px 20px; position: relative;
+    }
+    .stat-number {
+      font-family: var(--font-serif); font-weight: 900; font-size: clamp(2.4rem, 6vw, 3.2rem);
+      line-height: 1; margin-bottom: 8px; letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 13px; color: rgba(255,253,247,0.45); line-height: 1.5;
+    }
+    .stat-label strong { color: rgba(255,253,247,0.7); font-weight: 600; }
+    .stat-divider {
+      width: 32px; height: 2px; background: rgba(255,253,247,0.08); margin: 0 auto 16px;
+    }
+
+    /* Preview Gallery */
     .preview-section {
       background: #150e28; padding: 96px 32px; position: relative; overflow: hidden;
     }
-    .preview-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .preview-inner { max-width: 900px; margin: 0 auto; text-align: center; }
     .preview-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #FFD23F; margin-bottom: 12px; }
     .preview-headline {
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
       color: #FFFDF7; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px;
     }
     .preview-sub { font-size: 14px; color: rgba(255,253,247,0.4); margin-bottom: 48px; line-height: 1.6; }
-    .preview-carousel { position: relative; }
-    .preview-viewport {
-      position: relative; overflow: hidden;
-      border-radius: 0; margin: 0 auto;
+    .preview-scroll {
+      display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding-bottom: 24px; -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent;
     }
-    .preview-track {
-      display: flex; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .preview-scroll::-webkit-scrollbar { height: 4px; }
+    .preview-scroll::-webkit-scrollbar-track { background: transparent; }
+    .preview-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+    .preview-card {
+      min-width: 260px; max-width: 260px; scroll-snap-align: start;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,253,247,0.08);
+      text-decoration: none; display: block; transition: all 0.3s ease;
+      flex-shrink: 0;
     }
-    .preview-slide {
-      min-width: 100%; display: flex; flex-direction: column; align-items: center;
+    .preview-card:hover {
+      border-color: var(--card-accent, rgba(255,253,247,0.2));
+      background: rgba(255,255,255,0.07); transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
     }
-    .preview-browser {
-      width: 100%; max-width: 680px; margin: 0 auto;
-      border: 1px solid rgba(255,253,247,0.1);
-      background: #0a0a0a; position: relative;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 120px rgba(124,58,237,0.08);
+    .preview-card-hero {
+      height: 140px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 16px;
     }
-    .preview-browser-bar {
-      display: flex; align-items: center; gap: 6px;
-      padding: 10px 14px; background: rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    .preview-card-name {
+      font-family: var(--font-serif); font-weight: 900; font-size: 1.6rem;
+      color: #fff; line-height: 1.1; letter-spacing: -0.5px;
+      position: relative; z-index: 2;
     }
-    .preview-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .preview-dot:nth-child(1) { background: #ff5f57; }
-    .preview-dot:nth-child(2) { background: #ffbd2e; }
-    .preview-dot:nth-child(3) { background: #28c840; }
-    .preview-url {
-      font-size: 11px; color: rgba(255,255,255,0.25); margin-left: 8px;
-      font-family: var(--font-sans); letter-spacing: 0.5px;
+    .preview-card-tagline {
+      font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px;
+      position: relative; z-index: 2; font-family: var(--font-sans);
     }
-    .preview-iframe-wrap {
-      width: 100%; height: 420px; overflow: hidden; position: relative;
-      background: #111;
+    .preview-card-body { padding: 16px; }
+    .preview-card-palette {
+      display: flex; height: 24px; margin-bottom: 12px;
     }
-    .preview-iframe-wrap iframe {
-      width: 200%; height: 200%; border: none;
-      transform: scale(0.5); transform-origin: top left;
-      pointer-events: none;
+    .preview-card-swatch { flex: 1; }
+    .preview-card-swatch:first-child { border-radius: 3px 0 0 3px; }
+    .preview-card-swatch:last-child { border-radius: 0 3px 3px 0; }
+    .preview-card-features {
+      display: flex; flex-wrap: wrap; gap: 6px;
     }
-    .preview-label {
+    .preview-card-feat {
+      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 8px; background: rgba(255,255,255,0.06);
+      color: rgba(255,253,247,0.4); font-family: var(--font-sans); font-weight: 600;
+    }
+    .preview-card-link {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; background: rgba(255,255,255,0.03);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 16px; border-top: 1px solid rgba(255,253,247,0.06);
     }
-    .preview-arch-name {
-      font-family: var(--font-serif); font-weight: 700; font-size: 16px;
-      color: #FFFDF7;
+    .preview-card-link-text {
+      font-size: 11px; color: rgba(255,253,247,0.3); font-family: var(--font-sans);
+      font-weight: 600; letter-spacing: 0.5px;
     }
-    .preview-badge {
-      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: rgba(255,253,247,0.3); font-weight: 600; font-family: var(--font-sans);
+    .preview-card-link-arrow {
+      font-size: 14px; color: rgba(255,253,247,0.2); transition: color 0.2s;
     }
-    .preview-nav {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-      margin-top: 32px;
-    }
-    .preview-arrow {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      color: #FFFDF7; font-size: 20px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s ease; font-family: var(--font-sans);
-    }
-    .preview-arrow:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); transform: scale(1.08); }
-    .preview-dots {
-      display: flex; gap: 6px; align-items: center;
-    }
-    .preview-dot-nav {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,253,247,0.15); cursor: pointer;
-      transition: all 0.3s ease; border: none; padding: 0;
-    }
-    .preview-dot-nav.active {
-      background: #FFD23F; width: 20px; border-radius: 3px;
+    .preview-card:hover .preview-card-link-arrow { color: var(--card-accent, #FFD23F); }
+    .preview-hint {
+      font-size: 12px; color: rgba(255,253,247,0.25); margin-top: 8px;
+      font-family: var(--font-hand); font-weight: 600;
     }
 
     /* FAQ Section */
@@ -314,12 +324,12 @@
       .hero { padding: 72px 24px 60px; }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
-      .preview-iframe-wrap { height: 300px; }
-      .preview-browser { max-width: 100%; }
+      .preview-card { min-width: 220px; max-width: 220px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+      .stat-card { padding: 24px 20px; }
     }
     @media (max-width: 400px) {
       .arch-grid { grid-template-columns: 1fr; }
-      .preview-iframe-wrap { height: 240px; }
     }
   </style>
 </head>
@@ -425,23 +435,38 @@
     </div>
   </section>
 
-  <!-- Preview Carousel -->
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" style="color:#E8346B;">94%</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">of first impressions are <strong>design-based</strong></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:#FFD23F;">0.05s</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">to form an opinion about <strong>your website</strong></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:#C4B5FD;">73%</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">of people judge credibility by <strong>visual design</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview Gallery -->
   <section class="preview-section">
     <div class="preview-inner">
       <p class="preview-eyebrow">see what you get</p>
-      <h2 class="preview-headline">Real results, not vague labels.</h2>
-      <p class="preview-sub">Every archetype gets a complete, ready-to-use website blueprint. Here's what yours looks like.</p>
-      <div class="preview-carousel">
-        <div class="preview-viewport">
-          <div class="preview-track" id="previewTrack">
-          </div>
-        </div>
-        <div class="preview-nav">
-          <button class="preview-arrow" id="prevBtn" aria-label="Previous">&#8592;</button>
-          <div class="preview-dots" id="previewDots"></div>
-          <button class="preview-arrow" id="nextBtn" aria-label="Next">&#8594;</button>
-        </div>
+      <h2 class="preview-headline">Here's exactly what you walk away with.</h2>
+      <p class="preview-sub">Every archetype gets a complete, ready-to-use website blueprint. Scroll through to see them all.</p>
+      <div class="preview-scroll" id="previewScroll">
       </div>
+      <p class="preview-hint">scroll to explore all 12 &rarr;</p>
     </div>
   </section>
 
@@ -547,10 +572,6 @@
           <div class="faq-answer"><div class="faq-answer-inner">Yes. No credit card, no trial. Just your email so we can send your results.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question"><span>Why do you need my email?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">Your full archetype report is delivered there. We don't spam. One email, your results, done.</div></div>
-        </div>
-        <div class="faq-item">
           <button class="faq-question"><span>How is this different from a Myers-Briggs or Enneagram?</span><span class="faq-icon">+</span></button>
           <div class="faq-answer"><div class="faq-answer-inner">Those tell you about yourself as a person. This tells you how your brand should look, sound, and feel online. It's built specifically for website and design decisions.</div></div>
         </div>
@@ -589,83 +610,53 @@
   </footer>
 
 <script>
-// Preview Carousel
+// Preview Gallery Cards
 (function() {
-  const archetypes = [
-    { name: 'The Magician', slug: 'magician' },
-    { name: 'The Caregiver', slug: 'caregiver' },
-    { name: 'The Rebel', slug: 'rebel' },
-    { name: 'The Sage', slug: 'sage' },
-    { name: 'The Hero', slug: 'hero' },
-    { name: 'The Lover', slug: 'lover' },
-    { name: 'The Creator', slug: 'creator' },
-    { name: 'The Explorer', slug: 'explorer' },
-    { name: 'The Ruler', slug: 'ruler' },
-    { name: 'The Innocent', slug: 'innocent' },
-    { name: 'The Jester', slug: 'jester' },
-    { name: 'The Everyperson', slug: 'everyperson' }
+  var archetypes = [
+    { name: 'The Magician', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'] },
+    { name: 'The Caregiver', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#1c0614','#9d174d','#f9a8d4','#fdf2f8','#fce7f3'] },
+    { name: 'The Rebel', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#1a0a0a','#dc2626','#ef4444','#fef2f2','#fff5f5'] },
+    { name: 'The Sage', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#0f2027','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'] },
+    { name: 'The Hero', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#1c1917','#92400e','#f59e0b','#fffbeb','#fef3c7'] },
+    { name: 'The Lover', slug: 'lover', tagline: 'Beauty & connection', bg: '#1a0a00', accent: '#d97706', colors: ['#1a0a00','#92400e','#d97706','#fff7ed','#fef3c7'] },
+    { name: 'The Creator', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#1a0533','#e11d48','#f97316','#fef9c3','#fff7ed'] },
+    { name: 'The Explorer', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#d97706', colors: ['#1c1207','#92400e','#d97706','#fef3c7','#fffbeb'] },
+    { name: 'The Ruler', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#0a0a14','#334155','#64748b','#f1f5f9','#e2e8f0'] },
+    { name: 'The Innocent', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#0a1a0a','#166534','#4ade80','#f0fdf4','#dcfce7'] },
+    { name: 'The Jester', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#0c0a09','#d97706','#fbbf24','#fffbeb','#fef9c3'] },
+    { name: 'The Everyperson', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#0f1c0f', accent: '#4ade80', colors: ['#0f1c0f','#14532d','#4ade80','#f0fdf4','#dcfce7'] }
   ];
 
-  const track = document.getElementById('previewTrack');
-  const dotsContainer = document.getElementById('previewDots');
-  let current = 0;
-  let autoTimer;
-
-  // Build slides
+  var scroll = document.getElementById('previewScroll');
   archetypes.forEach(function(a) {
-    const slide = document.createElement('div');
-    slide.className = 'preview-slide';
-    slide.innerHTML =
-      '<div class="preview-browser">' +
-        '<div class="preview-browser-bar">' +
-          '<div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>' +
-          '<span class="preview-url">' + a.slug + '.html</span>' +
+    var card = document.createElement('a');
+    card.href = a.slug + '.html';
+    card.className = 'preview-card';
+    card.style.setProperty('--card-accent', a.accent);
+    var swatches = a.colors.map(function(c) {
+      return '<div class="preview-card-swatch" style="background:' + c + ';"></div>';
+    }).join('');
+    card.innerHTML =
+      '<div class="preview-card-hero" style="background:' + a.bg + ';">' +
+        '<div class="preview-card-name" style="color:' + a.accent + ';">' + a.name + '</div>' +
+        '<div class="preview-card-tagline">' + a.tagline + '</div>' +
+      '</div>' +
+      '<div class="preview-card-body">' +
+        '<div class="preview-card-palette">' + swatches + '</div>' +
+        '<div class="preview-card-features">' +
+          '<span class="preview-card-feat">Palettes</span>' +
+          '<span class="preview-card-feat">Typography</span>' +
+          '<span class="preview-card-feat">Voice</span>' +
+          '<span class="preview-card-feat">Design</span>' +
+          '<span class="preview-card-feat">Inspo</span>' +
         '</div>' +
-        '<div class="preview-iframe-wrap">' +
-          '<iframe src="' + a.slug + '.html" loading="lazy" tabindex="-1" title="' + a.name + ' result preview"></iframe>' +
-        '</div>' +
-        '<div class="preview-label">' +
-          '<span class="preview-arch-name">' + a.name + '</span>' +
-          '<span class="preview-badge">Example Result</span>' +
-        '</div>' +
+      '</div>' +
+      '<div class="preview-card-link">' +
+        '<span class="preview-card-link-text">View full result</span>' +
+        '<span class="preview-card-link-arrow">&rarr;</span>' +
       '</div>';
-    track.appendChild(slide);
+    scroll.appendChild(card);
   });
-
-  // Build dots
-  archetypes.forEach(function(_, i) {
-    var dot = document.createElement('button');
-    dot.className = 'preview-dot-nav' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-    dot.addEventListener('click', function() { goTo(i); });
-    dotsContainer.appendChild(dot);
-  });
-
-  function goTo(index) {
-    current = index;
-    if (current < 0) current = archetypes.length - 1;
-    if (current >= archetypes.length) current = 0;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    var dots = dotsContainer.querySelectorAll('.preview-dot-nav');
-    dots.forEach(function(d, i) {
-      d.classList.toggle('active', i === current);
-    });
-    resetAuto();
-  }
-
-  document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
-  document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
-
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(function() { goTo(current + 1); }, 5000);
-  }
-  resetAuto();
-
-  // Pause auto on hover
-  var carousel = document.querySelector('.preview-carousel');
-  carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
-  carousel.addEventListener('mouseleave', function() { resetAuto(); });
 })();
 
 // FAQ Accordion
