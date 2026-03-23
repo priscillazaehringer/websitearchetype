@@ -396,17 +396,34 @@
       jester: 17757544,
       everyperson: 17757547
     };
-    const KIT_FORM_ID = '4bc3225d05';
+    const KIT_FORM_ID = '9234357';
+
+    // Supabase logging
+    const SUPABASE_URL = 'https://rcchpjkcrzwezjpqkcmm.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjY2hwamtjcnp3ZXpqcHFrY21tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NzMyNzMsImV4cCI6MjA4OTM0OTI3M30._cGF2WKJOJ-F9IFsCpXklDnwwy-fnBggXujvEHanBEs';
+
+    function logToSupabase(email, archetype, answers) {
+      fetch(`${SUPABASE_URL}/rest/v1/quiz_submissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({ email, archetype, answers })
+      }).catch(err => console.warn('Supabase log error:', err));
+    }
 
     function subscribeToKit(email, archetype) {
       const tagId = KIT_TAG_IDS[archetype];
-      const formData = new FormData();
-      formData.append('email_address', email);
-      if (tagId) formData.append('tags[]', tagId);
 
-      fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
+      fetch(`https://app.convertkit.com/forms/${KIT_FORM_ID}/subscribe`, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email_address: email,
+          tags: tagId ? [tagId] : []
+        })
       }).catch(err => console.warn('Kit subscription error:', err));
     }
 
@@ -441,6 +458,9 @@
 
       // Subscribe to Kit with archetype tag (fire and forget)
       subscribeToKit(emailAddress, result.primary);
+
+      // Log submission to Supabase
+      logToSupabase(emailAddress, result.primary, answers);
 
       showOnly('scalc');
       const msgs = ["Reading your answers", "Mapping your personality", "Finding your archetype", "Almost ready..."];
