@@ -156,6 +156,18 @@
     .calc-title { font-family: var(--font-serif); font-weight: 900; font-size: 1rem; color: #E8346B; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; animation: calcPulse 1.5s ease-in-out infinite; }
     @keyframes calcPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
     .calc-sub { font-family: var(--font-hand); font-size: 18px; color: rgba(255,253,247,0.4); font-weight: 600; transition: opacity 0.3s ease; }
+
+    /* Reveal screen */
+    .reveal-wrap { text-align: center; padding: 50px 24px 40px; }
+    .reveal-eyebrow { font-family: var(--font-hand); font-size: 18px; color: #FFD23F; font-weight: 600; margin-bottom: 16px; opacity: 0; animation: revealFade 0.6s ease 0.2s forwards; }
+    .reveal-the { font-family: var(--font-serif); font-weight: 900; font-size: 1.4rem; color: rgba(255,253,247,0.5); line-height: 1; margin-bottom: 4px; opacity: 0; animation: revealFade 0.5s ease 0.5s forwards; }
+    .reveal-name { font-family: var(--font-serif); font-weight: 900; font-size: 3.2rem; color: #E8346B; line-height: 1; letter-spacing: -1px; margin-bottom: 20px; opacity: 0; animation: revealPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.8s forwards; }
+    .reveal-teaser { font-size: 14px; color: rgba(255,253,247,0.6); line-height: 1.75; max-width: 380px; margin: 0 auto 32px; opacity: 0; animation: revealFade 0.6s ease 1.2s forwards; }
+    .reveal-divider { width: 40px; height: 2px; background: rgba(232,52,107,0.3); margin: 0 auto 28px; opacity: 0; animation: revealFade 0.5s ease 1.5s forwards; }
+    .reveal-inbox { font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem; color: #FFFDF7; margin-bottom: 8px; opacity: 0; animation: revealFade 0.5s ease 1.7s forwards; }
+    .reveal-inbox-sub { font-size: 13px; color: rgba(255,253,247,0.4); line-height: 1.6; max-width: 320px; margin: 0 auto; opacity: 0; animation: revealFade 0.5s ease 1.9s forwards; }
+    @keyframes revealFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes revealPop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
@@ -250,7 +262,7 @@
         <div class="email-wrap">
           <div class="email-eyebrow">almost there...</div>
           <div class="email-headline">Where should we<br>send your results?</div>
-          <div class="email-sub">Enter your email and we'll reveal your brand archetype - plus your full design system, color palettes, and everything you need to build a website that actually feels like you.</div>
+          <div class="email-sub">We'll reveal your archetype right here — and send your full brand style guide (colors, fonts, design inspiration) straight to your inbox.</div>
           <input class="email-input" type="email" placeholder="your@email.com" id="emailVal">
           <button class="email-btn" onclick="submitEmail()">Reveal my archetype ✨</button>
           <div class="email-note">No spam. Just your results.</div>
@@ -278,6 +290,23 @@
         </div>
       `;
       outer.appendChild(calcDiv);
+
+      // Reveal screen (populated dynamically after calculation)
+      const revealDiv = document.createElement('div');
+      revealDiv.id = 'sreveal';
+      revealDiv.className = 'screen';
+      revealDiv.innerHTML = `
+        <div class="reveal-wrap">
+          <div class="reveal-eyebrow">your brand archetype is...</div>
+          <div class="reveal-the">The</div>
+          <div class="reveal-name" id="revealName"></div>
+          <div class="reveal-teaser" id="revealTeaser"></div>
+          <div class="reveal-divider"></div>
+          <div class="reveal-inbox">Check your inbox</div>
+          <div class="reveal-inbox-sub">We just sent your full brand style guide — colors, fonts, design inspiration, and everything you need to build a website that feels like you.</div>
+        </div>
+      `;
+      outer.appendChild(revealDiv);
     }
 
     function showOnly(id) {
@@ -381,6 +410,21 @@
       }).catch(err => console.warn('Kit subscription error:', err));
     }
 
+    const ARCHETYPE_TEASERS = {
+      hero: { name: 'Hero', teaser: 'Your brand is built on results and resilience. People come to you when the stakes are real — and you deliver every time.' },
+      magician: { name: 'Magician', teaser: 'Your brand makes transformation feel effortless. You see what others miss and turn it into something that feels like magic.' },
+      caregiver: { name: 'Caregiver', teaser: 'Your brand holds space. Clients don\'t just get results — they feel genuinely taken care of from the very first interaction.' },
+      rebel: { name: 'Rebel', teaser: 'Your brand challenges the status quo. You say what everyone\'s thinking but won\'t say — and your audience loves you for it.' },
+      sage: { name: 'Sage', teaser: 'Your brand is built on trust and expertise. People leave every interaction with you feeling smarter, not smaller.' },
+      creator: { name: 'Creator', teaser: 'Your brand carries a signature that\'s undeniably yours. You don\'t follow templates — you make them.' },
+      explorer: { name: 'Explorer', teaser: 'Your brand is built on independence and possibility. You don\'t follow maps — you make them.' },
+      lover: { name: 'Lover', teaser: 'Your brand is built on intimacy and aesthetics. Every touchpoint is considered — clients come for the experience as much as the results.' },
+      ruler: { name: 'Ruler', teaser: 'Your brand is built on authority and excellence. Every detail is intentional, every system designed, every result trackable.' },
+      innocent: { name: 'Innocent', teaser: 'Your brand is built on clarity and ease. You strip away the noise and get to what actually matters.' },
+      jester: { name: 'Jester', teaser: 'Your brand makes people feel alive. You bring energy, wit, and warmth to everything you do — and your audience can\'t get enough.' },
+      everyperson: { name: 'Everyperson', teaser: 'Your brand is built on relatability and trust. You\'re not performing — you\'re just genuinely yourself, and that\'s what connects.' }
+    };
+
     function submitEmail() {
       const val = document.getElementById('emailVal').value.trim();
       const input = document.getElementById('emailVal');
@@ -410,7 +454,11 @@
       setTimeout(() => {
         clearInterval(iv);
         saveProgress(answers, emailAddress);
-        window.location.href = getResultURL(result.primary);
+        // Show reveal screen instead of redirecting
+        const info = ARCHETYPE_TEASERS[result.primary] || { name: result.primary, teaser: '' };
+        document.getElementById('revealName').textContent = info.name + '.';
+        document.getElementById('revealTeaser').textContent = info.teaser;
+        showOnly('sreveal');
       }, 2800);
     }
 
