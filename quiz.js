@@ -208,7 +208,7 @@ function clearProgress() {
 
 // Get result page URL for an archetype
 function getResultURL(archetype) {
-  return `results/${archetype}.html`;
+  return `${archetype}.html`;
 }
 
 // Export for use in HTML files
