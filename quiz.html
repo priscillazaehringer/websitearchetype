@@ -396,7 +396,7 @@
       jester: 17757544,
       everyperson: 17757547
     };
-    const KIT_FORM_ID = '4bc3225d05';
+    const KIT_FORM_ID = '9234357';
 
     // Supabase logging
     const SUPABASE_URL = 'https://rcchpjkcrzwezjpqkcmm.supabase.co';
@@ -416,13 +416,14 @@
 
     function subscribeToKit(email, archetype) {
       const tagId = KIT_TAG_IDS[archetype];
-      const formData = new FormData();
-      formData.append('email_address', email);
-      if (tagId) formData.append('tags[]', tagId);
 
-      fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
+      fetch(`https://app.convertkit.com/forms/${KIT_FORM_ID}/subscribe`, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email_address: email,
+          tags: tagId ? [tagId] : []
+        })
       }).catch(err => console.warn('Kit subscription error:', err));
     }
 
