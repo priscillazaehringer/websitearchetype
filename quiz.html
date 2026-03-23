@@ -416,14 +416,16 @@
 
     function subscribeToKit(email, archetype) {
       const tagId = KIT_TAG_IDS[archetype];
+      const formData = new FormData();
+      formData.append('email_address', email);
+      if (tagId) formData.append('tags[]', tagId);
 
-      fetch(`https://app.convertkit.com/forms/${KIT_FORM_ID}/subscribe`, {
+      // Try both Kit endpoints (kit.com is the new domain)
+      fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscribe`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email_address: email,
-          tags: tagId ? [tagId] : []
-        })
+        body: formData,
+      }).then(res => {
+        if (!res.ok) console.warn('Kit response:', res.status);
       }).catch(err => console.warn('Kit subscription error:', err));
     }
 
