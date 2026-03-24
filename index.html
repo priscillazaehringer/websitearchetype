@@ -56,25 +56,51 @@
     .hero-cta:hover { transform: translateY(-4px) rotate(1deg) scale(1.04); box-shadow: 0 16px 40px rgba(255,210,63,0.3); }
     .hero-note { font-family: var(--font-hand); font-size: 16px; font-weight: 600; color: rgba(255,253,247,0.3); margin-top: 16px; }
 
-    /* Marquee */
-    .marquee-section {
-      background: #FFD23F; border-top: 3px solid #1a1a2e; border-bottom: 3px solid #1a1a2e;
-      overflow: hidden; white-space: nowrap; padding: 14px 0;
+    /* Archetype Banner */
+    .arch-banner {
+      background: linear-gradient(135deg, #2a1548 0%, #3d1a5c 40%, #2a1548 70%, #1E1038 100%);
+      padding: 48px 32px; text-align: center; position: relative; overflow: hidden;
+      border-top: 1px solid rgba(196,181,253,0.1); border-bottom: 1px solid rgba(196,181,253,0.1);
     }
-    .marquee-inner { display: inline-block; animation: marqueeScroll 45s linear infinite; }
-    .marquee-item { display: inline-block; font-family: var(--font-sans); font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #1a1a2e; padding: 0 24px; }
-    .marquee-star { color: #E8346B; padding: 0 4px; font-size: 14px; }
-    @keyframes marqueeScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+    .arch-banner::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
+      background-image: radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,210,63,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 20%, rgba(232,52,107,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 70%, rgba(196,181,253,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, rgba(255,210,63,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 60%, rgba(232,52,107,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 90% 40%, rgba(196,181,253,0.4) 0%, transparent 100%);
+      background-size: 200px 200px;
+    }
+    .arch-banner-label {
+      font-family: var(--font-hand); font-size: 20px; font-weight: 600;
+      color: #FFD23F; margin-bottom: 20px; position: relative;
+    }
+    .arch-banner-grid {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      max-width: 720px; margin: 0 auto; position: relative;
+    }
+    .arch-pill {
+      font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px; padding: 8px 16px;
+      background: rgba(255,253,247,0.04); border: 1px solid rgba(255,253,247,0.1);
+      color: rgba(255,253,247,0.55); transition: all 0.3s ease; cursor: default;
+    }
+    .arch-pill:hover {
+      background: rgba(232,52,107,0.12); border-color: rgba(232,52,107,0.3);
+      color: #FFFDF7; transform: translateY(-2px);
+    }
 
     /* Who this is for */
     .for-section {
-      background: #1E1038; padding: 48px 32px; text-align: center;
+      background: #F5F0EB; padding: 48px 32px; text-align: center;
     }
     .for-text {
       max-width: 560px; margin: 0 auto;
-      font-size: 15px; color: rgba(255,253,247,0.5); line-height: 1.8;
+      font-size: 15px; color: #6B6980; line-height: 1.8;
     }
-    .for-text strong { color: #FFD23F; font-weight: 600; }
+    .for-text strong { color: #E8346B; font-weight: 600; }
+    .for-text em { color: #2D2B3D; }
 
     /* Story section */
     .story-section {
@@ -124,7 +150,7 @@
     /* Archetypes preview (unused - merged into preview section) */
 
     /* How it works */
-    .how-section { background: #FFFDF7; padding: 96px 32px; }
+    .how-section { background: #F8F4F9; padding: 96px 32px; }
     .how-inner { max-width: 600px; margin: 0 auto; }
     .how-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #E8346B; margin-bottom: 12px; }
     .how-headline {
@@ -269,7 +295,7 @@
 
     /* FAQ Section */
     .faq-section {
-      background: #FFFDF7; padding: 96px 32px;
+      background: #FBF7F4; padding: 96px 32px;
     }
     .faq-inner { max-width: 640px; margin: 0 auto; }
     .faq-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #E8346B; margin-bottom: 12px; }
@@ -370,6 +396,8 @@
       .stat-card { padding: 24px 20px; }
       .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
       .mockup-preview-grid { grid-template-columns: 1fr; }
+      .arch-banner { padding: 36px 20px; }
+      .arch-pill { font-size: 11px; padding: 6px 12px; }
     }
     @media (max-width: 400px) {
     }
@@ -395,36 +423,24 @@
     </div>
   </section>
 
-  <!-- Marquee -->
-  <div class="marquee-section">
-    <div class="marquee-inner">
-      <span class="marquee-item">The Gallery (The Creator)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Coffee Shop with Opinions (The Rebel)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Spa (The Caregiver)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Professor's Office (The Sage)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The War Room (The Hero)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Farmer's Market (The Explorer)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Garden (The Innocent)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Party (The Jester)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Living Room (The Everyman)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Boardroom (The Ruler)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Lab (The Magician)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Boudoir (The Lover)</span><span class="marquee-star">★</span>
-      <!-- Repeat for seamless loop -->
-      <span class="marquee-item">The Gallery (The Creator)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Coffee Shop with Opinions (The Rebel)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Spa (The Caregiver)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Professor's Office (The Sage)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The War Room (The Hero)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Farmer's Market (The Explorer)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Garden (The Innocent)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Party (The Jester)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Living Room (The Everyman)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Boardroom (The Ruler)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Lab (The Magician)</span><span class="marquee-star">★</span>
-      <span class="marquee-item">The Boudoir (The Lover)</span><span class="marquee-star">★</span>
+  <!-- Archetype Banner -->
+  <section class="arch-banner">
+    <p class="arch-banner-label">12 front doors. which one's yours? ✨</p>
+    <div class="arch-banner-grid">
+      <span class="arch-pill">🎨 The Gallery</span>
+      <span class="arch-pill">☕ The Coffee Shop</span>
+      <span class="arch-pill">🛁 The Spa</span>
+      <span class="arch-pill">📚 The Professor's Office</span>
+      <span class="arch-pill">⚔️ The War Room</span>
+      <span class="arch-pill">🧭 The Farmer's Market</span>
+      <span class="arch-pill">🌿 The Garden</span>
+      <span class="arch-pill">🎉 The Party</span>
+      <span class="arch-pill">🛋️ The Living Room</span>
+      <span class="arch-pill">👑 The Boardroom</span>
+      <span class="arch-pill">🔮 The Lab</span>
+      <span class="arch-pill">🕯️ The Boudoir</span>
     </div>
-  </div>
+  </section>
 
   <!-- Who this is for -->
   <section class="for-section">
