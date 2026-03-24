@@ -33,7 +33,7 @@
 
     /* Hero — JK split layout */
     .hero {
-      padding: 60px 32px 0;
+      padding: 80px 32px 20px;
       position: relative; overflow: hidden;
       background: #1E1038;
     }
@@ -41,10 +41,9 @@
       position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.12;
     }
     .hero-split {
-      max-width: 1060px; margin: 0 auto; position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+      max-width: 680px; margin: 0 auto; position: relative; z-index: 2;
     }
-    .hero-text { text-align: left; padding-bottom: 60px; }
+    .hero-text { text-align: center; padding-bottom: 60px; }
     .hero-eyebrow {
       font-family: var(--font-hand); font-size: 22px; font-weight: 600;
       color: #FFD23F; margin-bottom: 24px; display: block;
@@ -64,7 +63,7 @@
     }
     .hero-sub {
       font-size: 16px; color: rgba(255,253,247,0.5); line-height: 1.8;
-      max-width: 480px; margin-bottom: 36px;
+      max-width: 520px; margin: 0 auto 36px;
     }
     .hero-cta {
       display: inline-block; padding: 20px 56px;
@@ -121,27 +120,36 @@
     }
     .story-text strong { color: #2D2B3D; font-weight: 600; }
 
-    /* What you get - softened pink */
+    /* What you get + mockup combined */
     .what-section {
       background: linear-gradient(135deg, #F9E4EA 0%, #FDF0F3 50%, #F5DDE4 100%);
       padding: 80px 32px; position: relative;
     }
-    .what-inner { max-width: 640px; margin: 0 auto; }
+    .what-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .what-text { }
     .what-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #E8346B; margin-bottom: 12px; }
     .what-headline {
-      font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
-      color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 40px;
+      font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 32px;
     }
-    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .what-grid { display: flex; flex-direction: column; gap: 12px; }
     .what-card {
-      padding: 24px; background: rgba(255,255,255,0.6); border: 1px solid rgba(232,52,107,0.1);
+      padding: 18px 20px; background: rgba(255,255,255,0.6); border: 1px solid rgba(232,52,107,0.1);
+      display: flex; gap: 16px; align-items: flex-start;
     }
     .what-num {
-      font-family: var(--font-serif); font-weight: 900; font-size: 2rem;
-      color: #E8346B; line-height: 1; margin-bottom: 8px;
+      font-family: var(--font-serif); font-weight: 900; font-size: 1.4rem;
+      color: #E8346B; line-height: 1; flex-shrink: 0;
     }
-    .what-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: #2D2B3D; margin-bottom: 6px; }
-    .what-desc { font-size: 12px; color: #6B6980; line-height: 1.7; }
+    .what-card-content { flex: 1; }
+    .what-title { font-family: var(--font-serif); font-weight: 700; font-size: 0.95rem; color: #2D2B3D; margin-bottom: 4px; }
+    .what-desc { font-size: 12px; color: #6B6980; line-height: 1.6; }
+    .what-footer {
+      grid-column: 1 / -1; text-align: center; padding-top: 16px;
+    }
 
     /* Archetypes preview (unused - merged into preview section) */
 
@@ -347,23 +355,9 @@
       font-size: 14px; color: #6B6980; line-height: 1.8;
     }
 
-    /* Report Mockup Section */
-    .mockup-section {
-      background: #FFFDF7; padding: 96px 32px;
-    }
-    .mockup-inner {
-      max-width: 600px; margin: 0 auto; text-align: center;
-    }
-    .mockup-eyebrow {
-      font-family: var(--font-hand); font-size: 20px; font-weight: 600;
-      color: #E8346B; margin-bottom: 12px;
-    }
-    .mockup-headline {
-      font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
-      color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 40px;
-    }
+    /* Report Mockup (inside what-section) */
     .mockup-preview {
-      position: relative; max-width: 480px; margin: 0 auto;
+      position: relative;
       border-radius: 10px; overflow: hidden;
       box-shadow: 0 16px 56px rgba(45,43,61,0.15), 0 2px 8px rgba(45,43,61,0.08);
       transform: perspective(900px) rotateY(-2deg) rotateX(1deg);
@@ -384,43 +378,41 @@
     }
     .mockup-preview-fade {
       position: absolute; bottom: 0; left: 0; right: 0; height: 80px; z-index: 2;
-      background: linear-gradient(to bottom, transparent, #FFFDF7);
+      background: linear-gradient(to bottom, transparent, rgba(253,240,243,0.9));
       pointer-events: none;
     }
-    .mockup-note {
-      font-family: var(--font-hand); font-size: 16px; font-weight: 600;
-      color: #6B6980; margin-top: 28px; margin-bottom: 24px;
+    .mockup-label {
+      font-family: var(--font-hand); font-size: 15px; font-weight: 600;
+      color: #6B6980; margin-top: 16px; text-align: center;
     }
-    .mockup-cta {
+    .what-note {
+      font-family: var(--font-hand); font-size: 16px; font-weight: 600;
+      color: #6B6980; margin-bottom: 24px;
+    }
+    .what-cta {
       display: inline-block; padding: 18px 48px;
       background: #E8346B; color: #FFFDF7;
       font-family: var(--font-sans); font-size: 16px; font-weight: 700;
       text-decoration: none; border: none; cursor: pointer;
       transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .mockup-cta:hover {
+    .what-cta:hover {
       transform: translateY(-4px) scale(1.04);
       box-shadow: 0 12px 32px rgba(232,52,107,0.25);
     }
 
     @media (max-width: 600px) {
-      .what-grid { grid-template-columns: 1fr; }
+      .what-inner { grid-template-columns: 1fr; }
+      .what-footer { grid-column: 1; }
       .hero { padding: 48px 24px 0; }
-      .hero-split { grid-template-columns: 1fr; gap: 32px; }
-      .hero-text { text-align: center; padding-bottom: 0; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-photo {
-        min-height: 300px;
-        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-      }
+      .hero-text { padding-bottom: 40px; }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
       .preview-grid { grid-template-columns: repeat(2, 1fr); }
       .door-card { height: 260px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
-      .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
+      .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); max-width: 400px; margin: 0 auto; }
       .mockup-preview-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 400px) {
@@ -463,8 +455,6 @@
         <a href="quiz.html" class="hero-cta">Find your front door</a>
         <p class="hero-note">free · no login · takes 2 minutes</p>
       </div>
-      <!-- Door image bleeds into the purple via gradient masks -->
-      <div class="hero-photo" style="background-image:url('http://priscillazaehringer.com/wp-content/uploads/2026/03/christian-stahl-8S96OpxSlvg-unsplash-scaled.jpg');" role="img" aria-label="Colorful front door"></div>
     </div>
   </section>
 
@@ -484,115 +474,123 @@
     </div>
   </section>
 
-  <!-- What you get -->
+  <!-- What you get + Report Mockup -->
   <section class="what-section">
     <div class="what-inner">
-      <p class="what-eyebrow">what you walk away with</p>
-      <h2 class="what-headline">Not a vague label. A full website blueprint.</h2>
-      <div class="what-grid">
-        <div class="what-card">
-          <div class="what-num">01</div>
-          <div class="what-title">Your Brand Archetype</div>
-          <div class="what-desc">Which of the 12 brand personalities you actually are, and why it matters for every design decision.</div>
-        </div>
-        <div class="what-card">
-          <div class="what-num">02</div>
-          <div class="what-title">3 Color Palettes</div>
-          <div class="what-desc">Three complete color systems designed for your archetype. Dark, rich, and light. Ready to use.</div>
-        </div>
-        <div class="what-card">
-          <div class="what-num">03</div>
-          <div class="what-title">Typography Direction</div>
-          <div class="what-desc">What your fonts should feel like and why. In plain English, not design jargon.</div>
-        </div>
-        <div class="what-card">
-          <div class="what-num">04</div>
-          <div class="what-title">Website Personality</div>
-          <div class="what-desc">Corners, white space, animations, photos, dividers. Every design detail, decided for you.</div>
-        </div>
-        <div class="what-card">
-          <div class="what-num">05</div>
-          <div class="what-title">Voice & Tone</div>
-          <div class="what-desc">How your brand should sound. The words, the energy, the feeling people get when they read your site.</div>
-        </div>
-        <div class="what-card">
-          <div class="what-num">06</div>
-          <div class="what-title">Brand Inspiration</div>
-          <div class="what-desc">Real brands doing your archetype right, so you can see exactly what yours could look like.</div>
+      <div class="what-text">
+        <p class="what-eyebrow">what you walk away with</p>
+        <h2 class="what-headline">Not a vague label. A full website blueprint.</h2>
+        <div class="what-grid">
+          <div class="what-card">
+            <div class="what-num">01</div>
+            <div class="what-card-content">
+              <div class="what-title">Your Brand Archetype</div>
+              <div class="what-desc">Which of the 12 brand personalities you actually are, and why it matters for every design decision.</div>
+            </div>
+          </div>
+          <div class="what-card">
+            <div class="what-num">02</div>
+            <div class="what-card-content">
+              <div class="what-title">3 Color Palettes</div>
+              <div class="what-desc">Three complete color systems designed for your archetype. Dark, rich, and light. Ready to use.</div>
+            </div>
+          </div>
+          <div class="what-card">
+            <div class="what-num">03</div>
+            <div class="what-card-content">
+              <div class="what-title">Typography Direction</div>
+              <div class="what-desc">What your fonts should feel like and why. In plain English, not design jargon.</div>
+            </div>
+          </div>
+          <div class="what-card">
+            <div class="what-num">04</div>
+            <div class="what-card-content">
+              <div class="what-title">Website Personality</div>
+              <div class="what-desc">Corners, white space, animations, photos, dividers. Every design detail, decided for you.</div>
+            </div>
+          </div>
+          <div class="what-card">
+            <div class="what-num">05</div>
+            <div class="what-card-content">
+              <div class="what-title">Voice & Tone</div>
+              <div class="what-desc">How your brand should sound. The words, the energy, the feeling people get when they read your site.</div>
+            </div>
+          </div>
+          <div class="what-card">
+            <div class="what-num">06</div>
+            <div class="what-card-content">
+              <div class="what-title">Brand Inspiration</div>
+              <div class="what-desc">Real brands doing your archetype right, so you can see exactly what yours could look like.</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Report Mockup -->
-  <section class="mockup-section">
-    <div class="mockup-inner">
-      <p class="mockup-eyebrow">sneak peek</p>
-      <h2 class="mockup-headline">Your report looks something like this.</h2>
-      <div class="mockup-preview">
-        <!-- Header: archetype reveal -->
-        <div class="mockup-preview-header">
-          <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;opacity:0.8;margin-bottom:12px;">your front door 🚪</div>
-          <div style="font-family:var(--font-serif);font-weight:900;font-size:1.8rem;color:#fef3c7;line-height:1.05;letter-spacing:-1px;margin-bottom:4px;">The War Room</div>
-          <div style="font-family:var(--font-sans);font-size:13px;color:#f59e0b;opacity:0.7;margin-bottom:14px;">(The Hero)</div>
-          <div style="font-size:13px;color:rgba(254,243,199,0.6);line-height:1.7;max-width:400px;">You walk in and the room is already moving. There's a whiteboard covered in numbers, a deadline on the wall, and the distinct feeling that everyone here has already done the work.</div>
-        </div>
-        <!-- Palette swatches -->
-        <div class="mockup-preview-palettes">
-          <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;margin-bottom:12px;">Your 3 palette options</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;gap:0;">
-              <div style="flex:1;height:32px;background:#1c1917;border-radius:4px 0 0 4px;"></div>
-              <div style="flex:1;height:32px;background:#92400e;"></div>
-              <div style="flex:1;height:32px;background:#f59e0b;"></div>
-              <div style="flex:1;height:32px;background:#fffbeb;"></div>
-              <div style="flex:1;height:32px;background:#fef3c7;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-            </div>
-            <div style="display:flex;gap:0;">
-              <div style="flex:1;height:32px;background:#0c0a09;border-radius:4px 0 0 4px;"></div>
-              <div style="flex:1;height:32px;background:#b91c1c;"></div>
-              <div style="flex:1;height:32px;background:#dc2626;"></div>
-              <div style="flex:1;height:32px;background:#fef2f2;"></div>
-              <div style="flex:1;height:32px;background:#fff5f5;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-            </div>
-            <div style="display:flex;gap:0;">
-              <div style="flex:1;height:32px;background:#0f172a;border-radius:4px 0 0 4px;"></div>
-              <div style="flex:1;height:32px;background:#1e40af;"></div>
-              <div style="flex:1;height:32px;background:#3b82f6;"></div>
-              <div style="flex:1;height:32px;background:#f8fafc;"></div>
-              <div style="flex:1;height:32px;background:#eff6ff;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-            </div>
+      <div class="what-mockup">
+        <div class="mockup-preview">
+          <div class="mockup-preview-header">
+            <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;opacity:0.8;margin-bottom:12px;">your front door 🚪</div>
+            <div style="font-family:var(--font-serif);font-weight:900;font-size:1.8rem;color:#fef3c7;line-height:1.05;letter-spacing:-1px;margin-bottom:4px;">The War Room</div>
+            <div style="font-family:var(--font-sans);font-size:13px;color:#f59e0b;opacity:0.7;margin-bottom:14px;">(The Hero)</div>
+            <div style="font-size:13px;color:rgba(254,243,199,0.6);line-height:1.7;max-width:400px;">You walk in and the room is already moving. There's a whiteboard covered in numbers, a deadline on the wall, and the distinct feeling that everyone here has already done the work.</div>
           </div>
-        </div>
-        <!-- Typography + Voice side by side -->
-        <div class="mockup-preview-grid">
-          <div style="padding:20px 24px;background:#fff;border-top:1px solid rgba(0,0,0,0.06);">
-            <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#92400e;margin-bottom:8px;">Typography</div>
-            <div style="background:#1c1917;padding:14px 16px;margin-bottom:8px;">
-              <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:2px;">Stop waiting.</div>
-              <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
-            </div>
-            <div style="font-size:9px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.3px;">Headlines: Heavy serif · Body: Clean sans</div>
-          </div>
-          <div style="padding:20px 24px;background:#1c1917;border-top:1px solid rgba(245,158,11,0.15);">
-            <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#f59e0b;margin-bottom:8px;">Voice & tone</div>
-            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
-              <div style="padding:8px 10px;background:rgba(245,158,11,0.1);border-left:2px solid #f59e0b;">
-                <div style="font-size:8px;font-weight:800;color:#f59e0b;letter-spacing:0.8px;margin-bottom:3px;">DO THIS</div>
-                <div style="font-size:11px;color:#fef3c7;line-height:1.4;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+          <div class="mockup-preview-palettes">
+            <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;margin-bottom:12px;">Your 3 palette options</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:0;">
+                <div style="flex:1;height:32px;background:#1c1917;border-radius:4px 0 0 4px;"></div>
+                <div style="flex:1;height:32px;background:#92400e;"></div>
+                <div style="flex:1;height:32px;background:#f59e0b;"></div>
+                <div style="flex:1;height:32px;background:#fffbeb;"></div>
+                <div style="flex:1;height:32px;background:#fef3c7;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
               </div>
-              <div style="padding:8px 10px;background:rgba(220,38,38,0.08);border-left:2px solid rgba(220,38,38,0.4);">
-                <div style="font-size:8px;font-weight:800;color:rgba(220,38,38,0.7);letter-spacing:0.8px;margin-bottom:3px;">NOT THIS</div>
-                <div style="font-size:11px;color:rgba(254,243,199,0.45);line-height:1.4;font-style:italic;">"We'd love to help you on your journey towards maybe possibly..."</div>
+              <div style="display:flex;gap:0;">
+                <div style="flex:1;height:32px;background:#0c0a09;border-radius:4px 0 0 4px;"></div>
+                <div style="flex:1;height:32px;background:#b91c1c;"></div>
+                <div style="flex:1;height:32px;background:#dc2626;"></div>
+                <div style="flex:1;height:32px;background:#fef2f2;"></div>
+                <div style="flex:1;height:32px;background:#fff5f5;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
+              </div>
+              <div style="display:flex;gap:0;">
+                <div style="flex:1;height:32px;background:#0f172a;border-radius:4px 0 0 4px;"></div>
+                <div style="flex:1;height:32px;background:#1e40af;"></div>
+                <div style="flex:1;height:32px;background:#3b82f6;"></div>
+                <div style="flex:1;height:32px;background:#f8fafc;"></div>
+                <div style="flex:1;height:32px;background:#eff6ff;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
               </div>
             </div>
-            <div style="font-size:9px;color:rgba(254,243,199,0.35);font-family:var(--font-sans);letter-spacing:0.3px;">Short sentences · Active voice · No hedging</div>
           </div>
+          <div class="mockup-preview-grid">
+            <div style="padding:20px 24px;background:#fff;border-top:1px solid rgba(0,0,0,0.06);">
+              <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#92400e;margin-bottom:8px;">Typography</div>
+              <div style="background:#1c1917;padding:14px 16px;margin-bottom:8px;">
+                <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:2px;">Stop waiting.</div>
+                <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
+              </div>
+              <div style="font-size:9px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.3px;">Headlines: Heavy serif · Body: Clean sans</div>
+            </div>
+            <div style="padding:20px 24px;background:#1c1917;border-top:1px solid rgba(245,158,11,0.15);">
+              <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#f59e0b;margin-bottom:8px;">Voice & tone</div>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+                <div style="padding:8px 10px;background:rgba(245,158,11,0.1);border-left:2px solid #f59e0b;">
+                  <div style="font-size:8px;font-weight:800;color:#f59e0b;letter-spacing:0.8px;margin-bottom:3px;">DO THIS</div>
+                  <div style="font-size:11px;color:#fef3c7;line-height:1.4;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+                </div>
+                <div style="padding:8px 10px;background:rgba(220,38,38,0.08);border-left:2px solid rgba(220,38,38,0.4);">
+                  <div style="font-size:8px;font-weight:800;color:rgba(220,38,38,0.7);letter-spacing:0.8px;margin-bottom:3px;">NOT THIS</div>
+                  <div style="font-size:11px;color:rgba(254,243,199,0.45);line-height:1.4;font-style:italic;">"We'd love to help you on your journey towards maybe possibly..."</div>
+                </div>
+              </div>
+              <div style="font-size:9px;color:rgba(254,243,199,0.35);font-family:var(--font-sans);letter-spacing:0.3px;">Short sentences · Active voice · No hedging</div>
+            </div>
+          </div>
+          <div class="mockup-preview-fade"></div>
         </div>
-        <div class="mockup-preview-fade"></div>
+        <p class="mockup-label">every archetype gets a different one</p>
       </div>
-      <p class="mockup-note">every archetype gets a different one</p>
-      <a href="quiz.html" class="mockup-cta">Find your front door</a>
+      <div class="what-footer">
+        <p class="what-note">2 minutes. 12 possible blueprints. Yours is waiting.</p>
+        <a href="quiz.html" class="what-cta">Find your front door</a>
+      </div>
     </div>
   </section>
 
