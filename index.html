@@ -222,61 +222,92 @@
       width: 32px; height: 2px; background: rgba(255,253,247,0.08); margin: 0 auto 16px;
     }
 
-    /* Preview Gallery */
+    /* Preview Gallery — door cards with click-to-reveal */
     .preview-section {
       background: #150e28; padding: 96px 32px; position: relative; overflow: hidden;
     }
-    .preview-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .preview-inner { max-width: 960px; margin: 0 auto; text-align: center; }
     .preview-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #FFD23F; margin-bottom: 12px; }
     .preview-headline {
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
       color: #FFFDF7; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px;
     }
     .preview-sub { font-size: 14px; color: rgba(255,253,247,0.4); margin-bottom: 48px; line-height: 1.6; }
-    .preview-scroll {
+    .preview-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-      padding-bottom: 24px;
     }
-    .preview-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,253,247,0.08);
-      text-decoration: none; display: block; transition: all 0.3s ease;
+    /* Flip card container */
+    .door-card {
+      perspective: 800px; cursor: pointer; height: 320px;
     }
-    .preview-card:hover {
-      border-color: var(--card-accent, rgba(255,253,247,0.2));
-      background: rgba(255,255,255,0.07); transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    .door-card-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+      transform-style: preserve-3d;
     }
-    .preview-card-hero {
-      height: 110px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
+    .door-card.flipped .door-card-inner { transform: rotateY(180deg); }
+    .door-card-front, .door-card-back {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      border: 1px solid rgba(255,253,247,0.08); overflow: hidden;
     }
-    .preview-card-name {
-      font-family: var(--font-serif); font-weight: 900; font-size: 1rem;
-      color: #fff; line-height: 1.15; letter-spacing: -0.3px;
+    /* Front — door image */
+    .door-card-front {
+      background-size: cover; background-position: center;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 16px;
+    }
+    .door-card-front::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
+    }
+    .door-card-label {
       position: relative; z-index: 2;
+      font-family: var(--font-hand); font-size: 14px; font-weight: 600;
+      color: rgba(255,255,255,0.7);
     }
-    .preview-card-tagline {
-      font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;
-      position: relative; z-index: 2; font-family: var(--font-sans);
+    .door-card-knock {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #FFFDF7;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      padding: 8px 16px; opacity: 0;
+      transition: opacity 0.3s ease; font-family: var(--font-sans);
     }
-    .preview-card-body { padding: 10px; }
-    .preview-card-palette {
+    .door-card:hover .door-card-knock { opacity: 1; }
+    /* Back — archetype reveal */
+    .door-card-back {
+      transform: rotateY(180deg);
+      display: flex; flex-direction: column;
+    }
+    .door-card-back-hero {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; padding: 16px;
+    }
+    .door-card-back-name {
+      font-family: var(--font-serif); font-weight: 900; font-size: 1.05rem;
+      color: #fff; line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 2px;
+    }
+    .door-card-back-sub {
+      font-size: 10px; opacity: 0.6; font-family: var(--font-sans); margin-bottom: 6px;
+    }
+    .door-card-back-tagline {
+      font-size: 10px; color: rgba(255,255,255,0.45); font-family: var(--font-sans);
+    }
+    .door-card-back-body { padding: 10px; }
+    .door-card-back-palette {
       display: flex; height: 18px; margin-bottom: 8px;
     }
-    .preview-card-swatch { flex: 1; }
-    .preview-card-swatch:first-child { border-radius: 3px 0 0 3px; }
-    .preview-card-swatch:last-child { border-radius: 0 3px 3px 0; }
-    .preview-card-features {
-      display: flex; flex-wrap: wrap; gap: 6px;
+    .door-card-back-swatch { flex: 1; }
+    .door-card-back-swatch:first-child { border-radius: 3px 0 0 3px; }
+    .door-card-back-swatch:last-child { border-radius: 0 3px 3px 0; }
+    .door-card-back-feats {
+      display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;
     }
-    .preview-card-feat {
+    .door-card-back-feat {
       font-size: 7px; letter-spacing: 0.8px; text-transform: uppercase;
       padding: 3px 6px; background: rgba(255,255,255,0.06);
       color: rgba(255,253,247,0.4); font-family: var(--font-sans); font-weight: 600;
-    }
-    .preview-hint {
-      font-size: 12px; color: rgba(255,253,247,0.25); margin-top: 8px;
-      font-family: var(--font-hand); font-weight: 600;
     }
 
     /* FAQ Section */
@@ -385,7 +416,8 @@
       }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
-      .preview-scroll { grid-template-columns: repeat(2, 1fr); }
+      .preview-grid { grid-template-columns: repeat(2, 1fr); }
+      .door-card { height: 260px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
       .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
@@ -587,13 +619,13 @@
     </div>
   </section>
 
-  <!-- Archetypes Preview -->
+  <!-- Archetypes Preview — Door Cards -->
   <section class="preview-section">
     <div class="preview-inner">
-      <p class="preview-eyebrow">12 front doors</p>
-      <h2 class="preview-headline">Which one feels like you?</h2>
-      <p class="preview-sub">Every brand has a vibe. A feeling. The thing people feel the second they land on your site. Scroll through and find the one that stops you.</p>
-      <div class="preview-scroll" id="previewScroll">
+      <p class="preview-eyebrow">12 front doors 🚪</p>
+      <h2 class="preview-headline">Which one are you knocking on?</h2>
+      <p class="preview-sub">Every door has a different vibe behind it. Click one to see what's inside.</p>
+      <div class="preview-grid" id="previewGrid">
       </div>
       <div style="margin-top: 40px;">
         <a href="quiz.html" class="hero-cta">Find yours</a>
@@ -686,46 +718,60 @@
 <script>
 // Preview Gallery Cards
 (function() {
+  // Door image base URL — update these as you get real door photos
+  var doorBase = 'http://priscillazaehringer.com/wp-content/uploads/2026/03/';
   var archetypes = [
-    { name: 'The Lab', sub: '(The Magician)', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'] },
-    { name: 'The Spa', sub: '(The Caregiver)', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#9d174d','#f472b6','#f9a8d4','#fdf2f8','#fce7f3'] },
-    { name: 'The Coffee Shop', sub: '(The Rebel)', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#7f1d1d','#dc2626','#f97316','#fff7ed','#fef2f2'] },
-    { name: 'The Professor\'s Office', sub: '(The Sage)', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#155e75','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'] },
-    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#78350f','#b45309','#f59e0b','#fef3c7','#fffbeb'] },
-    { name: 'The Boudoir', sub: '(The Lover)', slug: 'lover', tagline: 'Beauty & connection', bg: '#1c0a14', accent: '#be185d', colors: ['#7c2d52','#be185d','#e879a8','#fdf2f8','#fef9ef'] },
-    { name: 'The Gallery', sub: '(The Creator)', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#e11d48','#f97316','#facc15','#fef9c3','#fff7ed'] },
-    { name: 'The Farmer\'s Market', sub: '(The Explorer)', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#65a30d', colors: ['#3f6212','#65a30d','#a3e635','#f7fee7','#ecfccb'] },
-    { name: 'The Boardroom', sub: '(The Ruler)', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#1e293b','#475569','#94a3b8','#f1f5f9','#e2e8f0'] },
-    { name: 'The Garden', sub: '(The Innocent)', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#166534','#22c55e','#86efac','#f0fdf4','#dcfce7'] },
-    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#a855f7','#ec4899','#fbbf24','#fef9c3','#fffbeb'] },
-    { name: 'The Living Room', sub: '(The Everyman)', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#1a1a2e', accent: '#60a5fa', colors: ['#1e3a5f','#3b82f6','#93c5fd','#eff6ff','#dbeafe'] }
+    { name: 'The Lab', sub: '(The Magician)', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'], door: '' },
+    { name: 'The Spa', sub: '(The Caregiver)', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#9d174d','#f472b6','#f9a8d4','#fdf2f8','#fce7f3'], door: '' },
+    { name: 'The Coffee Shop', sub: '(The Rebel)', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#7f1d1d','#dc2626','#f97316','#fff7ed','#fef2f2'], door: '' },
+    { name: 'The Professor\'s Office', sub: '(The Sage)', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#155e75','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'], door: doorBase + 'freepik__if-i-were-a-front-door-id-be-a-dark-walnut-door-wi__77130.png' },
+    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#78350f','#b45309','#f59e0b','#fef3c7','#fffbeb'], door: '' },
+    { name: 'The Boudoir', sub: '(The Lover)', slug: 'lover', tagline: 'Beauty & connection', bg: '#1c0a14', accent: '#be185d', colors: ['#7c2d52','#be185d','#e879a8','#fdf2f8','#fef9ef'], door: '' },
+    { name: 'The Gallery', sub: '(The Creator)', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#e11d48','#f97316','#facc15','#fef9c3','#fff7ed'], door: '' },
+    { name: 'The Farmer\'s Market', sub: '(The Explorer)', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#65a30d', colors: ['#3f6212','#65a30d','#a3e635','#f7fee7','#ecfccb'], door: '' },
+    { name: 'The Boardroom', sub: '(The Ruler)', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#1e293b','#475569','#94a3b8','#f1f5f9','#e2e8f0'], door: '' },
+    { name: 'The Garden', sub: '(The Innocent)', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#166534','#22c55e','#86efac','#f0fdf4','#dcfce7'], door: '' },
+    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#a855f7','#ec4899','#fbbf24','#fef9c3','#fffbeb'], door: '' },
+    { name: 'The Living Room', sub: '(The Everyman)', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#1a1a2e', accent: '#60a5fa', colors: ['#1e3a5f','#3b82f6','#93c5fd','#eff6ff','#dbeafe'], door: '' }
   ];
 
-  var scroll = document.getElementById('previewScroll');
+  var grid = document.getElementById('previewGrid');
   archetypes.forEach(function(a) {
     var card = document.createElement('div');
-    card.className = 'preview-card';
-    card.style.setProperty('--card-accent', a.accent);
+    card.className = 'door-card';
+    // Door front — image or colored fallback
+    var frontStyle = a.door
+      ? 'background-image:url(\'' + a.door + '\');'
+      : 'background:' + a.bg + ';';
     var swatches = a.colors.map(function(c) {
-      return '<div class="preview-card-swatch" style="background:' + c + ';"></div>';
+      return '<div class="door-card-back-swatch" style="background:' + c + ';"></div>';
     }).join('');
     card.innerHTML =
-      '<div class="preview-card-hero" style="background:' + a.bg + ';">' +
-        '<div class="preview-card-name" style="color:' + a.accent + ';">' + a.name + '</div>' +
-        '<div class="preview-card-sub" style="color:' + a.accent + ';opacity:0.6;font-size:10px;font-family:var(--font-sans);margin-top:2px;position:relative;z-index:2;">' + a.sub + '</div>' +
-        '<div class="preview-card-tagline">' + a.tagline + '</div>' +
-      '</div>' +
-      '<div class="preview-card-body">' +
-        '<div class="preview-card-palette">' + swatches + '</div>' +
-        '<div class="preview-card-features">' +
-          '<span class="preview-card-feat">Palettes</span>' +
-          '<span class="preview-card-feat">Typography</span>' +
-          '<span class="preview-card-feat">Voice</span>' +
-          '<span class="preview-card-feat">Design</span>' +
-          '<span class="preview-card-feat">Inspo</span>' +
+      '<div class="door-card-inner">' +
+        '<div class="door-card-front" style="' + frontStyle + '">' +
+          '<span class="door-card-knock">knock knock 🚪</span>' +
+          (a.door ? '' : '<span class="door-card-label" style="color:' + a.accent + ';">🚪 ' + a.name + '</span>') +
+        '</div>' +
+        '<div class="door-card-back" style="background:' + a.bg + ';">' +
+          '<div class="door-card-back-hero">' +
+            '<div class="door-card-back-name" style="color:' + a.accent + ';">' + a.name + '</div>' +
+            '<div class="door-card-back-sub" style="color:' + a.accent + ';">' + a.sub + '</div>' +
+            '<div class="door-card-back-tagline">' + a.tagline + '</div>' +
+          '</div>' +
+          '<div class="door-card-back-body">' +
+            '<div class="door-card-back-palette">' + swatches + '</div>' +
+            '<div class="door-card-back-feats">' +
+              '<span class="door-card-back-feat">Palettes</span>' +
+              '<span class="door-card-back-feat">Typography</span>' +
+              '<span class="door-card-back-feat">Voice</span>' +
+              '<span class="door-card-back-feat">Design</span>' +
+              '<span class="door-card-back-feat">Inspo</span>' +
+            '</div>' +
+          '</div>' +
         '</div>' +
       '</div>';
-    scroll.appendChild(card);
+    card.addEventListener('click', function() { card.classList.toggle('flipped'); });
+    grid.appendChild(card);
   });
 })();
 
