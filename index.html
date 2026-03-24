@@ -55,11 +55,16 @@
     }
     .hero-cta:hover { transform: translateY(-4px) rotate(1deg) scale(1.04); box-shadow: 0 16px 40px rgba(255,210,63,0.3); }
     .hero-note { font-family: var(--font-hand); font-size: 16px; font-weight: 600; color: rgba(255,253,247,0.3); margin-top: 16px; }
+    .hero-img {
+      width: 100%; max-width: 520px; margin: 0 auto 32px; display: block;
+      object-fit: cover; height: 220px; opacity: 0.85;
+      border: 1px solid rgba(255,253,247,0.08);
+    }
 
     /* Archetype Banner */
     .arch-banner {
       background: linear-gradient(135deg, #2a1548 0%, #3d1a5c 40%, #2a1548 70%, #1E1038 100%);
-      padding: 48px 32px; text-align: center; position: relative; overflow: hidden;
+      padding: 16px 32px; text-align: center; position: relative; overflow: hidden;
       border-top: 1px solid rgba(196,181,253,0.1); border-bottom: 1px solid rgba(196,181,253,0.1);
     }
     .arch-banner::before {
@@ -73,16 +78,16 @@
       background-size: 200px 200px;
     }
     .arch-banner-label {
-      font-family: var(--font-hand); font-size: 20px; font-weight: 600;
-      color: #FFD23F; margin-bottom: 20px; position: relative;
+      font-family: var(--font-hand); font-size: 17px; font-weight: 600;
+      color: #FFD23F; margin-bottom: 10px; position: relative;
     }
     .arch-banner-grid {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-      max-width: 720px; margin: 0 auto; position: relative;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+      max-width: 760px; margin: 0 auto; position: relative;
     }
     .arch-pill {
-      font-family: var(--font-sans); font-size: 12px; font-weight: 600;
-      letter-spacing: 0.5px; padding: 8px 16px;
+      font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.5px; padding: 5px 12px;
       background: rgba(255,253,247,0.04); border: 1px solid rgba(255,253,247,0.1);
       color: rgba(255,253,247,0.55); transition: all 0.3s ease; cursor: default;
     }
@@ -112,7 +117,12 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 200px 200px;
     }
-    .story-inner { max-width: 600px; margin: 0 auto; }
+    .story-inner { max-width: 600px; margin: 0 auto; position: relative; }
+    .story-img {
+      width: 100%; max-width: 600px; margin: 0 auto 32px; display: block;
+      border: 1px solid rgba(45,43,61,0.06);
+      object-fit: cover; height: 280px;
+    }
     .story-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #E8346B; margin-bottom: 16px; }
     .story-headline {
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.6rem);
@@ -396,8 +406,8 @@
       .stat-card { padding: 24px 20px; }
       .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
       .mockup-preview-grid { grid-template-columns: 1fr; }
-      .arch-banner { padding: 36px 20px; }
-      .arch-pill { font-size: 11px; padding: 6px 12px; }
+      .arch-banner { padding: 14px 16px; }
+      .arch-pill { font-size: 10px; padding: 4px 10px; }
     }
     @media (max-width: 400px) {
     }
@@ -418,6 +428,8 @@
       <span class="hero-eyebrow">the quiz your website is begging you to take</span>
       <h1 class="hero-headline">You've changed your fonts 14 times and your website still doesn't feel like <em>you.</em></h1>
       <p class="hero-sub">Your website is a front door 🚪 and right now you're picking paint colors before you know what kind of house it is. 15 questions. We'll hand you the blueprint.</p>
+      <!-- PLACEHOLDER: swap with your own image — warm workspace / laptop / creative flatlay -->
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80" alt="Warm workspace with laptop and coffee" class="hero-img">
       <a href="quiz.html" class="hero-cta">Find your front door</a>
       <p class="hero-note">free · no login · takes 2 minutes</p>
     </div>
@@ -451,6 +463,8 @@
   <section class="story-section">
     <div class="story-inner">
       <p class="story-eyebrow">sound familiar? 👀</p>
+      <!-- PLACEHOLDER: swap with your own — person overwhelmed by design choices / staring at screen -->
+      <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=800&q=80" alt="Person working at laptop" class="story-img">
       <h2 class="story-headline">You've been staring at your website for <em>weeks.</em></h2>
       <p class="story-text">You know you need one. You've probably started building one. But every time you sit down to pick colors, choose fonts, figure out the vibe... you freeze.</p>
       <p class="story-text"><strong>Not because you don't have taste.</strong> Because you don't know what your front door should feel like yet. Should it feel warm and welcoming? Sharp and commanding? Playful and unexpected?</p>
@@ -675,6 +689,8 @@
     <div class="cta-glow" style="width:280px;height:280px;background:#FFD23F;bottom:-60px;right:-60px;"></div>
     <div class="cta-inner">
       <span class="cta-eyebrow">ready to find your front door? 🚪</span>
+      <!-- PLACEHOLDER: swap with your own — colorful front door / warm doorway with light -->
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Colorful front door" style="width:100%;max-width:360px;height:200px;object-fit:cover;margin:0 auto 32px;display:block;opacity:0.8;border:1px solid rgba(255,253,247,0.08);">
       <h2 class="cta-headline">Your website has a personality.<br><em>Let's find it.</em></h2>
       <a href="quiz.html" class="cta-btn">Find your front door</a>
       <p class="cta-note">free · 2 minutes · no login required</p>
