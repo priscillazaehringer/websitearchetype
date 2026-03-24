@@ -688,17 +688,17 @@
 (function() {
   var archetypes = [
     { name: 'The Lab', sub: '(The Magician)', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'] },
-    { name: 'The Spa', sub: '(The Caregiver)', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#1c0614','#9d174d','#f9a8d4','#fdf2f8','#fce7f3'] },
-    { name: 'The Coffee Shop with Opinions', sub: '(The Rebel)', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#1a0a0a','#dc2626','#ef4444','#fef2f2','#fff5f5'] },
-    { name: 'The Professor\'s Office', sub: '(The Sage)', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#0f2027','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'] },
-    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#1c1917','#92400e','#f59e0b','#fffbeb','#fef3c7'] },
-    { name: 'The Boudoir', sub: '(The Lover)', slug: 'lover', tagline: 'Beauty & connection', bg: '#1a0a00', accent: '#d97706', colors: ['#1a0a00','#92400e','#d97706','#fff7ed','#fef3c7'] },
-    { name: 'The Gallery', sub: '(The Creator)', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#1a0533','#e11d48','#f97316','#fef9c3','#fff7ed'] },
-    { name: 'The Farmer\'s Market', sub: '(The Explorer)', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#d97706', colors: ['#1c1207','#92400e','#d97706','#fef3c7','#fffbeb'] },
-    { name: 'The Boardroom', sub: '(The Ruler)', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#0a0a14','#334155','#64748b','#f1f5f9','#e2e8f0'] },
-    { name: 'The Garden', sub: '(The Innocent)', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#0a1a0a','#166534','#4ade80','#f0fdf4','#dcfce7'] },
-    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#0c0a09','#d97706','#fbbf24','#fffbeb','#fef9c3'] },
-    { name: 'The Living Room', sub: '(The Everyman)', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#0f1c0f', accent: '#4ade80', colors: ['#0f1c0f','#14532d','#4ade80','#f0fdf4','#dcfce7'] }
+    { name: 'The Spa', sub: '(The Caregiver)', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#9d174d','#f472b6','#f9a8d4','#fdf2f8','#fce7f3'] },
+    { name: 'The Coffee Shop', sub: '(The Rebel)', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#7f1d1d','#dc2626','#f97316','#fff7ed','#fef2f2'] },
+    { name: 'The Professor\'s Office', sub: '(The Sage)', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#155e75','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'] },
+    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#78350f','#b45309','#f59e0b','#fef3c7','#fffbeb'] },
+    { name: 'The Boudoir', sub: '(The Lover)', slug: 'lover', tagline: 'Beauty & connection', bg: '#1c0a14', accent: '#be185d', colors: ['#7c2d52','#be185d','#e879a8','#fdf2f8','#fef9ef'] },
+    { name: 'The Gallery', sub: '(The Creator)', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#e11d48','#f97316','#facc15','#fef9c3','#fff7ed'] },
+    { name: 'The Farmer\'s Market', sub: '(The Explorer)', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#65a30d', colors: ['#3f6212','#65a30d','#a3e635','#f7fee7','#ecfccb'] },
+    { name: 'The Boardroom', sub: '(The Ruler)', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#1e293b','#475569','#94a3b8','#f1f5f9','#e2e8f0'] },
+    { name: 'The Garden', sub: '(The Innocent)', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#166534','#22c55e','#86efac','#f0fdf4','#dcfce7'] },
+    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#a855f7','#ec4899','#fbbf24','#fef9c3','#fffbeb'] },
+    { name: 'The Living Room', sub: '(The Everyman)', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#1a1a2e', accent: '#60a5fa', colors: ['#1e3a5f','#3b82f6','#93c5fd','#eff6ff','#dbeafe'] }
   ];
 
   var scroll = document.getElementById('previewScroll');
