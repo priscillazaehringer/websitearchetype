@@ -66,6 +66,16 @@
     .marquee-star { color: #E8346B; padding: 0 4px; font-size: 14px; }
     @keyframes marqueeScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
 
+    /* Who this is for */
+    .for-section {
+      background: #1E1038; padding: 48px 32px; text-align: center;
+    }
+    .for-text {
+      max-width: 560px; margin: 0 auto;
+      font-size: 15px; color: rgba(255,253,247,0.5); line-height: 1.8;
+    }
+    .for-text strong { color: #FFD23F; font-weight: 600; }
+
     /* Story section */
     .story-section {
       background: #FFFDF7; padding: 96px 32px;
@@ -154,6 +164,17 @@
     }
     .cta-btn:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 16px 40px rgba(255,210,63,0.3); }
     .cta-note { font-family: var(--font-hand); font-size: 16px; color: rgba(255,253,247,0.3); margin-top: 16px; font-weight: 600; }
+
+    /* What's next */
+    .next-section {
+      background: #1E1038; padding: 48px 32px; text-align: center;
+      border-top: 1px solid rgba(255,253,247,0.04);
+    }
+    .next-text {
+      max-width: 480px; margin: 0 auto;
+      font-family: var(--font-hand); font-size: 17px; font-weight: 600;
+      color: rgba(255,253,247,0.3); line-height: 1.8;
+    }
 
     /* Footer */
     .footer { background: #150e28; padding: 32px; text-align: center; border-top: 1px solid rgba(255,253,247,0.06); }
@@ -368,7 +389,7 @@
     <div class="hero-inner">
       <span class="hero-eyebrow">the quiz your website is begging you to take</span>
       <h1 class="hero-headline">You've changed your fonts 14 times and your website still doesn't feel like <em>you.</em></h1>
-      <p class="hero-sub">Your website is a front door. Right now you're picking paint colors before you've decided what kind of house it is. 15 questions — we'll hand you the blueprint.</p>
+      <p class="hero-sub">Your website is a front door 🚪 and right now you're picking paint colors before you know what kind of house it is. 15 questions. We'll hand you the blueprint.</p>
       <a href="quiz.html" class="hero-cta">Find your front door</a>
       <p class="hero-note">free · no login · takes 2 minutes</p>
     </div>
@@ -404,6 +425,11 @@
       <span class="marquee-item">The Boudoir (The Lover)</span><span class="marquee-star">★</span>
     </div>
   </div>
+
+  <!-- Who this is for -->
+  <section class="for-section">
+    <p class="for-text">🚪 Built for <strong>coaches, consultants, service providers, and creatives</strong> who know they need a website but keep second-guessing every design decision. If you've ever stared at a blank Squarespace template and thought <em>"but what should it look like?"</em> — this is your door.</p>
+  </section>
 
   <!-- Story -->
   <section class="story-section">
@@ -637,6 +663,11 @@
       <a href="quiz.html" class="cta-btn">Find your front door</a>
       <p class="cta-note">free · 2 minutes · no login required</p>
     </div>
+  </section>
+
+  <!-- What's next -->
+  <section class="next-section">
+    <p class="next-text">🚪 P.S. The quiz is just the front door. What's behind it? We're building that now. Stay tuned.</p>
   </section>
 
   <!-- Footer -->
