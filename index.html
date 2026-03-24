@@ -9,6 +9,19 @@
   <style>
     body { background: #1E1038; color: #FFFDF7; font-family: var(--font-sans); overflow-x: hidden; }
 
+    /* Top ticker banner */
+    .top-ticker {
+      background: #FFD23F; overflow: hidden; white-space: nowrap; padding: 8px 0;
+    }
+    .top-ticker-inner { display: inline-block; animation: tickerScroll 30s linear infinite; }
+    .top-ticker-item {
+      display: inline-block; font-family: var(--font-sans); font-weight: 700;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #1a1a2e; padding: 0 24px;
+    }
+    .top-ticker-dot { color: #E8346B; padding: 0 4px; font-size: 10px; }
+    @keyframes tickerScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
     /* Nav */
     .nav {
       padding: 20px 32px;
@@ -18,33 +31,40 @@
     .nav-logo { font-family: var(--font-serif); font-weight: 900; font-size: 22px; color: #FFFDF7; text-decoration: none; }
     .nav-logo span { color: #E8346B; }
 
-    /* Hero */
+    /* Hero — JK split layout */
     .hero {
-      padding: 100px 32px 80px;
+      padding: 60px 32px 0;
       position: relative; overflow: hidden;
-      text-align: center;
-      background: linear-gradient(180deg, #1E1038 0%, #2a1548 40%, #1E1038 100%);
+      background: #1E1038;
     }
     .hero-glow {
-      position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.15;
+      position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.12;
     }
-    .hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
+    .hero-split {
+      max-width: 1060px; margin: 0 auto; position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+    }
+    .hero-text { text-align: left; padding-bottom: 60px; }
     .hero-eyebrow {
       font-family: var(--font-hand); font-size: 22px; font-weight: 600;
       color: #FFD23F; margin-bottom: 24px; display: block;
     }
     .hero-headline {
-      font-family: var(--font-serif); font-weight: 900; font-size: clamp(2.8rem, 9vw, 4.2rem);
-      color: #FFFDF7; line-height: 1.05; letter-spacing: -2px; margin-bottom: 28px;
+      font-family: var(--font-serif); font-weight: 900; font-size: clamp(2.4rem, 6vw, 3.6rem);
+      color: #FFFDF7; line-height: 1.1; letter-spacing: -2px; margin-bottom: 28px;
     }
     .hero-headline em { font-style: italic; color: #E8346B; }
-    .hero-headline .struck {
-      text-decoration: line-through; color: rgba(255,253,247,0.3);
-      text-decoration-color: #E8346B; text-decoration-thickness: 3px;
+    .hero-headline .highlight {
+      background: linear-gradient(180deg, transparent 55%, rgba(255,210,63,0.35) 55%);
+      padding: 0 4px; margin: 0 -4px;
+    }
+    .hero-headline .highlight-pink {
+      background: linear-gradient(180deg, transparent 55%, rgba(232,52,107,0.3) 55%);
+      padding: 0 4px; margin: 0 -4px;
     }
     .hero-sub {
-      font-size: 17px; color: rgba(255,253,247,0.55); line-height: 1.8;
-      max-width: 520px; margin: 0 auto 40px;
+      font-size: 16px; color: rgba(255,253,247,0.5); line-height: 1.8;
+      max-width: 480px; margin-bottom: 36px;
     }
     .hero-cta {
       display: inline-block; padding: 20px 56px;
@@ -55,6 +75,16 @@
     }
     .hero-cta:hover { transform: translateY(-4px) rotate(1deg) scale(1.04); box-shadow: 0 16px 40px rgba(255,210,63,0.3); }
     .hero-note { font-family: var(--font-hand); font-size: 16px; font-weight: 600; color: rgba(255,253,247,0.3); margin-top: 16px; }
+    .hero-photo {
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .hero-photo img {
+      width: 100%; max-width: 440px; height: auto; display: block;
+      object-fit: cover; object-position: top;
+      border-radius: 12px 12px 0 0;
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
 
     /* Parallax photo strips */
     .parallax-strip {
@@ -368,7 +398,11 @@
 
     @media (max-width: 600px) {
       .what-grid { grid-template-columns: 1fr; }
-      .hero { padding: 72px 24px 60px; }
+      .hero { padding: 48px 24px 0; }
+      .hero-split { grid-template-columns: 1fr; gap: 32px; }
+      .hero-text { text-align: center; padding-bottom: 0; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-photo img { max-width: 300px; margin: 0 auto; }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
       .preview-card { min-width: 220px; max-width: 220px; }
@@ -383,6 +417,24 @@
 </head>
 <body>
 
+  <!-- Top ticker banner -->
+  <div class="top-ticker">
+    <div class="top-ticker-inner">
+      <span class="top-ticker-item">Find your front door</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Free brand archetype quiz</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">15 questions · 2 minutes</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Find your front door</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Free brand archetype quiz</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">15 questions · 2 minutes</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Find your front door</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Free brand archetype quiz</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">15 questions · 2 minutes</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Find your front door</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">Free brand archetype quiz</span><span class="top-ticker-dot">●</span>
+      <span class="top-ticker-item">15 questions · 2 minutes</span><span class="top-ticker-dot">●</span>
+    </div>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Brand Archetype Quiz" style="height:24px;"></a>
   </nav>
@@ -391,13 +443,17 @@
   <section class="hero">
     <div class="hero-glow" style="width:400px;height:400px;background:#E8346B;top:-120px;right:-100px;"></div>
     <div class="hero-glow" style="width:300px;height:300px;background:#FFD23F;bottom:-80px;left:-80px;"></div>
-    <div class="hero-glow" style="width:200px;height:200px;background:#C4B5FD;top:40%;left:50%;transform:translateX(-50%);"></div>
-    <div class="hero-inner">
-      <span class="hero-eyebrow">the quiz your website is begging you to take</span>
-      <h1 class="hero-headline">You've changed your fonts 14 times and your website still doesn't feel like <em>you.</em></h1>
-      <p class="hero-sub">Your website is a front door 🚪 and right now you're picking paint colors before you know what kind of house it is. 15 questions. We'll hand you the blueprint.</p>
-      <a href="quiz.html" class="hero-cta">Find your front door</a>
-      <p class="hero-note">free · no login · takes 2 minutes</p>
+    <div class="hero-split">
+      <div class="hero-text">
+        <span class="hero-eyebrow">the quiz your website is begging you to take</span>
+        <h1 class="hero-headline">You've <span class="highlight">changed your fonts 14 times</span> and your website still doesn't feel like <em>you.</em></h1>
+        <p class="hero-sub">Your website is a front door 🚪 and right now you're <span class="highlight-pink">picking paint colors</span> before you know what kind of house it is. 15 questions. We'll hand you the blueprint.</p>
+        <a href="quiz.html" class="hero-cta">Find your front door</a>
+        <p class="hero-note">free · no login · takes 2 minutes</p>
+      </div>
+      <div class="hero-photo">
+        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/DocPDF-Header-Footer-1.png" alt="Priscilla Zaehringer">
+      </div>
     </div>
   </section>
 
