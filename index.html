@@ -81,6 +81,9 @@
     .hero-photo img {
       width: 100%; max-width: 440px; height: auto; display: block;
       object-fit: cover; object-position: top;
+      border-radius: 12px 12px 0 0;
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     }
 
     /* Parallax photo strips */
@@ -449,8 +452,7 @@
         <p class="hero-note">free · no login · takes 2 minutes</p>
       </div>
       <div class="hero-photo">
-        <!-- DROP YOUR PHOTO HERE — transparent/cutout PNG works best, cropped at waist or below -->
-        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="Your photo here — swap this placeholder">
+        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/DocPDF-Header-Footer-1.png" alt="Priscilla Zaehringer">
       </div>
     </div>
   </section>
