@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What's Your Brand Archetype? | Free Brand Archetype Quiz</title>
-  <meta name="description" content="Take the free 15-question brand archetype quiz. Discover your design system, color palettes, typography, and website personality in under 5 minutes.">
+  <meta name="description" content="Take the free 15-question brand archetype quiz. Discover your design system, color palettes, typography, and website personality in under 2 minutes.">
   <link rel="stylesheet" href="shared.css">
   <style>
     body { background: #1E1038; color: #FFFDF7; font-family: var(--font-sans); overflow-x: hidden; }
@@ -61,7 +61,7 @@
       background: #FFD23F; border-top: 3px solid #1a1a2e; border-bottom: 3px solid #1a1a2e;
       overflow: hidden; white-space: nowrap; padding: 14px 0;
     }
-    .marquee-inner { display: inline-block; animation: marqueeScroll 22s linear infinite; }
+    .marquee-inner { display: inline-block; animation: marqueeScroll 45s linear infinite; }
     .marquee-item { display: inline-block; font-family: var(--font-sans); font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #1a1a2e; padding: 0 24px; }
     .marquee-star { color: #E8346B; padding: 0 4px; font-size: 14px; }
     @keyframes marqueeScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
@@ -282,7 +282,7 @@
       background: #FFFDF7; padding: 96px 32px;
     }
     .mockup-inner {
-      max-width: 520px; margin: 0 auto; text-align: center;
+      max-width: 600px; margin: 0 auto; text-align: center;
     }
     .mockup-eyebrow {
       font-family: var(--font-hand); font-size: 20px; font-weight: 600;
@@ -292,26 +292,30 @@
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.4rem);
       color: #2D2B3D; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 40px;
     }
-    .mockup-iframe-container {
-      position: relative; max-width: 400px; margin: 0 auto;
-      overflow: hidden; border-radius: 8px;
-      box-shadow: 0 12px 48px rgba(45,43,61,0.12), 0 2px 6px rgba(45,43,61,0.08);
+    .mockup-preview {
+      position: relative; max-width: 480px; margin: 0 auto;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 16px 56px rgba(45,43,61,0.15), 0 2px 8px rgba(45,43,61,0.08);
       transform: perspective(900px) rotateY(-2deg) rotateX(1deg);
       transition: transform 0.4s ease;
+      text-align: left;
     }
-    .mockup-iframe-container:hover {
+    .mockup-preview:hover {
       transform: perspective(900px) rotateY(0deg) rotateX(0deg);
     }
-    .mockup-iframe-container iframe {
-      display: block; width: 100%; height: 600px; border: none;
-      filter: blur(6px);
-      pointer-events: none;
+    .mockup-preview-header {
+      background: #1c1917; padding: 28px 24px 24px;
     }
-    .mockup-iframe-overlay {
-      position: absolute; inset: 0; z-index: 2;
+    .mockup-preview-palettes {
+      background: #fffbeb; padding: 20px 24px;
+    }
+    .mockup-preview-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .mockup-preview-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px; z-index: 2;
+      background: linear-gradient(to bottom, transparent, #FFFDF7);
       pointer-events: none;
-      background:
-        linear-gradient(to bottom, #FFFDF7 0%, transparent 12%, transparent 85%, #FFFDF7 100%);
     }
     .mockup-note {
       font-family: var(--font-hand); font-size: 16px; font-weight: 600;
@@ -337,8 +341,8 @@
       .preview-card { min-width: 220px; max-width: 220px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
-      .mockup-iframe-container { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
-      .mockup-iframe-container iframe { height: 450px; }
+      .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); }
+      .mockup-preview-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 400px) {
     }
@@ -356,11 +360,11 @@
     <div class="hero-glow" style="width:300px;height:300px;background:#FFD23F;bottom:-80px;left:-80px;"></div>
     <div class="hero-glow" style="width:200px;height:200px;background:#C4B5FD;top:40%;left:50%;transform:translateX(-50%);"></div>
     <div class="hero-inner">
-      <span class="hero-eyebrow">your website has a front door ✨</span>
-      <h1 class="hero-headline">Your website is the first thing they feel.<br>What do you want them <em>to feel?</em></h1>
-      <p class="hero-sub">15 honest questions. We'll tell you exactly what kind of space your brand should be - and give you the colors, typography, and design decisions to build it.</p>
-      <a href="quiz.html" class="hero-cta">Take the quiz</a>
-      <p class="hero-note">free · no login · under 5 minutes</p>
+      <span class="hero-eyebrow">the quiz your website is begging you to take</span>
+      <h1 class="hero-headline">You've changed your fonts 14 times and your website still doesn't feel like <em>you.</em></h1>
+      <p class="hero-sub">Your website is a front door. Right now you're picking paint colors before you've decided what kind of house it is. 15 questions — we'll hand you the blueprint.</p>
+      <a href="quiz.html" class="hero-cta">Find your front door</a>
+      <p class="hero-note">free · no login · takes 2 minutes</p>
     </div>
   </section>
 
@@ -402,7 +406,7 @@
       <h2 class="story-headline">You've been staring at your website for <em>weeks.</em></h2>
       <p class="story-text">You know you need one. You've probably started building one. But every time you sit down to pick colors, choose fonts, figure out the vibe... you freeze.</p>
       <p class="story-text"><strong>Not because you don't have taste.</strong> Because you don't know what your front door should feel like yet. Should it feel warm and welcoming? Sharp and commanding? Playful and unexpected?</p>
-      <p class="story-text">This quiz figures that out. In 5 minutes you'll know your brand's front door - and walk away with the exact colors, typography, and design decisions to build it.</p>
+      <p class="story-text">This quiz figures that out. In 2 minutes you'll know your brand's front door - and walk away with the exact colors, typography, and design decisions to build it.</p>
     </div>
   </section>
 
@@ -451,12 +455,70 @@
     <div class="mockup-inner">
       <p class="mockup-eyebrow">sneak peek</p>
       <h2 class="mockup-headline">Your report looks something like this.</h2>
-      <div class="mockup-iframe-container">
-        <iframe src="hero.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-        <div class="mockup-iframe-overlay"></div>
+      <div class="mockup-preview">
+        <!-- Header: archetype reveal -->
+        <div class="mockup-preview-header">
+          <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;opacity:0.8;margin-bottom:12px;">your front door 🚪</div>
+          <div style="font-family:var(--font-serif);font-weight:900;font-size:1.8rem;color:#fef3c7;line-height:1.05;letter-spacing:-1px;margin-bottom:4px;">The War Room</div>
+          <div style="font-family:var(--font-sans);font-size:13px;color:#f59e0b;opacity:0.7;margin-bottom:14px;">(The Hero)</div>
+          <div style="font-size:13px;color:rgba(254,243,199,0.6);line-height:1.7;max-width:400px;">You walk in and the room is already moving. There's a whiteboard covered in numbers, a deadline on the wall, and the distinct feeling that everyone here has already done the work.</div>
+        </div>
+        <!-- Palette swatches -->
+        <div class="mockup-preview-palettes">
+          <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;margin-bottom:12px;">Your 3 palette options</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:0;">
+              <div style="flex:1;height:32px;background:#1c1917;border-radius:4px 0 0 4px;"></div>
+              <div style="flex:1;height:32px;background:#92400e;"></div>
+              <div style="flex:1;height:32px;background:#f59e0b;"></div>
+              <div style="flex:1;height:32px;background:#fffbeb;"></div>
+              <div style="flex:1;height:32px;background:#fef3c7;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
+            </div>
+            <div style="display:flex;gap:0;">
+              <div style="flex:1;height:32px;background:#0c0a09;border-radius:4px 0 0 4px;"></div>
+              <div style="flex:1;height:32px;background:#b91c1c;"></div>
+              <div style="flex:1;height:32px;background:#dc2626;"></div>
+              <div style="flex:1;height:32px;background:#fef2f2;"></div>
+              <div style="flex:1;height:32px;background:#fff5f5;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
+            </div>
+            <div style="display:flex;gap:0;">
+              <div style="flex:1;height:32px;background:#0f172a;border-radius:4px 0 0 4px;"></div>
+              <div style="flex:1;height:32px;background:#1e40af;"></div>
+              <div style="flex:1;height:32px;background:#3b82f6;"></div>
+              <div style="flex:1;height:32px;background:#f8fafc;"></div>
+              <div style="flex:1;height:32px;background:#eff6ff;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Typography + Voice side by side -->
+        <div class="mockup-preview-grid">
+          <div style="padding:20px 24px;background:#fff;border-top:1px solid rgba(0,0,0,0.06);">
+            <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#92400e;margin-bottom:8px;">Typography</div>
+            <div style="background:#1c1917;padding:14px 16px;margin-bottom:8px;">
+              <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:2px;">Stop waiting.</div>
+              <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
+            </div>
+            <div style="font-size:9px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.3px;">Headlines: Heavy serif · Body: Clean sans</div>
+          </div>
+          <div style="padding:20px 24px;background:#1c1917;border-top:1px solid rgba(245,158,11,0.15);">
+            <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#f59e0b;margin-bottom:8px;">Voice & tone</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+              <div style="padding:8px 10px;background:rgba(245,158,11,0.1);border-left:2px solid #f59e0b;">
+                <div style="font-size:8px;font-weight:800;color:#f59e0b;letter-spacing:0.8px;margin-bottom:3px;">DO THIS</div>
+                <div style="font-size:11px;color:#fef3c7;line-height:1.4;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+              </div>
+              <div style="padding:8px 10px;background:rgba(220,38,38,0.08);border-left:2px solid rgba(220,38,38,0.4);">
+                <div style="font-size:8px;font-weight:800;color:rgba(220,38,38,0.7);letter-spacing:0.8px;margin-bottom:3px;">NOT THIS</div>
+                <div style="font-size:11px;color:rgba(254,243,199,0.45);line-height:1.4;font-style:italic;">"We'd love to help you on your journey towards maybe possibly..."</div>
+              </div>
+            </div>
+            <div style="font-size:9px;color:rgba(254,243,199,0.35);font-family:var(--font-sans);letter-spacing:0.3px;">Short sentences · Active voice · No hedging</div>
+          </div>
+        </div>
+        <div class="mockup-preview-fade"></div>
       </div>
       <p class="mockup-note">every archetype gets a different one</p>
-      <a href="quiz.html" class="mockup-cta">Take the quiz</a>
+      <a href="quiz.html" class="mockup-cta">Find your front door</a>
     </div>
   </section>
 
@@ -502,7 +564,7 @@
   <section class="how-section">
     <div class="how-inner">
       <p class="how-eyebrow">how it works</p>
-      <h2 class="how-headline">Seriously. 5 minutes.</h2>
+      <h2 class="how-headline">Seriously. 2 minutes.</h2>
       <div class="how-steps">
         <div class="how-step">
           <div class="how-num">01</div>
@@ -553,7 +615,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question"><span>How long does the quiz take?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">Under 5 minutes. 15 questions, no overthinking required.</div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Under 2 minutes. 15 questions, no overthinking required.</div></div>
         </div>
       </div>
     </div>
@@ -566,8 +628,8 @@
     <div class="cta-inner">
       <span class="cta-eyebrow">ready to find your front door? 🚪</span>
       <h2 class="cta-headline">Your website has a personality.<br><em>Let's find it.</em></h2>
-      <a href="quiz.html" class="cta-btn">Take the quiz</a>
-      <p class="cta-note">free · 5 minutes · no login required</p>
+      <a href="quiz.html" class="cta-btn">Find your front door</a>
+      <p class="cta-note">free · 2 minutes · no login required</p>
     </div>
   </section>
 
