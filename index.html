@@ -53,13 +53,11 @@
       color: #FFFDF7; line-height: 1.1; letter-spacing: -2px; margin-bottom: 28px;
     }
     .hero-headline em { font-style: italic; color: #E8346B; }
-    .hero-headline .highlight {
-      background: linear-gradient(180deg, transparent 55%, rgba(255,210,63,0.35) 55%);
-      padding: 0 4px; margin: 0 -4px;
-    }
-    .hero-headline .highlight-pink {
-      background: linear-gradient(180deg, transparent 55%, rgba(232,52,107,0.3) 55%);
-      padding: 0 4px; margin: 0 -4px;
+    .hero-headline .strike {
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,210,63,0.6);
+      text-decoration-thickness: 3px;
+      color: rgba(255,253,247,0.5);
     }
     .hero-sub {
       font-size: 16px; color: rgba(255,253,247,0.5); line-height: 1.8;
@@ -256,7 +254,13 @@
     .door-card.flipped .door-card-inner { transform: rotateY(180deg); }
     .door-card-front, .door-card-back {
       position: absolute; inset: 0; backface-visibility: hidden;
-      border: 1px solid rgba(255,253,247,0.08); overflow: hidden;
+      border: 1px solid rgba(200,120,220,0.3); overflow: hidden;
+      box-shadow: 0 0 12px rgba(200,120,220,0.08), inset 0 0 12px rgba(200,120,220,0.04);
+    }
+    .door-card:hover .door-card-front,
+    .door-card:hover .door-card-back {
+      border-color: rgba(232,52,107,0.45);
+      box-shadow: 0 0 20px rgba(232,52,107,0.15), 0 0 40px rgba(160,80,200,0.08);
     }
     /* Front — door image */
     .door-card-front {
@@ -355,31 +359,71 @@
       font-size: 14px; color: #6B6980; line-height: 1.8;
     }
 
-    /* Report Mockup (inside what-section) */
-    .mockup-preview {
-      position: relative;
-      border-radius: 10px; overflow: hidden;
+    /* Report Wireframe Mockup (inside what-section) */
+    .report-frame {
+      border: 2px solid #2D2B3D; overflow: hidden;
       box-shadow: 0 16px 56px rgba(45,43,61,0.15), 0 2px 8px rgba(45,43,61,0.08);
-      transform: perspective(900px) rotateY(-2deg) rotateX(1deg);
-      transition: transform 0.4s ease;
-      text-align: left;
     }
-    .mockup-preview:hover {
-      transform: perspective(900px) rotateY(0deg) rotateX(0deg);
+    .act-block { display: flex; }
+    .act-sidebar {
+      width: 140px; flex-shrink: 0; padding: 24px 16px;
+      display: flex; flex-direction: column; justify-content: flex-start; gap: 6px;
+      border-right: 1px solid rgba(255,255,255,0.06);
     }
-    .mockup-preview-header {
-      background: #1c1917; padding: 28px 24px 24px;
+    .act-sidebar.light-border { border-right-color: rgba(45,43,61,0.08); }
+    .act-num { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .act-num.light { color: rgba(255,253,247,0.3); }
+    .act-num.muted { color: rgba(45,43,61,0.25); }
+    .act-name { font-family: var(--font-serif); font-weight: 900; font-size: 0.9rem; line-height: 1.2; }
+    .act-name.light { color: #FFFDF7; }
+    .act-name.dark { color: #2D2B3D; }
+    .act-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.5px; line-height: 1.4; margin-top: 4px; }
+    .act-tag.amber { color: #f59e0b; }
+    .act-tag.pink { color: #E8346B; }
+    .act-body { flex: 1; padding: 24px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .act-row { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .act-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .act-row.light-border { border-bottom-color: rgba(45,43,61,0.06); }
+    .act-row-content { flex: 1; }
+    .act-row-title { font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+    .act-row-title.light { color: rgba(255,253,247,0.8); }
+    .act-row-title.dark { color: #2D2B3D; }
+    .act-row-desc { font-size: 10px; line-height: 1.6; }
+    .act-row-desc.light { color: rgba(255,253,247,0.35); }
+    .act-row-desc.dark { color: rgba(45,43,61,0.45); }
+    .you-get {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 2px 7px; display: inline-block; margin-top: 5px;
     }
-    .mockup-preview-palettes {
-      background: #fffbeb; padding: 20px 24px;
+    .you-get.amber { background: rgba(245,158,11,0.15); color: #92400e; }
+    .you-get.pink { background: rgba(232,52,107,0.1); color: #9d174d; }
+    .act-img-box {
+      width: 48px; height: 64px; flex-shrink: 0;
+      background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
     }
-    .mockup-preview-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    }
-    .mockup-preview-fade {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 80px; z-index: 2;
-      background: linear-gradient(to bottom, transparent, rgba(253,240,243,0.9));
-      pointer-events: none;
+    .act-img-label { font-size: 7px; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; line-height: 1.5; color: rgba(255,253,247,0.2); }
+    .act-palette-strip { display: flex; height: 10px; margin-top: 6px; }
+    .act-palette-strip .pal { flex: 1; }
+    .act-wire-lines { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+    .act-wire-line { height: 6px; border-radius: 2px; }
+    .act-wire-line.dark-line { background: rgba(45,43,61,0.08); }
+    .w100 { width: 100%; } .w75 { width: 75%; } .w55 { width: 55%; }
+    .act-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px; }
+    .act-mini-box { height: 24px; }
+    .act-mini-box.dark { background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.08); }
+    .act-mini-box.light { background: rgba(45,43,61,0.04); border: 0.5px solid rgba(45,43,61,0.08); }
+    .act-do-dont { display: flex; gap: 5px; margin-top: 6px; }
+    .act-do-box { flex: 1; height: 28px; border-left: 2px solid #4ade80; background: rgba(74,222,128,0.06); }
+    .act-dont-box { flex: 1; height: 28px; border-left: 2px solid rgba(220,38,38,0.4); background: rgba(220,38,38,0.04); }
+    .act-inspo-strip { display: flex; gap: 4px; margin-top: 6px; }
+    .act-inspo-box { flex: 1; height: 34px; background: rgba(45,43,61,0.04); border: 0.5px solid rgba(45,43,61,0.08); }
+    .act-prompt-block { margin-top: 6px; padding: 8px 10px; background: rgba(28,25,23,0.06); border-left: 2px solid #f59e0b; }
+    .act-prompt-line { height: 5px; background: rgba(28,25,23,0.1); border-radius: 2px; margin-bottom: 3px; }
+    .act-divider-label {
+      padding: 8px 20px; font-size: 8px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(45,43,61,0.3); background: #f5f3ee;
+      border-top: 1px solid rgba(45,43,61,0.06); border-bottom: 1px solid rgba(45,43,61,0.06);
     }
     .mockup-label {
       font-family: var(--font-hand); font-size: 15px; font-weight: 600;
@@ -412,8 +456,9 @@
       .door-card { height: 260px; }
       .stats-grid { grid-template-columns: 1fr; gap: 16px; }
       .stat-card { padding: 24px 20px; }
-      .mockup-preview { transform: perspective(900px) rotateY(0deg) rotateX(0deg); max-width: 400px; margin: 0 auto; }
-      .mockup-preview-grid { grid-template-columns: 1fr; }
+      .act-sidebar { width: 100px; padding: 16px 12px; }
+      .act-name { font-size: 0.8rem; }
+      .act-body { padding: 16px 14px; }
     }
     @media (max-width: 400px) {
     }
@@ -450,10 +495,10 @@
     <div class="hero-split">
       <div class="hero-text">
         <span class="hero-eyebrow">the quiz your website is begging you to take</span>
-        <h1 class="hero-headline">You've <span class="highlight">changed your fonts 14 times.</span> Let's build the <em>door</em> and the room <span class="highlight-pink">behind it.</span></h1>
-        <p class="hero-sub">Right now you're picking paint colors before you know what kind of house it is. <strong>15 questions.</strong> We'll hand you your front door — and <em>everything your clients feel</em> the moment they walk in.</p>
+        <h1 class="hero-headline">You've changed your fonts<br><span class="strike">14 times.</span><br>Let's build the <em>door</em><br>and the room behind it.</h1>
+        <p class="hero-sub">Right now you're picking paint colors before you know what kind of house it is. <strong>15 questions.</strong> We'll hand you your front door — and everything your clients feel the moment they walk in.</p>
         <a href="quiz.html" class="hero-cta">Find your front door</a>
-        <p class="hero-note">free · no login · takes 2 minutes</p>
+        <p class="hero-note">free · 5 minutes · no login</p>
       </div>
     </div>
   </section>
@@ -526,64 +571,135 @@
         </div>
       </div>
       <div class="what-mockup">
-        <div class="mockup-preview">
-          <div class="mockup-preview-header">
-            <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;opacity:0.8;margin-bottom:12px;">your front door 🚪</div>
-            <div style="font-family:var(--font-serif);font-weight:900;font-size:1.8rem;color:#fef3c7;line-height:1.05;letter-spacing:-1px;margin-bottom:4px;">The War Room</div>
-            <div style="font-family:var(--font-sans);font-size:13px;color:#f59e0b;opacity:0.7;margin-bottom:14px;">(The Hero)</div>
-            <div style="font-size:13px;color:rgba(254,243,199,0.6);line-height:1.7;max-width:400px;">You walk in and the room is already moving. There's a whiteboard covered in numbers, a deadline on the wall, and the distinct feeling that everyone here has already done the work.</div>
-          </div>
-          <div class="mockup-preview-palettes">
-            <div style="font-family:var(--font-hand);font-size:14px;font-weight:600;color:#f59e0b;margin-bottom:12px;">Your 3 palette options</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;gap:0;">
-                <div style="flex:1;height:32px;background:#1c1917;border-radius:4px 0 0 4px;"></div>
-                <div style="flex:1;height:32px;background:#92400e;"></div>
-                <div style="flex:1;height:32px;background:#f59e0b;"></div>
-                <div style="flex:1;height:32px;background:#fffbeb;"></div>
-                <div style="flex:1;height:32px;background:#fef3c7;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-              </div>
-              <div style="display:flex;gap:0;">
-                <div style="flex:1;height:32px;background:#0c0a09;border-radius:4px 0 0 4px;"></div>
-                <div style="flex:1;height:32px;background:#b91c1c;"></div>
-                <div style="flex:1;height:32px;background:#dc2626;"></div>
-                <div style="flex:1;height:32px;background:#fef2f2;"></div>
-                <div style="flex:1;height:32px;background:#fff5f5;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-              </div>
-              <div style="display:flex;gap:0;">
-                <div style="flex:1;height:32px;background:#0f172a;border-radius:4px 0 0 4px;"></div>
-                <div style="flex:1;height:32px;background:#1e40af;"></div>
-                <div style="flex:1;height:32px;background:#3b82f6;"></div>
-                <div style="flex:1;height:32px;background:#f8fafc;"></div>
-                <div style="flex:1;height:32px;background:#eff6ff;border-radius:0 4px 4px 0;border:1px solid rgba(0,0,0,0.08);"></div>
-              </div>
+        <div class="report-frame">
+          <!-- ACT 01 - The Door -->
+          <div class="act-block" style="background:#1c1917;">
+            <div class="act-sidebar">
+              <div class="act-num light">Act 01</div>
+              <div class="act-name light">Your door.<br>Your hero.</div>
+              <div class="act-tag amber">This stops the scroll.</div>
             </div>
-          </div>
-          <div class="mockup-preview-grid">
-            <div style="padding:20px 24px;background:#fff;border-top:1px solid rgba(0,0,0,0.06);">
-              <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#92400e;margin-bottom:8px;">Typography</div>
-              <div style="background:#1c1917;padding:14px 16px;margin-bottom:8px;">
-                <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:2px;">Stop waiting.</div>
-                <div style="font-family:var(--font-serif);font-weight:900;font-size:1.1rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
-              </div>
-              <div style="font-size:9px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.3px;">Headlines: Heavy serif · Body: Clean sans</div>
-            </div>
-            <div style="padding:20px 24px;background:#1c1917;border-top:1px solid rgba(245,158,11,0.15);">
-              <div style="font-family:var(--font-hand);font-size:13px;font-weight:600;color:#f59e0b;margin-bottom:8px;">Voice & tone</div>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
-                <div style="padding:8px 10px;background:rgba(245,158,11,0.1);border-left:2px solid #f59e0b;">
-                  <div style="font-size:8px;font-weight:800;color:#f59e0b;letter-spacing:0.8px;margin-bottom:3px;">DO THIS</div>
-                  <div style="font-size:11px;color:#fef3c7;line-height:1.4;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+            <div class="act-body">
+              <div class="act-row">
+                <div class="act-row-content">
+                  <div class="act-row-title light">Your front door image</div>
+                  <div class="act-row-desc light">A photographic image of your specific door - the visual that represents your brand's first impression before a single word is read.</div>
+                  <span class="you-get amber">Your door image</span>
                 </div>
-                <div style="padding:8px 10px;background:rgba(220,38,38,0.08);border-left:2px solid rgba(220,38,38,0.4);">
-                  <div style="font-size:8px;font-weight:800;color:rgba(220,38,38,0.7);letter-spacing:0.8px;margin-bottom:3px;">NOT THIS</div>
-                  <div style="font-size:11px;color:rgba(254,243,199,0.45);line-height:1.4;font-style:italic;">"We'd love to help you on your journey towards maybe possibly..."</div>
+                <div class="act-img-box"><span class="act-img-label">door<br>photo</span></div>
+              </div>
+              <div class="act-row">
+                <div class="act-row-content">
+                  <div class="act-row-title light">What your hero section needs to do</div>
+                  <div class="act-row-desc light">The visual direction, headline energy, the one detail that makes someone stop, and the CTA that gets them to knock.</div>
+                  <span class="you-get amber">Hero section direction</span>
+                  <div class="act-mini-grid">
+                    <div class="act-mini-box dark"></div>
+                    <div class="act-mini-box dark"></div>
+                    <div class="act-mini-box dark"></div>
+                    <div class="act-mini-box dark"></div>
+                  </div>
                 </div>
               </div>
-              <div style="font-size:9px;color:rgba(254,243,199,0.35);font-family:var(--font-sans);letter-spacing:0.3px;">Short sentences · Active voice · No hedging</div>
             </div>
           </div>
-          <div class="mockup-preview-fade"></div>
+          <!-- Divider -->
+          <div class="act-divider-label">Act 02 &nbsp;·&nbsp; They knocked. They're in. Now your brand does the rest.</div>
+          <!-- ACT 02 - The Blueprint -->
+          <div class="act-block" style="background:#FFFDF7;">
+            <div class="act-sidebar light-border">
+              <div class="act-num muted">Act 02</div>
+              <div class="act-name dark">Your full blueprint.</div>
+              <div class="act-tag pink">Everything they see inside.</div>
+            </div>
+            <div class="act-body">
+              <div class="act-row light-border">
+                <div class="act-row-content">
+                  <div class="act-row-title dark">3 color palettes</div>
+                  <div class="act-row-desc dark">Dark, rich, and light - three complete systems built around your archetype.</div>
+                  <span class="you-get pink">3 complete color systems</span>
+                  <div class="act-palette-strip">
+                    <div class="pal" style="background:#1c1917;"></div>
+                    <div class="pal" style="background:#92400e;"></div>
+                    <div class="pal" style="background:#f59e0b;"></div>
+                    <div class="pal" style="background:#fef3c7;"></div>
+                    <div class="pal" style="background:#fffbeb;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="act-row light-border">
+                <div class="act-row-content">
+                  <div class="act-row-title dark">Typography direction</div>
+                  <div class="act-row-desc dark">What your fonts should feel like and why - in plain English, not design jargon.</div>
+                  <span class="you-get pink">Headline + body direction</span>
+                  <div class="act-wire-lines">
+                    <div class="act-wire-line dark-line w100" style="height:10px;"></div>
+                    <div class="act-wire-line dark-line w75"></div>
+                    <div class="act-wire-line dark-line w55"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="act-row light-border">
+                <div class="act-row-content">
+                  <div class="act-row-title dark">Voice and tone</div>
+                  <div class="act-row-desc dark">How your brand sounds. Real do this / not this examples so it's never a guess.</div>
+                  <span class="you-get pink">Do this / not this examples</span>
+                  <div class="act-do-dont">
+                    <div class="act-do-box"></div>
+                    <div class="act-dont-box"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="act-row light-border">
+                <div class="act-row-content">
+                  <div class="act-row-title dark">Website design specs</div>
+                  <div class="act-row-desc dark">Corners, white space, animation, section flow, photography. Every visual decision made for you.</div>
+                  <span class="you-get pink">Full visual direction</span>
+                  <div class="act-mini-grid">
+                    <div class="act-mini-box light"></div>
+                    <div class="act-mini-box light"></div>
+                    <div class="act-mini-box light"></div>
+                    <div class="act-mini-box light"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="act-row">
+                <div class="act-row-content">
+                  <div class="act-row-title dark">Brands doing it right</div>
+                  <div class="act-row-desc dark">4 real brands living your archetype so you can see exactly what yours could look like.</div>
+                  <span class="you-get pink">4 real brand examples</span>
+                  <div class="act-inspo-strip">
+                    <div class="act-inspo-box"></div>
+                    <div class="act-inspo-box"></div>
+                    <div class="act-inspo-box"></div>
+                    <div class="act-inspo-box"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ACT 03 - Brand Prompt -->
+          <div class="act-block" style="background:#f59e0b;">
+            <div class="act-sidebar" style="border-right:1px solid rgba(28,25,23,0.08);">
+              <div class="act-num" style="color:rgba(28,25,23,0.3);">Act 03</div>
+              <div class="act-name" style="color:#1c1917;">Take this<br>with you.</div>
+              <div class="act-tag" style="color:rgba(28,25,23,0.5);">Lives outside the quiz.</div>
+            </div>
+            <div class="act-body">
+              <div class="act-row" style="border-bottom:none;">
+                <div class="act-row-content">
+                  <div class="act-row-title" style="color:#1c1917;">Your brand prompt</div>
+                  <div class="act-row-desc" style="color:rgba(28,25,23,0.5);">One paragraph. Paste before any AI prompt and every output becomes instantly on-brand. Your creative brief for everything.</div>
+                  <span class="you-get" style="background:rgba(28,25,23,0.1);color:#78350f;">Copy-ready AI context block</span>
+                  <div class="act-prompt-block">
+                    <div class="act-prompt-line w100"></div>
+                    <div class="act-prompt-line w75"></div>
+                    <div class="act-prompt-line w55"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <p class="mockup-label">every archetype gets a different one</p>
       </div>
