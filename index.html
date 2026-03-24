@@ -124,10 +124,8 @@
       padding: 80px 32px; position: relative;
     }
     .what-inner {
-      max-width: 1080px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+      max-width: 640px; margin: 0 auto;
     }
-    .what-text { }
     .what-eyebrow { font-family: var(--font-hand); font-size: 20px; font-weight: 600; color: #E8346B; margin-bottom: 12px; }
     .what-headline {
       font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.2rem);
@@ -145,9 +143,39 @@
     .what-card-content { flex: 1; }
     .what-title { font-family: var(--font-serif); font-weight: 700; font-size: 0.95rem; color: #2D2B3D; margin-bottom: 4px; }
     .what-desc { font-size: 12px; color: #6B6980; line-height: 1.6; }
-    .what-footer {
-      grid-column: 1 / -1; text-align: center; padding-top: 16px;
+    .what-peek-link {
+      display: inline-block; font-family: var(--font-hand); font-size: 18px; font-weight: 600;
+      color: #E8346B; cursor: pointer; margin-bottom: 32px;
+      border-bottom: 1.5px dashed rgba(232,52,107,0.4); padding-bottom: 2px;
+      transition: all 0.2s ease;
     }
+    .what-peek-link:hover { color: #c42a5a; border-bottom-color: #c42a5a; }
+    .what-footer {
+      text-align: center; padding-top: 16px;
+    }
+    /* Modal */
+    .mockup-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(30,16,56,0.75); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 32px;
+    }
+    .mockup-overlay.open { display: flex; }
+    .mockup-modal {
+      position: relative; max-width: 780px; width: 100%; max-height: 90vh;
+      overflow-y: auto; border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+    .mockup-modal-close {
+      position: sticky; top: 0; z-index: 2; text-align: right;
+      padding: 12px 16px 0;
+      background: #1c1917;
+    }
+    .mockup-modal-close button {
+      background: rgba(255,255,255,0.1); border: none; color: #FFFDF7;
+      width: 36px; height: 36px; border-radius: 50%; font-size: 18px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .mockup-modal-close button:hover { background: rgba(255,255,255,0.2); }
 
     /* Archetypes preview (unused - merged into preview section) */
 
@@ -254,13 +282,13 @@
     .door-card.flipped .door-card-inner { transform: rotateY(180deg); }
     .door-card-front, .door-card-back {
       position: absolute; inset: 0; backface-visibility: hidden;
-      border: 1px solid rgba(200,120,220,0.3); overflow: hidden;
-      box-shadow: 0 0 12px rgba(200,120,220,0.08), inset 0 0 12px rgba(200,120,220,0.04);
+      border: 2px solid rgba(200,120,220,0.4); overflow: hidden;
+      box-shadow: 0 0 16px rgba(200,120,220,0.12), inset 0 0 16px rgba(200,120,220,0.06);
     }
     .door-card:hover .door-card-front,
     .door-card:hover .door-card-back {
-      border-color: rgba(232,52,107,0.45);
-      box-shadow: 0 0 20px rgba(232,52,107,0.15), 0 0 40px rgba(160,80,200,0.08);
+      border-color: rgba(232,52,107,0.6);
+      box-shadow: 0 0 24px rgba(232,52,107,0.2), 0 0 48px rgba(160,80,200,0.12);
     }
     /* Front — door image */
     .door-card-front {
@@ -446,8 +474,7 @@
     }
 
     @media (max-width: 600px) {
-      .what-inner { grid-template-columns: 1fr; }
-      .what-footer { grid-column: 1; }
+      .mockup-modal { max-width: 100%; }
       .hero { padding: 48px 24px 0; }
       .hero-text { padding-bottom: 40px; }
       .how-step { gap: 16px; }
@@ -495,7 +522,7 @@
     <div class="hero-split">
       <div class="hero-text">
         <span class="hero-eyebrow">the quiz your website is begging you to take</span>
-        <h1 class="hero-headline">You've changed your fonts<br><span class="strike">14 times.</span><br>Let's build the <em>door</em><br>and the room behind it.</h1>
+        <h1 class="hero-headline">You've changed your fonts <span class="strike">14 times.</span><br>Let's build the <em>door</em> and the room behind it.</h1>
         <p class="hero-sub">Right now you're picking paint colors before you know what kind of house it is. <strong>15 questions.</strong> We'll hand you your front door — and everything your clients feel the moment they walk in.</p>
         <a href="quiz.html" class="hero-cta">Find your front door</a>
         <p class="hero-note">free · 5 minutes · no login</p>
@@ -525,6 +552,7 @@
       <div class="what-text">
         <p class="what-eyebrow">what you walk away with</p>
         <h2 class="what-headline">Not a vague label. A full website blueprint.</h2>
+        <span class="what-peek-link" onclick="document.getElementById('mockupOverlay').classList.add('open')">see what's inside your report →</span>
         <div class="what-grid">
           <div class="what-card">
             <div class="what-num">01</div>
@@ -569,139 +597,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="what-mockup">
-        <div class="report-frame">
-          <!-- ACT 01 - The Door -->
-          <div class="act-block" style="background:#1c1917;">
-            <div class="act-sidebar">
-              <div class="act-num light">Act 01</div>
-              <div class="act-name light">Your door.<br>Your hero.</div>
-              <div class="act-tag amber">This stops the scroll.</div>
-            </div>
-            <div class="act-body">
-              <div class="act-row">
-                <div class="act-row-content">
-                  <div class="act-row-title light">Your front door image</div>
-                  <div class="act-row-desc light">A photographic image of your specific door - the visual that represents your brand's first impression before a single word is read.</div>
-                  <span class="you-get amber">Your door image</span>
-                </div>
-                <div class="act-img-box"><span class="act-img-label">door<br>photo</span></div>
-              </div>
-              <div class="act-row">
-                <div class="act-row-content">
-                  <div class="act-row-title light">What your hero section needs to do</div>
-                  <div class="act-row-desc light">The visual direction, headline energy, the one detail that makes someone stop, and the CTA that gets them to knock.</div>
-                  <span class="you-get amber">Hero section direction</span>
-                  <div class="act-mini-grid">
-                    <div class="act-mini-box dark"></div>
-                    <div class="act-mini-box dark"></div>
-                    <div class="act-mini-box dark"></div>
-                    <div class="act-mini-box dark"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Divider -->
-          <div class="act-divider-label">Act 02 &nbsp;·&nbsp; They knocked. They're in. Now your brand does the rest.</div>
-          <!-- ACT 02 - The Blueprint -->
-          <div class="act-block" style="background:#FFFDF7;">
-            <div class="act-sidebar light-border">
-              <div class="act-num muted">Act 02</div>
-              <div class="act-name dark">Your full blueprint.</div>
-              <div class="act-tag pink">Everything they see inside.</div>
-            </div>
-            <div class="act-body">
-              <div class="act-row light-border">
-                <div class="act-row-content">
-                  <div class="act-row-title dark">3 color palettes</div>
-                  <div class="act-row-desc dark">Dark, rich, and light - three complete systems built around your archetype.</div>
-                  <span class="you-get pink">3 complete color systems</span>
-                  <div class="act-palette-strip">
-                    <div class="pal" style="background:#1c1917;"></div>
-                    <div class="pal" style="background:#92400e;"></div>
-                    <div class="pal" style="background:#f59e0b;"></div>
-                    <div class="pal" style="background:#fef3c7;"></div>
-                    <div class="pal" style="background:#fffbeb;"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="act-row light-border">
-                <div class="act-row-content">
-                  <div class="act-row-title dark">Typography direction</div>
-                  <div class="act-row-desc dark">What your fonts should feel like and why - in plain English, not design jargon.</div>
-                  <span class="you-get pink">Headline + body direction</span>
-                  <div class="act-wire-lines">
-                    <div class="act-wire-line dark-line w100" style="height:10px;"></div>
-                    <div class="act-wire-line dark-line w75"></div>
-                    <div class="act-wire-line dark-line w55"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="act-row light-border">
-                <div class="act-row-content">
-                  <div class="act-row-title dark">Voice and tone</div>
-                  <div class="act-row-desc dark">How your brand sounds. Real do this / not this examples so it's never a guess.</div>
-                  <span class="you-get pink">Do this / not this examples</span>
-                  <div class="act-do-dont">
-                    <div class="act-do-box"></div>
-                    <div class="act-dont-box"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="act-row light-border">
-                <div class="act-row-content">
-                  <div class="act-row-title dark">Website design specs</div>
-                  <div class="act-row-desc dark">Corners, white space, animation, section flow, photography. Every visual decision made for you.</div>
-                  <span class="you-get pink">Full visual direction</span>
-                  <div class="act-mini-grid">
-                    <div class="act-mini-box light"></div>
-                    <div class="act-mini-box light"></div>
-                    <div class="act-mini-box light"></div>
-                    <div class="act-mini-box light"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="act-row">
-                <div class="act-row-content">
-                  <div class="act-row-title dark">Brands doing it right</div>
-                  <div class="act-row-desc dark">4 real brands living your archetype so you can see exactly what yours could look like.</div>
-                  <span class="you-get pink">4 real brand examples</span>
-                  <div class="act-inspo-strip">
-                    <div class="act-inspo-box"></div>
-                    <div class="act-inspo-box"></div>
-                    <div class="act-inspo-box"></div>
-                    <div class="act-inspo-box"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- ACT 03 - Brand Prompt -->
-          <div class="act-block" style="background:#f59e0b;">
-            <div class="act-sidebar" style="border-right:1px solid rgba(28,25,23,0.08);">
-              <div class="act-num" style="color:rgba(28,25,23,0.3);">Act 03</div>
-              <div class="act-name" style="color:#1c1917;">Take this<br>with you.</div>
-              <div class="act-tag" style="color:rgba(28,25,23,0.5);">Lives outside the quiz.</div>
-            </div>
-            <div class="act-body">
-              <div class="act-row" style="border-bottom:none;">
-                <div class="act-row-content">
-                  <div class="act-row-title" style="color:#1c1917;">Your brand prompt</div>
-                  <div class="act-row-desc" style="color:rgba(28,25,23,0.5);">One paragraph. Paste before any AI prompt and every output becomes instantly on-brand. Your creative brief for everything.</div>
-                  <span class="you-get" style="background:rgba(28,25,23,0.1);color:#78350f;">Copy-ready AI context block</span>
-                  <div class="act-prompt-block">
-                    <div class="act-prompt-line w100"></div>
-                    <div class="act-prompt-line w75"></div>
-                    <div class="act-prompt-line w55"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="mockup-label">every archetype gets a different one</p>
       </div>
       <div class="what-footer">
         <p class="what-note">2 minutes. 12 possible blueprints. Yours is waiting.</p>
@@ -911,5 +806,143 @@
   });
 })();
 </script>
+
+<!-- Report Wireframe Modal -->
+<div class="mockup-overlay" id="mockupOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="mockup-modal">
+    <div class="mockup-modal-close"><button onclick="document.getElementById('mockupOverlay').classList.remove('open')">&times;</button></div>
+    <div class="report-frame">
+      <!-- ACT 01 -->
+      <div class="act-block" style="background:#1c1917;">
+        <div class="act-sidebar">
+          <div class="act-num light">Act 01</div>
+          <div class="act-name light">Your door.<br>Your hero.</div>
+          <div class="act-tag amber">This stops the scroll.</div>
+        </div>
+        <div class="act-body">
+          <div class="act-row">
+            <div class="act-row-content">
+              <div class="act-row-title light">Your front door image</div>
+              <div class="act-row-desc light">A photographic image of your specific door - the visual that represents your brand's first impression before a single word is read.</div>
+              <span class="you-get amber">Your door image</span>
+            </div>
+            <div class="act-img-box"><span class="act-img-label">door<br>photo</span></div>
+          </div>
+          <div class="act-row">
+            <div class="act-row-content">
+              <div class="act-row-title light">What your hero section needs to do</div>
+              <div class="act-row-desc light">The visual direction, headline energy, the one detail that makes someone stop, and the CTA that gets them to knock.</div>
+              <span class="you-get amber">Hero section direction</span>
+              <div class="act-mini-grid">
+                <div class="act-mini-box dark"></div>
+                <div class="act-mini-box dark"></div>
+                <div class="act-mini-box dark"></div>
+                <div class="act-mini-box dark"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Divider -->
+      <div class="act-divider-label">Act 02 &nbsp;·&nbsp; They knocked. They're in. Now your brand does the rest.</div>
+      <!-- ACT 02 -->
+      <div class="act-block" style="background:#FFFDF7;">
+        <div class="act-sidebar light-border">
+          <div class="act-num muted">Act 02</div>
+          <div class="act-name dark">Your full blueprint.</div>
+          <div class="act-tag pink">Everything they see inside.</div>
+        </div>
+        <div class="act-body">
+          <div class="act-row light-border">
+            <div class="act-row-content">
+              <div class="act-row-title dark">3 color palettes</div>
+              <div class="act-row-desc dark">Dark, rich, and light - three complete systems built around your archetype.</div>
+              <span class="you-get pink">3 complete color systems</span>
+              <div class="act-palette-strip">
+                <div class="pal" style="background:#1c1917;"></div>
+                <div class="pal" style="background:#92400e;"></div>
+                <div class="pal" style="background:#f59e0b;"></div>
+                <div class="pal" style="background:#fef3c7;"></div>
+                <div class="pal" style="background:#fffbeb;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="act-row light-border">
+            <div class="act-row-content">
+              <div class="act-row-title dark">Typography direction</div>
+              <div class="act-row-desc dark">What your fonts should feel like and why - in plain English, not design jargon.</div>
+              <span class="you-get pink">Headline + body direction</span>
+              <div class="act-wire-lines">
+                <div class="act-wire-line dark-line w100" style="height:10px;"></div>
+                <div class="act-wire-line dark-line w75"></div>
+                <div class="act-wire-line dark-line w55"></div>
+              </div>
+            </div>
+          </div>
+          <div class="act-row light-border">
+            <div class="act-row-content">
+              <div class="act-row-title dark">Voice and tone</div>
+              <div class="act-row-desc dark">How your brand sounds. Real do this / not this examples so it's never a guess.</div>
+              <span class="you-get pink">Do this / not this examples</span>
+              <div class="act-do-dont">
+                <div class="act-do-box"></div>
+                <div class="act-dont-box"></div>
+              </div>
+            </div>
+          </div>
+          <div class="act-row light-border">
+            <div class="act-row-content">
+              <div class="act-row-title dark">Website design specs</div>
+              <div class="act-row-desc dark">Corners, white space, animation, section flow, photography. Every visual decision made for you.</div>
+              <span class="you-get pink">Full visual direction</span>
+              <div class="act-mini-grid">
+                <div class="act-mini-box light"></div>
+                <div class="act-mini-box light"></div>
+                <div class="act-mini-box light"></div>
+                <div class="act-mini-box light"></div>
+              </div>
+            </div>
+          </div>
+          <div class="act-row">
+            <div class="act-row-content">
+              <div class="act-row-title dark">Brands doing it right</div>
+              <div class="act-row-desc dark">4 real brands living your archetype so you can see exactly what yours could look like.</div>
+              <span class="you-get pink">4 real brand examples</span>
+              <div class="act-inspo-strip">
+                <div class="act-inspo-box"></div>
+                <div class="act-inspo-box"></div>
+                <div class="act-inspo-box"></div>
+                <div class="act-inspo-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ACT 03 -->
+      <div class="act-block" style="background:#f59e0b;">
+        <div class="act-sidebar" style="border-right:1px solid rgba(28,25,23,0.08);">
+          <div class="act-num" style="color:rgba(28,25,23,0.3);">Act 03</div>
+          <div class="act-name" style="color:#1c1917;">Take this<br>with you.</div>
+          <div class="act-tag" style="color:rgba(28,25,23,0.5);">Lives outside the quiz.</div>
+        </div>
+        <div class="act-body">
+          <div class="act-row" style="border-bottom:none;">
+            <div class="act-row-content">
+              <div class="act-row-title" style="color:#1c1917;">Your brand prompt</div>
+              <div class="act-row-desc" style="color:rgba(28,25,23,0.5);">One paragraph. Paste before any AI prompt and every output becomes instantly on-brand. Your creative brief for everything.</div>
+              <span class="you-get" style="background:rgba(28,25,23,0.1);color:#78350f;">Copy-ready AI context block</span>
+              <div class="act-prompt-block">
+                <div class="act-prompt-line w100"></div>
+                <div class="act-prompt-line w75"></div>
+                <div class="act-prompt-line w55"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-family:var(--font-hand);font-size:15px;font-weight:600;color:rgba(255,253,247,0.5);text-align:center;padding:20px 0;">every archetype gets a different one</p>
+  </div>
+</div>
 </body>
 </html>
