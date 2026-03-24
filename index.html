@@ -325,30 +325,22 @@
       justify-content: center; align-items: center; padding: 16px;
     }
     .door-card-back-name {
-      font-family: var(--font-serif); font-weight: 900; font-size: 1.05rem;
-      color: #fff; line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 2px;
+      font-family: var(--font-serif); font-weight: 900; font-size: 1.3rem;
+      color: #fff; line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 4px;
     }
     .door-card-back-sub {
-      font-size: 10px; opacity: 0.6; font-family: var(--font-sans); margin-bottom: 6px;
+      font-size: 13px; opacity: 0.6; font-family: var(--font-sans); margin-bottom: 8px;
     }
     .door-card-back-tagline {
-      font-size: 10px; color: rgba(255,255,255,0.45); font-family: var(--font-sans);
+      font-size: 13px; color: rgba(255,255,255,0.45); font-family: var(--font-sans);
     }
     .door-card-back-body { padding: 10px; }
     .door-card-back-palette {
-      display: flex; height: 18px; margin-bottom: 8px;
+      display: flex; height: 22px; margin-bottom: 8px; border-radius: 4px; overflow: hidden;
     }
     .door-card-back-swatch { flex: 1; }
-    .door-card-back-swatch:first-child { border-radius: 3px 0 0 3px; }
-    .door-card-back-swatch:last-child { border-radius: 0 3px 3px 0; }
-    .door-card-back-feats {
-      display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;
-    }
-    .door-card-back-feat {
-      font-size: 7px; letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 3px 6px; background: rgba(255,255,255,0.06);
-      color: rgba(255,253,247,0.4); font-family: var(--font-sans); font-weight: 600;
-    }
+    .door-card-back-swatch:first-child { border-radius: 4px 0 0 4px; }
+    .door-card-back-swatch:last-child { border-radius: 0 4px 4px 0; }
 
     /* FAQ Section */
     .faq-section {
@@ -730,17 +722,17 @@
   // Door image base URL — update these as you get real door photos
   var doorBase = 'http://priscillazaehringer.com/wp-content/uploads/2026/03/';
   var archetypes = [
-    { name: 'The Lab', sub: '(The Magician)', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/angelica-teran-Q7hqhXrims-unsplash-scaled.jpg' },
+    { name: 'The Lab', sub: '(The Magician)', slug: 'magician', tagline: 'Transformation & mystery', bg: '#1a0a2e', accent: '#7c3aed', colors: ['#1a0a2e','#7c3aed','#c084fc','#fbbf24','#fef3c7'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/tanya-barrow-94uJfF3BC7o-unsplash-scaled.jpg' },
     { name: 'The Spa', sub: '(The Caregiver)', slug: 'caregiver', tagline: 'Safety & nurturing', bg: '#1c0614', accent: '#f9a8d4', colors: ['#9d174d','#f472b6','#f9a8d4','#fdf2f8','#fce7f3'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/leeann-cline-GEmrQEsSGWU-unsplash-scaled.jpg' },
     { name: 'The Coffee Shop', sub: '(The Rebel)', slug: 'rebel', tagline: 'Disruption & provocation', bg: '#1a0a0a', accent: '#dc2626', colors: ['#7f1d1d','#dc2626','#f97316','#fff7ed','#fef2f2'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/oleg-lukin-Kbp9e9-FKIw-unsplash-scaled.jpg' },
     { name: 'The Professor\'s Office', sub: '(The Sage)', slug: 'sage', tagline: 'Knowledge & clarity', bg: '#0f2027', accent: '#0891b2', colors: ['#155e75','#0891b2','#67e8f9','#e0f2fe','#f0f9ff'], door: doorBase + 'freepik__if-i-were-a-front-door-id-be-a-dark-walnut-door-wi__77130.png' },
-    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#78350f','#b45309','#f59e0b','#fef3c7','#fffbeb'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/steel-doors-oCwiD2mrfnw-unsplash-scaled.jpg' },
+    { name: 'The War Room', sub: '(The Hero)', slug: 'hero', tagline: 'Results & resilience', bg: '#1c1917', accent: '#f59e0b', colors: ['#78350f','#b45309','#f59e0b','#fef3c7','#fffbeb'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg' },
     { name: 'The Boudoir', sub: '(The Lover)', slug: 'lover', tagline: 'Beauty & connection', bg: '#1c0a14', accent: '#be185d', colors: ['#7c2d52','#be185d','#e879a8','#fdf2f8','#fef9ef'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/sergey-leont-ev-HCOEKP90YLw-unsplash-scaled.jpg' },
     { name: 'The Gallery', sub: '(The Creator)', slug: 'creator', tagline: 'Originality & expression', bg: '#1a0533', accent: '#f97316', colors: ['#e11d48','#f97316','#facc15','#fef9c3','#fff7ed'], door: doorBase + 'freepik__if-i-were-a-front-door-id-be-a-tall-matte-black-do__77131.png' },
     { name: 'The Farmer\'s Market', sub: '(The Explorer)', slug: 'explorer', tagline: 'Independence & discovery', bg: '#1c1207', accent: '#65a30d', colors: ['#3f6212','#65a30d','#a3e635','#f7fee7','#ecfccb'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/freepik__if-i-were-a-front-door-id-be-a-worn-dutch-door-the__77132.png' },
     { name: 'The Boardroom', sub: '(The Ruler)', slug: 'ruler', tagline: 'Precision & authority', bg: '#0a0a14', accent: '#64748b', colors: ['#1e293b','#475569','#94a3b8','#f1f5f9','#e2e8f0'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/kate-andress-f25fuuVvagg-unsplash-scaled.jpg' },
     { name: 'The Garden', sub: '(The Innocent)', slug: 'innocent', tagline: 'Simplicity & optimism', bg: '#0a1a0a', accent: '#4ade80', colors: ['#166534','#22c55e','#86efac','#f0fdf4','#dcfce7'], door: doorBase + 'freepik__if-i-were-a-front-door-id-be-a-white-painted-woode__77129.png' },
-    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#a855f7','#ec4899','#fbbf24','#fef9c3','#fffbeb'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/karla-caloca-JlL1GumRqJ4-unsplash-scaled.jpg' },
+    { name: 'The Party', sub: '(The Jester)', slug: 'jester', tagline: 'Joy & wit', bg: '#0c0a09', accent: '#fbbf24', colors: ['#a855f7','#ec4899','#fbbf24','#fef9c3','#fffbeb'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/the-blowup-dcVAVVk4NJk-unsplash-scaled.jpg' },
     { name: 'The Living Room', sub: '(The Everyman)', slug: 'everyperson', tagline: 'Relatability & trust', bg: '#1a1a2e', accent: '#60a5fa', colors: ['#1e3a5f','#3b82f6','#93c5fd','#eff6ff','#dbeafe'], door: 'http://priscillazaehringer.com/wp-content/uploads/2026/03/kate-andress-lUy3dq-MtG4-unsplash-scaled.jpg' }
   ];
 
@@ -769,13 +761,6 @@
           '</div>' +
           '<div class="door-card-back-body">' +
             '<div class="door-card-back-palette">' + swatches + '</div>' +
-            '<div class="door-card-back-feats">' +
-              '<span class="door-card-back-feat">Palettes</span>' +
-              '<span class="door-card-back-feat">Typography</span>' +
-              '<span class="door-card-back-feat">Voice</span>' +
-              '<span class="door-card-back-feat">Design</span>' +
-              '<span class="door-card-back-feat">Inspo</span>' +
-            '</div>' +
           '</div>' +
         '</div>' +
       '</div>';
