@@ -76,12 +76,15 @@
     .hero-cta:hover { transform: translateY(-4px) rotate(1deg) scale(1.04); box-shadow: 0 16px 40px rgba(255,210,63,0.3); }
     .hero-note { font-family: var(--font-hand); font-size: 16px; font-weight: 600; color: rgba(255,253,247,0.3); margin-top: 16px; }
     .hero-photo {
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-    .hero-photo img {
-      width: 100%; max-width: 440px; height: 520px; display: block;
-      object-fit: cover; object-position: center;
-      border-radius: 8px;
+      position: relative; min-height: 480px;
+      background-size: cover; background-position: center;
+      background-repeat: no-repeat;
+      mask-image: linear-gradient(to left, black 50%, transparent 100%),
+                  linear-gradient(to top, transparent 0%, black 15%);
+      mask-composite: intersect;
+      -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%),
+                          linear-gradient(to top, transparent 0%, black 15%);
+      -webkit-mask-composite: source-in;
     }
 
 
@@ -244,21 +247,21 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.3);
     }
     .preview-card-hero {
-      height: 140px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 16px;
+      height: 110px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
     }
     .preview-card-name {
-      font-family: var(--font-serif); font-weight: 900; font-size: 1.6rem;
-      color: #fff; line-height: 1.1; letter-spacing: -0.5px;
+      font-family: var(--font-serif); font-weight: 900; font-size: 1rem;
+      color: #fff; line-height: 1.15; letter-spacing: -0.3px;
       position: relative; z-index: 2;
     }
     .preview-card-tagline {
-      font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px;
+      font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;
       position: relative; z-index: 2; font-family: var(--font-sans);
     }
-    .preview-card-body { padding: 16px; }
+    .preview-card-body { padding: 10px; }
     .preview-card-palette {
-      display: flex; height: 24px; margin-bottom: 12px;
+      display: flex; height: 18px; margin-bottom: 8px;
     }
     .preview-card-swatch { flex: 1; }
     .preview-card-swatch:first-child { border-radius: 3px 0 0 3px; }
@@ -267,8 +270,8 @@
       display: flex; flex-wrap: wrap; gap: 6px;
     }
     .preview-card-feat {
-      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-      padding: 4px 8px; background: rgba(255,255,255,0.06);
+      font-size: 7px; letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 3px 6px; background: rgba(255,255,255,0.06);
       color: rgba(255,253,247,0.4); font-family: var(--font-sans); font-weight: 600;
     }
     .preview-hint {
@@ -375,7 +378,11 @@
       .hero-split { grid-template-columns: 1fr; gap: 32px; }
       .hero-text { text-align: center; padding-bottom: 0; }
       .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-photo img { max-width: 300px; margin: 0 auto; }
+      .hero-photo {
+        min-height: 300px;
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      }
       .how-step { gap: 16px; }
       .how-num { font-size: 2.2rem; width: 44px; }
       .preview-scroll { grid-template-columns: repeat(2, 1fr); }
@@ -424,10 +431,8 @@
         <a href="quiz.html" class="hero-cta">Find your front door</a>
         <p class="hero-note">free · no login · takes 2 minutes</p>
       </div>
-      <div class="hero-photo">
-        <!-- SWAP: replace with your own door photo if you find one you love -->
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Colorful front door">
-      </div>
+      <!-- Door image bleeds into the purple via gradient masks -->
+      <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80');" role="img" aria-label="Colorful front door"></div>
     </div>
   </section>
 
@@ -707,7 +712,7 @@
     card.innerHTML =
       '<div class="preview-card-hero" style="background:' + a.bg + ';">' +
         '<div class="preview-card-name" style="color:' + a.accent + ';">' + a.name + '</div>' +
-        '<div class="preview-card-sub" style="color:' + a.accent + ';opacity:0.6;font-size:13px;font-family:var(--font-sans);margin-top:2px;position:relative;z-index:2;">' + a.sub + '</div>' +
+        '<div class="preview-card-sub" style="color:' + a.accent + ';opacity:0.6;font-size:10px;font-family:var(--font-sans);margin-top:2px;position:relative;z-index:2;">' + a.sub + '</div>' +
         '<div class="preview-card-tagline">' + a.tagline + '</div>' +
       '</div>' +
       '<div class="preview-card-body">' +
