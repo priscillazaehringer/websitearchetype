@@ -315,6 +315,35 @@
       flex-shrink: 0;
     }
 
+    /* -- Typography direction -- */
+    .type-direction {
+      text-align: left;
+    }
+    .type-row {
+      display: flex;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      align-items: baseline;
+    }
+    .type-row:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .type-role {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--amber);
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .type-feel {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--stone-light);
+      line-height: 1.8;
+    }
+
     /* -- Voice -- */
     .voice-grid {
       display: grid;
@@ -520,6 +549,64 @@
     }
 
     /* --------------------------------------------------------
+       CTA
+    -------------------------------------------------------- */
+    .cta-section {
+      background: var(--dark);
+      padding: 120px 40px;
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-eyebrow {
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .cta-headline {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 52px);
+      color: var(--cream2);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .cta-subline {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--amber);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245,158,11,0.25);
+    }
+    .cta-footnote {
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(168,162,158,0.5);
+    }
+
+    /* --------------------------------------------------------
        FOOTER
     -------------------------------------------------------- */
     .site-footer {
@@ -568,7 +655,7 @@
     .photo-break {
       position: relative;
       width: 100%;
-      height: 520px;
+      height: 680px;
       overflow: hidden;
     }
     .photo-break img {
@@ -612,6 +699,31 @@
       font-weight: 300;
       color: var(--stone-light);
       line-height: 1.7;
+    }
+    .photo-cards {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 36px;
+      position: relative;
+      z-index: 1;
+    }
+    .photo-card {
+      width: 180px;
+      height: 240px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.15);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .photo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* --------------------------------------------------------
@@ -664,11 +776,14 @@
       .site-nav { padding: 20px 24px; }
       .reveal { padding: 100px 24px 88px; }
       .reveal-hero { font-size: 72px; }
-      .photo-break { height: 360px; }
+      .photo-break { height: auto; min-height: 500px; }
+      .photo-cards { flex-direction: row; gap: 10px; }
+      .photo-card { width: 100px; height: 140px; }
       .recognition { padding: 80px 24px; }
       .blueprint { padding: 80px 24px; }
       .bp-sub-section { margin-bottom: 80px; }
       .prompt-section { padding: 80px 24px; }
+      .cta-section { padding: 80px 24px; }
       .site-footer { padding: 56px 24px; }
       .container { padding: 0 24px; }
       .slash { padding: 16px 24px; }
@@ -677,6 +792,8 @@
       .pal-item { flex-wrap: wrap; gap: 10px; }
       .pal-name { width: auto; }
       .pal-tag { width: auto; text-align: left; }
+      .type-row { flex-direction: column; gap: 8px; }
+      .type-role { width: auto; }
     }
   </style>
 </head>
@@ -728,6 +845,17 @@
     <div class="label photo-break-eyebrow">Your front door</div>
     <div class="photo-break-headline">The image that does the talking.</div>
     <div class="photo-break-sub">Dark. High-contrast. No explanation needed.</div>
+    <div class="photo-cards">
+      <div class="photo-card">
+        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/john-livingstone-OuR-FvCQV8Y-unsplash-scaled.jpg" alt="Brand imagery example">
+      </div>
+      <div class="photo-card">
+        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/zafree-pinano-FIpFzF8IfFA-unsplash-scaled.jpg" alt="Brand imagery example">
+      </div>
+      <div class="photo-card">
+        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/hero3-scaled.jpg" alt="Brand imagery example">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -785,7 +913,30 @@
       </div>
     </div>
 
-    <!-- 2. Voice and tone -->
+    <!-- 2. Typography direction -->
+    <div class="bp-sub-section fade-in">
+      <div class="label bp-label">Typography</div>
+      <div class="bp-headline">What your type should feel like.</div>
+      <div class="bp-subline">Not which fonts to use. How they should hit.</div>
+
+      <div class="type-direction">
+        <div class="type-row">
+          <div class="type-role">Headlines</div>
+          <div class="type-feel">Heavy. Confident. The kind of weight that makes you stop scrolling. Think carved into stone, not printed on a flyer. Every headline should feel like a statement you'd put on a billboard.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-role">Body</div>
+          <div class="type-feel">Clean and direct. No decoration, no flourishes. It gets out of the way and lets the message land. Reads fast, feels modern, never tries too hard.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-role">Accents</div>
+          <div class="type-feel">Sparse and intentional. A handwritten word here, a bold callout there. Used to create a single moment of warmth inside all that strength.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Voice and tone -->
+
     <div class="bp-sub-section fade-in">
       <div class="label bp-label">Voice and tone</div>
       <div class="bp-subline">What your brand actually sounds like, and the version of you that plays it safe.</div>
@@ -891,6 +1042,17 @@
       <button class="prompt-copy-btn" id="copyBtn" onclick="copyPrompt()">Copy</button>
       <div class="prompt-text" id="promptText">My brand archetype is <span class="hi">The Hero (The War Room)</span>. My brand voice is direct, confident, and results-focused. I use short, punchy sentences. Active voice always. I assume capability in my audience: no hand-holding, no hedging, no filler. My visual identity uses dark backgrounds, amber accents, and cream tones. Sharp corners everywhere, tight purposeful whitespace, and animations that move upward. My typography pairs a heavy serif for headlines with a clean sans-serif for body. My brand energy feels like a starting gun: earned, not given. When writing for my brand, channel the energy of someone who has done the work and is here to help others do the same. No excuses, no fluff, just results.</div>
     </div>
+  </div>
+</section>
+
+<!-- ════════════════ CTA ════════════════ -->
+<section class="cta-section">
+  <div class="cta-inner fade-in">
+    <div class="label cta-eyebrow">Ready to build it?</div>
+    <div class="cta-headline">Turn this blueprint into a real website.</div>
+    <div class="cta-subline">Your archetype. Your colors. Your voice. Built into a website that actually converts, in 8 sections or less.</div>
+    <a href="https://sitein8.com/" class="cta-btn">Build my site</a>
+    <div class="cta-footnote">sitein8.com</div>
   </div>
 </section>
 
