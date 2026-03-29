@@ -9,52 +9,114 @@
   <style>
     body { background: #1c1917; color: #fef3c7; margin: 0; }
 
-    /* Blueprint Layout */
-    .bp-act {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 0;
+    /* ── Hero Section ── */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
     }
-    .bp-sidebar {
-      padding: 48px 28px 48px 32px;
-      position: sticky;
-      top: 0;
-      align-self: start;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
-    .bp-sidebar-label {
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28,25,23,0.55) 0%,
+        rgba(28,25,23,0.75) 40%,
+        rgba(28,25,23,0.92) 70%,
+        #1c1917 100%
+      );
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 80px 32px 64px;
+    }
+    .hero-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: #fef3c7;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(254,243,199,0.55);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 18px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: var(--font-sans);
+      background: #f59e0b;
+      color: #1c1917;
+    }
+
+    /* ── Centered Layout ── */
+    .bp-section {
+      padding: 80px 32px;
+    }
+    .bp-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .bp-section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .bp-section-label {
       font-family: var(--font-sans);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .bp-sidebar-title {
-      font-family: var(--font-serif);
-      font-weight: 900;
-      font-size: 1.6rem;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
       margin-bottom: 12px;
     }
-    .bp-sidebar-sub {
+    .bp-section-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .bp-section-sub {
       font-family: var(--font-sans);
-      font-size: 13px;
+      font-size: 14px;
       font-style: italic;
-      opacity: 0.6;
+      opacity: 0.5;
       line-height: 1.5;
     }
-    .bp-content {
-      padding: 48px 40px 48px 40px;
-      border-left: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* Act 01 - dark */
-    .act-01 { background: #1c1917; }
-    .act-01 .bp-sidebar-label { color: #f59e0b; }
-    .act-01 .bp-sidebar-title { color: #fef3c7; }
-    .act-01 .bp-sidebar-sub { color: #f59e0b; }
-    .act-01 .bp-content { border-left-color: rgba(245,158,11,0.15); }
 
     /* Divider */
     .bp-divider {
@@ -66,21 +128,8 @@
       text-transform: uppercase;
       border-top: 1px solid;
       border-bottom: 1px solid;
+      text-align: center;
     }
-
-    /* Act 02 - light */
-    .act-02 { background: #fffbeb; color: #1c1917; }
-    .act-02 .bp-sidebar-label { color: #f59e0b; }
-    .act-02 .bp-sidebar-title { color: #1c1917; }
-    .act-02 .bp-sidebar-sub { color: #f59e0b; }
-    .act-02 .bp-content { border-left-color: rgba(245,158,11,0.15); }
-
-    /* Act 03 */
-    .act-03 { background: #1c1917; }
-    .act-03 .bp-sidebar-label { color: #f59e0b; }
-    .act-03 .bp-sidebar-title { color: #fef3c7; }
-    .act-03 .bp-sidebar-sub { color: #f59e0b; }
-    .act-03 .bp-content { border-left-color: rgba(245,158,11,0.15); }
 
     /* Section blocks inside content */
     .bp-block {
@@ -114,21 +163,6 @@
       margin-bottom: 16px;
     }
 
-    /* Door image */
-    .door-img-wrap {
-      width: 120px;
-      height: 160px;
-      border: 2px solid rgba(245,158,11,0.3);
-      overflow: hidden;
-      float: right;
-      margin-left: 24px;
-    }
-    .door-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     /* 2x2 grid for cards */
     .bp-grid-2x2 {
       display: grid;
@@ -139,27 +173,6 @@
       padding: 20px;
       font-size: 14px;
       line-height: 1.6;
-    }
-
-    /* Color bar */
-    .bp-color-bar {
-      display: flex;
-      height: 28px;
-      overflow: hidden;
-    }
-    .bp-color-bar > div {
-      position: relative;
-    }
-    .bp-color-bar .bp-hex {
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 7px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-      opacity: 0.7;
     }
 
     /* Do / Not this columns */
@@ -231,18 +244,8 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .bp-act {
-        grid-template-columns: 1fr;
-      }
-      .bp-sidebar {
-        position: static;
-        padding: 32px 20px 0;
-      }
-      .bp-content {
-        border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 32px 20px;
-      }
+      .hero-section { min-height: 80vh; }
+      .bp-section { padding: 56px 20px; }
       .bp-grid-2x2 {
         grid-template-columns: 1fr;
       }
@@ -251,10 +254,6 @@
       }
       .bp-voice-cols {
         flex-direction: column;
-      }
-      .door-img-wrap {
-        float: none;
-        margin: 0 0 16px 0;
       }
     }
   </style>
@@ -267,50 +266,42 @@
 <!-- ═══════════════════════════════════════════
      ACT 01 — YOUR DOOR. YOUR HERO.
      ═══════════════════════════════════════════ -->
-<section class="bp-act act-01">
-  <div class="bp-sidebar">
-    <div class="bp-sidebar-label">Act 01</div>
-    <div class="bp-sidebar-title">Your door.<br>Your hero.</div>
-    <div class="bp-sidebar-sub">This stops the scroll.</div>
+<section class="hero-section">
+  <div class="hero-bg" style="background-image:url('http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg');"></div>
+  <div class="hero-inner">
+    <div class="hero-label">Act 01 &mdash; Your door. Your hero.</div>
+    <h1 class="hero-title">This stops<br>the scroll.</h1>
+    <p class="hero-sub">A photographic image of your specific door — the visual that represents your brand's first impression before a single word is read.</p>
+    <div class="hero-tag">Your door image</div>
   </div>
-  <div class="bp-content">
+</section>
 
-    <!-- Front door image -->
-    <div class="bp-block">
-      <div class="door-img-wrap">
-        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg" alt="The War Room front door">
-      </div>
-      <div class="bp-block-title" style="color:#fef3c7;">Your front door image</div>
-      <div class="bp-block-desc" style="color:rgba(254,243,199,0.6);">A photographic image of your specific door — the visual that represents your brand's first impression before a single word is read.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Your door image</div>
-      <div style="clear:both;"></div>
-    </div>
-
-    <!-- What your hero section needs to do -->
-    <div class="bp-block">
+<!-- Hero direction cards -->
+<section class="bp-section" style="background:#1c1917;padding-top:0;">
+  <div class="bp-container">
+    <div class="bp-block" style="text-align:center;">
       <div class="bp-block-title" style="color:#fef3c7;">What your hero section needs to do</div>
       <div class="bp-block-desc" style="color:rgba(254,243,199,0.6);">The visual direction, headline energy, the one detail that makes someone stop, and the CTA that gets them to knock.</div>
       <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Hero section direction</div>
-      <div class="bp-grid-2x2">
-        <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-          <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Visual</div>
-          Dark background, bold amber accents. High-contrast hero image or no image at all — just words that hit. Nothing decorative.
-        </div>
-        <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-          <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Headline</div>
-          Short, direct, assumes capability. No questions — a statement. "Stop waiting. Start winning." energy. Active voice, always.
-        </div>
-        <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-          <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">The stop</div>
-          Results. Numbers, proof, transformation metrics. Something concrete that says "this person delivers" before they scroll past.
-        </div>
-        <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-          <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">CTA</div>
-          Action-oriented, no hedging. "Start now," "Get the plan," "Let's go." Never "Learn more" — Heroes don't browse, they commit.
-        </div>
+    </div>
+    <div class="bp-grid-2x2">
+      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
+        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Visual</div>
+        Dark background, bold amber accents. High-contrast hero image or no image at all — just words that hit. Nothing decorative.
+      </div>
+      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
+        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Headline</div>
+        Short, direct, assumes capability. No questions — a statement. "Stop waiting. Start winning." energy. Active voice, always.
+      </div>
+      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
+        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">The stop</div>
+        Results. Numbers, proof, transformation metrics. Something concrete that says "this person delivers" before they scroll past.
+      </div>
+      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
+        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">CTA</div>
+        Action-oriented, no hedging. "Start now," "Get the plan," "Let's go." Never "Learn more" — Heroes don't browse, they commit.
       </div>
     </div>
-
   </div>
 </section>
 
@@ -322,13 +313,14 @@
 <!-- ═══════════════════════════════════════════
      ACT 02 — YOUR FULL BLUEPRINT.
      ═══════════════════════════════════════════ -->
-<section class="bp-act act-02">
-  <div class="bp-sidebar">
-    <div class="bp-sidebar-label">Act 02</div>
-    <div class="bp-sidebar-title">Your full<br>blueprint.</div>
-    <div class="bp-sidebar-sub" style="color:#92400e;">Everything they see inside.</div>
-  </div>
-  <div class="bp-content" style="border-left-color:rgba(28,25,23,0.08);">
+<section class="bp-section" style="background:#fffbeb;color:#1c1917;">
+  <div class="bp-container">
+
+    <div class="bp-section-header">
+      <div class="bp-section-label" style="color:#f59e0b;">Act 02</div>
+      <div class="bp-section-title" style="color:#1c1917;">Your full blueprint.</div>
+      <div class="bp-section-sub" style="color:#92400e;">Everything they see inside.</div>
+    </div>
 
     <!-- 3 Color Palettes -->
     <div class="bp-block">
@@ -463,13 +455,14 @@
 <!-- ═══════════════════════════════════════════
      ACT 03 — TAKE THIS WITH YOU.
      ═══════════════════════════════════════════ -->
-<section class="bp-act act-03">
-  <div class="bp-sidebar">
-    <div class="bp-sidebar-label">Act 03</div>
-    <div class="bp-sidebar-title">Take this<br>with you.</div>
-    <div class="bp-sidebar-sub">Lives outside the quiz.</div>
-  </div>
-  <div class="bp-content">
+<section class="bp-section" style="background:#1c1917;">
+  <div class="bp-container">
+
+    <div class="bp-section-header">
+      <div class="bp-section-label" style="color:#f59e0b;">Act 03</div>
+      <div class="bp-section-title" style="color:#fef3c7;">Take this with you.</div>
+      <div class="bp-section-sub" style="color:#f59e0b;">Lives outside the quiz.</div>
+    </div>
 
     <!-- Brand Prompt -->
     <div class="bp-block">
@@ -483,8 +476,8 @@
     </div>
 
     <!-- Actions -->
-    <div class="bp-block" style="margin-top:40px;">
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <div class="bp-block" style="margin-top:40px;text-align:center;">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
         <a href="index.html" style="display:inline-block;padding:12px 28px;background:#f59e0b;color:#1c1917;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;">Retake the quiz</a>
         <a href="#" onclick="if(navigator.share){navigator.share({title:'I\'m The Hero archetype',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);this.textContent='Link copied!';}" style="display:inline-block;padding:12px 28px;background:transparent;color:#f59e0b;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;border:2px solid rgba(245,158,11,0.4);cursor:pointer;">Share your result</a>
       </div>
