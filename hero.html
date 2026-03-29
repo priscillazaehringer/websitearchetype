@@ -29,8 +29,8 @@
     body {
       font-family: var(--font-body);
       font-weight: 400;
-      font-size: 17px;
-      line-height: 1.7;
+      font-size: 18px;
+      line-height: 1.8;
       color: var(--dark);
       background: var(--dark);
       -webkit-font-smoothing: antialiased;
@@ -41,15 +41,16 @@
        UTILITIES
     -------------------------------------------------------- */
     .container {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
       padding: 0 40px;
     }
+    .text-center { text-align: center; }
     .label {
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -97,7 +98,7 @@
     .reveal {
       background: var(--dark);
       text-align: center;
-      padding: 140px 40px 120px;
+      padding: 160px 40px 140px;
       position: relative;
       overflow: hidden;
     }
@@ -107,31 +108,31 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
+      width: 700px;
+      height: 700px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%);
       pointer-events: none;
     }
     .reveal-eyebrow {
       color: var(--amber);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
       position: relative;
     }
     .reveal-the {
       font-family: var(--font-head);
       font-weight: 700;
       font-style: italic;
-      font-size: 26px;
+      font-size: 28px;
       color: var(--stone);
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       position: relative;
     }
     .reveal-hero {
       font-family: var(--font-hand);
       font-weight: 700;
-      font-size: clamp(72px, 14vw, 100px);
+      font-size: clamp(80px, 16vw, 120px);
       color: var(--cream2);
       line-height: 1;
       letter-spacing: -1px;
@@ -139,10 +140,10 @@
       position: relative;
     }
     .reveal-sub {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 300;
       color: var(--stone);
-      margin-top: 28px;
+      margin-top: 32px;
       line-height: 1.7;
       position: relative;
     }
@@ -150,7 +151,7 @@
       width: 48px;
       height: 2px;
       background: var(--amber);
-      margin: 36px auto 0;
+      margin: 40px auto 0;
       position: relative;
     }
 
@@ -159,19 +160,25 @@
     -------------------------------------------------------- */
     .recognition {
       background: var(--cream2);
-      padding: 100px 40px;
+      padding: 120px 40px;
+      text-align: center;
     }
     .recognition-eyebrow {
       color: var(--brown);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .recognition h2 {
       font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 40px);
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 48px);
       color: var(--dark);
-      margin-bottom: 48px;
-      line-height: 1.2;
+      margin-bottom: 56px;
+      line-height: 1.15;
+    }
+    .rec-rows {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
     }
     .rec-row {
       display: flex;
@@ -191,13 +198,13 @@
     .rec-num {
       font-family: var(--font-head);
       font-weight: 700;
-      font-size: 16px;
+      font-size: 17px;
       color: var(--amber);
       flex-shrink: 0;
       width: 28px;
     }
     .rec-text {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 400;
       color: var(--dark);
       line-height: 1.7;
@@ -232,37 +239,42 @@
     -------------------------------------------------------- */
     .blueprint {
       background: var(--dark);
-      padding: 100px 40px;
+      padding: 120px 40px;
     }
     .bp-sub-section {
-      margin-bottom: 96px;
+      margin-bottom: 110px;
+      text-align: center;
     }
     .bp-sub-section:last-child {
       margin-bottom: 0;
     }
     .bp-label {
       color: var(--amber);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .bp-headline {
       font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 42px);
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 48px);
       color: var(--cream2);
-      margin-bottom: 12px;
-      line-height: 1.2;
+      margin-bottom: 14px;
+      line-height: 1.15;
     }
     .bp-subline {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 300;
       color: var(--stone);
       line-height: 1.8;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* -- Palettes -- */
     .pal-row {
       border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
     }
     .pal-item {
       display: flex;
@@ -339,16 +351,18 @@
       border: 1px solid rgba(168,162,158,0.3);
     }
     .voice-quote {
-      font-size: 16px;
+      font-size: 17px;
       font-style: italic;
       line-height: 1.8;
     }
     .voice-do .voice-quote { color: var(--cream2); }
     .voice-dont .voice-quote { color: var(--stone); }
+    .voice-grid { text-align: left; }
     .pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      justify-content: center;
     }
     .pill {
       font-size: 13px;
@@ -363,6 +377,7 @@
     /* -- Accordion -- */
     .acc-item {
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
     }
     .acc-item:first-child {
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -407,6 +422,7 @@
       font-weight: 300;
       color: var(--stone);
       line-height: 1.85;
+      text-align: left;
     }
 
     /* -- Brands -- */
@@ -445,31 +461,35 @@
     -------------------------------------------------------- */
     .prompt-section {
       background: var(--cream);
-      padding: 100px 40px;
+      padding: 120px 40px;
+      text-align: center;
     }
     .prompt-headline {
       font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 40px);
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 48px);
       color: var(--dark);
-      margin-bottom: 16px;
-      line-height: 1.2;
+      margin-bottom: 18px;
+      line-height: 1.15;
     }
     .prompt-subline {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 300;
       color: var(--brown);
       line-height: 1.8;
-      margin-bottom: 40px;
-      max-width: 560px;
+      margin-bottom: 48px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .prompt-box {
       background: var(--dark);
-      padding: 36px;
+      padding: 40px;
       position: relative;
+      text-align: left;
     }
     .prompt-text {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
       color: var(--stone-light);
       line-height: 1.9;
@@ -504,22 +524,22 @@
     -------------------------------------------------------- */
     .site-footer {
       background: var(--dark);
-      padding: 64px 40px;
+      padding: 72px 40px;
       text-align: center;
     }
     .footer-line {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 300;
       color: rgba(168,162,158,0.5);
     }
     .footer-links {
-      margin-top: 18px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 32px;
     }
     .footer-links a {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
       color: var(--stone);
       text-decoration: none;
@@ -548,7 +568,7 @@
     .photo-break {
       position: relative;
       width: 100%;
-      height: 480px;
+      height: 520px;
       overflow: hidden;
     }
     .photo-break img {
@@ -581,16 +601,16 @@
     }
     .photo-break-headline {
       font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      font-size: clamp(32px, 6vw, 48px);
       color: var(--cream2);
-      line-height: 1.2;
-      margin-bottom: 14px;
+      line-height: 1.15;
+      margin-bottom: 16px;
     }
     .photo-break-sub {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 300;
-      color: var(--stone);
+      color: var(--stone-light);
       line-height: 1.7;
     }
 
@@ -642,14 +662,14 @@
     -------------------------------------------------------- */
     @media (max-width: 640px) {
       .site-nav { padding: 20px 24px; }
-      .reveal { padding: 96px 24px 80px; }
-      .reveal-hero { font-size: 64px; }
-      .photo-break { height: 320px; }
-      .recognition { padding: 72px 24px; }
-      .blueprint { padding: 72px 24px; }
-      .bp-sub-section { margin-bottom: 72px; }
-      .prompt-section { padding: 72px 24px; }
-      .site-footer { padding: 48px 24px; }
+      .reveal { padding: 100px 24px 88px; }
+      .reveal-hero { font-size: 72px; }
+      .photo-break { height: 360px; }
+      .recognition { padding: 80px 24px; }
+      .blueprint { padding: 80px 24px; }
+      .bp-sub-section { margin-bottom: 80px; }
+      .prompt-section { padding: 80px 24px; }
+      .site-footer { padding: 56px 24px; }
       .container { padding: 0 24px; }
       .slash { padding: 16px 24px; }
       .voice-grid { grid-template-columns: 1fr; }
@@ -684,17 +704,19 @@
   <div class="container fade-in">
     <div class="label recognition-eyebrow">This is you</div>
     <h2>You've earned this.</h2>
-    <div class="rec-row">
-      <span class="rec-num">01</span>
-      <span class="rec-text">You've done the work and you're done apologizing for it</span>
-    </div>
-    <div class="rec-row">
-      <span class="rec-num">02</span>
-      <span class="rec-text">You attract clients who want results, not hand-holding</span>
-    </div>
-    <div class="rec-row">
-      <span class="rec-num">03</span>
-      <span class="rec-text">Your brand should feel like a starting gun, not a welcome mat</span>
+    <div class="rec-rows">
+      <div class="rec-row">
+        <span class="rec-num">01</span>
+        <span class="rec-text">You've done the work and you're done apologizing for it</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-num">02</span>
+        <span class="rec-text">You attract clients who want results, not hand-holding</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-num">03</span>
+        <span class="rec-text">Your brand should feel like a starting gun, not a welcome mat</span>
+      </div>
     </div>
   </div>
 </section>
