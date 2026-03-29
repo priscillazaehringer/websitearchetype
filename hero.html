@@ -7,7 +7,7 @@
   <meta name="description" content="Your brand archetype is The Hero. Discover your color palettes, design system, and website personality.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -23,6 +23,7 @@
       --stone-light: #e7e5e4;
       --font-head: 'Playfair Display', serif;
       --font-body: 'DM Sans', sans-serif;
+      --font-hand: 'Caveat', cursive;
     }
 
     body {
@@ -128,9 +129,9 @@
       position: relative;
     }
     .reveal-hero {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: clamp(56px, 10vw, 72px);
+      font-family: var(--font-hand);
+      font-weight: 700;
+      font-size: clamp(64px, 12vw, 80px);
       color: var(--cream2);
       line-height: 1;
       letter-spacing: -1px;
@@ -409,7 +410,7 @@
     /* -- Brands -- */
     .brands-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
     .brand-card {
@@ -437,12 +438,6 @@
       color: var(--stone);
       line-height: 1.6;
     }
-    .brand-card-yours {
-      background: rgba(245,158,11,0.05);
-      border-color: rgba(245,158,11,0.2);
-    }
-    .brand-card-yours .brand-card-name { color: var(--amber); }
-
     /* --------------------------------------------------------
        PROMPT
     -------------------------------------------------------- */
@@ -529,17 +524,129 @@
     .footer-links a:hover { text-decoration: underline; }
 
     /* --------------------------------------------------------
+       GRAIN OVERLAY
+    -------------------------------------------------------- */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* --------------------------------------------------------
+       FULL-BLEED PHOTO
+    -------------------------------------------------------- */
+    .photo-break {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+    }
+    .photo-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .photo-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28,25,23,0.45) 0%,
+        rgba(28,25,23,0.55) 50%,
+        rgba(28,25,23,0.65) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+    }
+    .photo-break-eyebrow {
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      margin-bottom: 14px;
+    }
+    .photo-break-headline {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--cream2);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .photo-break-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--stone);
+    }
+
+    /* --------------------------------------------------------
+       HEX LABELS ON SWATCHES
+    -------------------------------------------------------- */
+    .pal-sw {
+      position: relative;
+    }
+    .pal-hex {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--stone);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .pal-item:hover .pal-hex {
+      opacity: 1;
+    }
+    .pal-swatches {
+      position: relative;
+      margin-bottom: 0;
+    }
+    .pal-item {
+      padding: 16px 0 28px 0;
+    }
+
+    /* --------------------------------------------------------
+       SCROLL FADE-IN
+    -------------------------------------------------------- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --------------------------------------------------------
        RESPONSIVE
     -------------------------------------------------------- */
     @media (max-width: 640px) {
       .reveal { padding: 72px 24px 64px; }
-      .reveal-hero { font-size: 48px; }
+      .reveal-hero { font-size: 60px; }
+      .photo-break { height: 300px; }
+      .photo-break-headline { font-size: 24px; }
       .recognition { padding: 56px 24px; }
       .blueprint { padding: 56px 24px; }
       .prompt-section { padding: 56px 24px; }
       .container { padding: 0 24px; }
       .voice-grid { grid-template-columns: 1fr; }
-      .brands-grid { grid-template-columns: 1fr 1fr; }
+      .brands-grid { grid-template-columns: 1fr; }
       .pal-item { flex-wrap: wrap; gap: 10px; }
       .pal-name { width: auto; }
       .pal-tag { width: auto; text-align: left; }
@@ -567,7 +674,7 @@
 
 <!-- ════════════════ RECOGNITION ════════════════ -->
 <section class="recognition">
-  <div class="container">
+  <div class="container fade-in">
     <div class="label recognition-eyebrow">This is you</div>
     <h2>You've earned this.</h2>
     <div class="rec-row">
@@ -585,6 +692,16 @@
   </div>
 </section>
 
+<!-- ════════════════ FULL-BLEED PHOTO ════════════════ -->
+<div class="photo-break fade-in">
+  <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg" alt="Your front door">
+  <div class="photo-break-overlay">
+    <div class="label photo-break-eyebrow">Your front door</div>
+    <div class="photo-break-headline">The image that does the talking.</div>
+    <div class="photo-break-sub">Dark. High-contrast. No explanation needed.</div>
+  </div>
+</div>
+
 <!-- ════════════════ AMBER SLASH ════════════════ -->
 <div class="slash slash-amber">
   <span class="label">Your brand blueprint</span>
@@ -597,7 +714,7 @@
   <div class="container">
 
     <!-- 1. Color systems -->
-    <div class="bp-sub-section">
+    <div class="bp-sub-section fade-in">
       <div class="label bp-label">Color systems</div>
       <div class="bp-headline">Three palettes. One DNA.</div>
       <div class="bp-subline">Pick the one that fits your industry, or mix between them.</div>
@@ -606,33 +723,33 @@
         <div class="pal-item">
           <span class="pal-name">Iron and Gold</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#1c1917;"></div>
-            <div class="pal-sw" style="background:#92400e;"></div>
-            <div class="pal-sw" style="background:#f59e0b;"></div>
-            <div class="pal-sw" style="background:#fffbeb;"></div>
-            <div class="pal-sw" style="background:#fef3c7;"></div>
+            <div class="pal-sw" style="background:#1c1917;"><span class="pal-hex">#1c1917</span></div>
+            <div class="pal-sw" style="background:#92400e;"><span class="pal-hex">#92400e</span></div>
+            <div class="pal-sw" style="background:#f59e0b;"><span class="pal-hex">#f59e0b</span></div>
+            <div class="pal-sw" style="background:#fffbeb;"><span class="pal-hex">#fffbeb</span></div>
+            <div class="pal-sw" style="background:#fef3c7;"><span class="pal-hex">#fef3c7</span></div>
           </div>
           <span class="pal-tag">Primary</span>
         </div>
         <div class="pal-item">
           <span class="pal-name">Forge</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#0c0a09;"></div>
-            <div class="pal-sw" style="background:#b91c1c;"></div>
-            <div class="pal-sw" style="background:#dc2626;"></div>
-            <div class="pal-sw" style="background:#fef2f2;"></div>
-            <div class="pal-sw" style="background:#fff5f5;"></div>
+            <div class="pal-sw" style="background:#0c0a09;"><span class="pal-hex">#0c0a09</span></div>
+            <div class="pal-sw" style="background:#b91c1c;"><span class="pal-hex">#b91c1c</span></div>
+            <div class="pal-sw" style="background:#dc2626;"><span class="pal-hex">#dc2626</span></div>
+            <div class="pal-sw" style="background:#fef2f2;"><span class="pal-hex">#fef2f2</span></div>
+            <div class="pal-sw" style="background:#fff5f5;"><span class="pal-hex">#fff5f5</span></div>
           </div>
           <span class="pal-tag">Bold</span>
         </div>
         <div class="pal-item">
           <span class="pal-name">Command</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#0f172a;"></div>
-            <div class="pal-sw" style="background:#1e40af;"></div>
-            <div class="pal-sw" style="background:#3b82f6;"></div>
-            <div class="pal-sw" style="background:#f8fafc;"></div>
-            <div class="pal-sw" style="background:#eff6ff;"></div>
+            <div class="pal-sw" style="background:#0f172a;"><span class="pal-hex">#0f172a</span></div>
+            <div class="pal-sw" style="background:#1e40af;"><span class="pal-hex">#1e40af</span></div>
+            <div class="pal-sw" style="background:#3b82f6;"><span class="pal-hex">#3b82f6</span></div>
+            <div class="pal-sw" style="background:#f8fafc;"><span class="pal-hex">#f8fafc</span></div>
+            <div class="pal-sw" style="background:#eff6ff;"><span class="pal-hex">#eff6ff</span></div>
           </div>
           <span class="pal-tag">Corporate</span>
         </div>
@@ -640,7 +757,7 @@
     </div>
 
     <!-- 2. Voice and tone -->
-    <div class="bp-sub-section">
+    <div class="bp-sub-section fade-in">
       <div class="label bp-label">Voice and tone</div>
       <div class="bp-subline">What your brand actually sounds like, and the version of you that plays it safe.</div>
 
@@ -663,7 +780,7 @@
     </div>
 
     <!-- 3. Design specs (accordion) -->
-    <div class="bp-sub-section">
+    <div class="bp-sub-section fade-in">
       <div class="label bp-label">Design specs</div>
       <div class="bp-subline">The small decisions that make a Hero brand feel unmistakably intentional.</div>
 
@@ -706,7 +823,7 @@
     </div>
 
     <!-- 4. Brands like you -->
-    <div class="bp-sub-section">
+    <div class="bp-sub-section fade-in">
       <div class="label bp-label">Brands like you</div>
       <div class="bp-subline">Notice what they have in common.</div>
 
@@ -723,10 +840,6 @@
           <div class="brand-card-name">CrossFit</div>
           <div class="brand-card-desc">Real numbers, real people. No apologies for being hard.</div>
         </div>
-        <div class="brand-card brand-card-yours">
-          <div class="brand-card-name">Yours</div>
-          <div class="brand-card-desc">Dark + amber. Sharp. Starting gun energy.</div>
-        </div>
       </div>
     </div>
 
@@ -742,12 +855,12 @@
 
 <!-- ════════════════ PROMPT ════════════════ -->
 <section class="prompt-section">
-  <div class="container">
+  <div class="container fade-in">
     <div class="prompt-headline">Your brand in one paragraph.</div>
     <div class="prompt-subline">Paste this at the start of any AI prompt. ChatGPT, Claude, whatever you use. Every caption, email, and sales page you write from here will sound like you.</div>
     <div class="prompt-box">
       <button class="prompt-copy-btn" id="copyBtn" onclick="copyPrompt()">Copy</button>
-      <div class="prompt-text" id="promptText">My brand archetype is <span class="hi">The Hero (The War Room)</span>. My brand voice is direct, confident, and results-focused. I use short, punchy sentences. Active voice always. I assume capability in my audience: no hand-holding, no hedging, no filler. My visual identity uses dark backgrounds (<span class="hi">#1c1917</span>), amber accents (<span class="hi">#f59e0b</span>), and cream (<span class="hi">#fef3c7</span>). Sharp corners everywhere, tight purposeful whitespace, and animations that move upward. My typography pairs a heavy serif for headlines with a clean sans-serif for body. My brand energy feels like a starting gun: earned, not given. When writing for my brand, channel the energy of someone who has done the work and is here to help others do the same. No excuses, no fluff, just results.</div>
+      <div class="prompt-text" id="promptText">My brand archetype is <span class="hi">The Hero (The War Room)</span>. My brand voice is direct, confident, and results-focused. I use short, punchy sentences. Active voice always. I assume capability in my audience: no hand-holding, no hedging, no filler. My visual identity uses dark backgrounds, amber accents, and cream tones. Sharp corners everywhere, tight purposeful whitespace, and animations that move upward. My typography pairs a heavy serif for headlines with a clean sans-serif for body. My brand energy feels like a starting gun: earned, not given. When writing for my brand, channel the energy of someone who has done the work and is here to help others do the same. No excuses, no fluff, just results.</div>
     </div>
   </div>
 </section>
@@ -762,6 +875,12 @@
 </footer>
 
 <script>
+// Scroll fade-in
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
 function toggleAcc(btn) {
   const item = btn.parentElement;
   const wasOpen = item.classList.contains('open');
