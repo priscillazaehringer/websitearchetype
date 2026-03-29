@@ -5,467 +5,727 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>You're The Hero | Brand Archetype Results</title>
   <meta name="description" content="Your brand archetype is The Hero. Discover your color palettes, design system, and website personality.">
-  <link rel="stylesheet" href="shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
   <style>
-    body { background: #1c1917; color: #fef3c7; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    /* ── Hero Section ── */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
+    :root {
+      --dark: #1c1917;
+      --dark2: #292524;
+      --amber: #f59e0b;
+      --cream: #fffbeb;
+      --cream2: #fef3c7;
+      --brown: #92400e;
+      --stone: #a8a29e;
+      --stone-light: #e7e5e4;
+      --font-head: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --------------------------------------------------------
+       UTILITIES
+    -------------------------------------------------------- */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* --------------------------------------------------------
+       ANIMATIONS
+    -------------------------------------------------------- */
+    @keyframes fadeRise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-1 { animation: fadeRise 0.8s ease both 0.2s; }
+    .anim-2 { animation: fadeRise 0.8s ease both 0.5s; }
+    .anim-3 { animation: fadeRise 0.8s ease both 0.8s; }
+    .anim-4 { animation: fadeRise 0.8s ease both 1.1s; }
+
+    /* --------------------------------------------------------
+       NAV
+    -------------------------------------------------------- */
+    .site-nav {
+      background: var(--cream);
+      padding: 18px 32px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brown);
+      text-decoration: none;
+    }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--brown);
+      text-decoration: none;
+    }
+    .nav-link:hover { text-decoration: underline; }
+
+    /* --------------------------------------------------------
+       REVEAL
+    -------------------------------------------------------- */
+    .reveal {
+      background: var(--dark);
       text-align: center;
+      padding: 100px 32px 88px;
+      position: relative;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .hero-bg::after {
+    .reveal::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(28,25,23,0.55) 0%,
-        rgba(28,25,23,0.75) 40%,
-        rgba(28,25,23,0.92) 70%,
-        #1c1917 100%
-      );
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .hero-inner {
+    .reveal-eyebrow {
+      color: var(--amber);
+      margin-bottom: 28px;
       position: relative;
-      z-index: 1;
-      max-width: 700px;
-      padding: 80px 32px 64px;
     }
-    .hero-label {
-      font-family: var(--font-sans);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(245,158,11,0.5);
-      margin-bottom: 20px;
+    .reveal-the {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--stone);
+      display: block;
+      margin-bottom: 4px;
+      position: relative;
     }
-    .hero-title {
-      font-family: var(--font-serif);
+    .reveal-hero {
+      font-family: var(--font-head);
       font-weight: 900;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      line-height: 1.08;
+      font-size: clamp(56px, 10vw, 72px);
+      color: var(--cream2);
+      line-height: 1;
       letter-spacing: -1px;
-      color: #fef3c7;
-      margin-bottom: 20px;
+      display: block;
+      position: relative;
     }
-    .hero-sub {
-      font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.7;
-      color: rgba(254,243,199,0.55);
-      max-width: 520px;
-      margin: 0 auto 32px;
+    .reveal-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--stone);
+      margin-top: 20px;
+      position: relative;
     }
-    .hero-tag {
-      display: inline-block;
-      padding: 6px 18px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-family: var(--font-sans);
-      background: #f59e0b;
-      color: #1c1917;
+    .reveal-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--amber);
+      margin: 28px auto 0;
+      position: relative;
     }
 
-    /* ── Centered Layout ── */
-    .bp-section {
-      padding: 80px 32px;
+    /* --------------------------------------------------------
+       RECOGNITION
+    -------------------------------------------------------- */
+    .recognition {
+      background: var(--cream2);
+      padding: 72px 32px;
     }
-    .bp-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .bp-section-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .bp-section-label {
-      font-family: var(--font-sans);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .bp-section-title {
-      font-family: var(--font-serif);
-      font-weight: 900;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      line-height: 1.15;
-      letter-spacing: -0.5px;
+    .recognition-eyebrow {
+      color: var(--brown);
       margin-bottom: 10px;
     }
-    .bp-section-sub {
-      font-family: var(--font-sans);
+    .recognition h2 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--dark);
+      margin-bottom: 36px;
+    }
+    .rec-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0 18px 0;
+      border-top: 1px solid rgba(28,25,23,0.1);
+      transition: padding-left 0.3s ease;
+      cursor: default;
+    }
+    .rec-row:last-child {
+      border-bottom: 1px solid rgba(28,25,23,0.1);
+    }
+    .rec-row:hover {
+      padding-left: 8px;
+    }
+    .rec-num {
+      font-family: var(--font-head);
+      font-weight: 700;
       font-size: 14px;
-      font-style: italic;
-      opacity: 0.5;
-      line-height: 1.5;
+      color: var(--amber);
+      flex-shrink: 0;
+      width: 24px;
     }
-
-    /* Divider */
-    .bp-divider {
-      padding: 14px 32px;
-      font-family: var(--font-sans);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
-      text-align: center;
-    }
-
-    /* Section blocks inside content */
-    .bp-block {
-      margin-bottom: 48px;
-    }
-    .bp-block:last-child {
-      margin-bottom: 0;
-    }
-    .bp-block-title {
-      font-family: var(--font-serif);
-      font-weight: 900;
-      font-size: 1.35rem;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      letter-spacing: -0.3px;
-    }
-    .bp-block-desc {
-      font-size: 14px;
-      line-height: 1.75;
-      opacity: 0.65;
-      margin-bottom: 16px;
-    }
-    .bp-tag {
-      display: inline-block;
-      padding: 5px 14px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-family: var(--font-sans);
-      margin-bottom: 16px;
-    }
-
-    /* 2x2 grid for cards */
-    .bp-grid-2x2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .bp-grid-card {
-      padding: 20px;
-      font-size: 14px;
+    .rec-text {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
       line-height: 1.6;
     }
 
-    /* Do / Not this columns */
-    .bp-voice-cols {
+    /* --------------------------------------------------------
+       SLASH DIVIDERS
+    -------------------------------------------------------- */
+    .slash {
       display: flex;
-      gap: 0;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 32px;
     }
-    .bp-voice-col {
+    .slash-rule {
       flex: 1;
-      padding: 18px;
+      height: 1px;
     }
+    .slash-amber {
+      background: var(--amber);
+    }
+    .slash-amber .label { color: var(--dark); }
+    .slash-amber .slash-rule { background: rgba(28,25,23,0.15); }
+    .slash-cream {
+      background: var(--cream2);
+    }
+    .slash-cream .label { color: var(--brown); }
+    .slash-cream .slash-rule { background: rgba(146,64,14,0.2); }
 
-    /* Typography preview */
-    .bp-type-preview {
+    /* --------------------------------------------------------
+       BLUEPRINT
+    -------------------------------------------------------- */
+    .blueprint {
+      background: var(--dark);
+      padding: 80px 32px;
+    }
+    .bp-sub-section {
+      margin-bottom: 72px;
+    }
+    .bp-sub-section:last-child {
+      margin-bottom: 0;
+    }
+    .bp-label {
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .bp-headline {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--cream2);
       margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .bp-subline {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 32px;
     }
 
-    /* Brand cards row */
-    .bp-brands-row {
+    /* -- Palettes -- */
+    .pal-row {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .pal-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      cursor: default;
+    }
+    .pal-item:hover .pal-sw {
+      transform: scaleY(1.15);
+    }
+    .pal-name {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--stone);
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .pal-swatches {
+      display: flex;
+      flex: 1;
+      gap: 3px;
+      height: 28px;
+    }
+    .pal-sw {
+      flex: 1;
+      transition: transform 0.25s ease;
+    }
+    .pal-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      width: 80px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* -- Voice -- */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .voice-card {
+      padding: 24px;
+    }
+    .voice-do {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.1);
+    }
+    .voice-dont {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .voice-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      margin-bottom: 14px;
+    }
+    .voice-badge-do {
+      color: var(--amber);
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .voice-badge-dont {
+      color: var(--stone);
+      border: 1px solid rgba(168,162,158,0.3);
+    }
+    .voice-quote {
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .voice-do .voice-quote { color: var(--cream2); }
+    .voice-dont .voice-quote { color: var(--stone); }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--stone);
+      border: 1px solid rgba(168,162,158,0.3);
+      border-radius: 2px;
+      padding: 5px 14px;
+      letter-spacing: 0.02em;
+    }
+
+    /* -- Accordion -- */
+    .acc-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .acc-item:first-child {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .acc-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--stone-light);
+      letter-spacing: 0.01em;
+    }
+    .acc-toggle:hover { color: var(--cream2); }
+    .acc-icon {
+      font-size: 18px;
+      color: var(--amber);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .acc-item.open .acc-icon {
+      transform: rotate(45deg);
+    }
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .acc-item.open .acc-body {
+      max-height: 200px;
+    }
+    .acc-body-inner {
+      padding: 0 0 20px 0;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.75;
+    }
+
+    /* -- Brands -- */
+    .brands-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
-    .bp-brand-card {
-      padding: 16px;
+    .brand-card {
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: transparent;
       text-decoration: none;
       display: block;
-      transition: transform 0.2s;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
-    .bp-brand-card:hover {
+    .brand-card:hover {
       transform: translateY(-2px);
+      border-color: var(--amber);
     }
+    .brand-card-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--cream2);
+    }
+    .brand-card-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+    .brand-card-yours {
+      background: rgba(245,158,11,0.05);
+      border-color: rgba(245,158,11,0.2);
+    }
+    .brand-card-yours .brand-card-name { color: var(--amber); }
 
-    /* Prompt block */
-    .bp-prompt-block {
-      padding: 20px;
-      font-size: 13px;
-      line-height: 1.8;
-      font-family: var(--font-sans);
+    /* --------------------------------------------------------
+       PROMPT
+    -------------------------------------------------------- */
+    .prompt-section {
+      background: var(--cream);
+      padding: 80px 32px;
+    }
+    .prompt-headline {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .prompt-subline {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--brown);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+    .prompt-box {
+      background: var(--dark);
+      padding: 28px 28px 28px 28px;
       position: relative;
     }
-    .bp-prompt-copy {
+    .prompt-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--stone-light);
+      line-height: 1.85;
+    }
+    .prompt-text .hi { color: var(--amber); }
+    .prompt-copy-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 4px 12px;
+      top: 14px;
+      right: 14px;
+      padding: 5px 14px;
+      font-family: var(--font-body);
       font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      cursor: pointer;
-      border: 1px solid;
+      color: var(--amber);
+      border: 1px solid rgba(245,158,11,0.35);
       background: transparent;
-      font-family: var(--font-sans);
-      transition: all 0.2s;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .prompt-copy-btn:hover {
+      background: rgba(245,158,11,0.08);
+    }
+    .prompt-copy-btn.copied {
+      color: #22c55e;
+      border-color: rgba(34,197,94,0.4);
     }
 
-    /* Footer */
-    .bp-footer {
+    /* --------------------------------------------------------
+       FOOTER
+    -------------------------------------------------------- */
+    .site-footer {
+      background: var(--dark);
+      padding: 48px 32px;
       text-align: center;
-      padding: 32px;
-      font-family: var(--font-hand);
-      font-size: 20px;
-      font-style: italic;
     }
+    .footer-line {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(168,162,158,0.5);
+    }
+    .footer-links {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--stone);
+      text-decoration: none;
+    }
+    .footer-links a:hover { text-decoration: underline; }
 
-    /* Palette cards */
-    .pal-card.active { border-color: #f59e0b !important; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-section { min-height: 80vh; }
-      .bp-section { padding: 56px 20px; }
-      .bp-grid-2x2 {
-        grid-template-columns: 1fr;
-      }
-      .bp-brands-row {
-        grid-template-columns: 1fr 1fr;
-      }
-      .bp-voice-cols {
-        flex-direction: column;
-      }
+    /* --------------------------------------------------------
+       RESPONSIVE
+    -------------------------------------------------------- */
+    @media (max-width: 640px) {
+      .reveal { padding: 72px 24px 64px; }
+      .reveal-hero { font-size: 48px; }
+      .recognition { padding: 56px 24px; }
+      .blueprint { padding: 56px 24px; }
+      .prompt-section { padding: 56px 24px; }
+      .container { padding: 0 24px; }
+      .voice-grid { grid-template-columns: 1fr; }
+      .brands-grid { grid-template-columns: 1fr 1fr; }
+      .pal-item { flex-wrap: wrap; gap: 10px; }
+      .pal-name { width: auto; }
+      .pal-tag { width: auto; text-align: left; }
     }
   </style>
 </head>
 <body>
-<nav class="quiz-nav" style="background:#1c1917;border-bottom:1px solid rgba(255,255,255,0.06);">
-  <a href="index.html" class="quiz-nav-logo"><img src="logo.svg" alt="Brand Archetype Quiz" style="height:24px;"></a>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Brand Archetype Quiz</a>
+  <a href="index.html" class="nav-link">Retake quiz</a>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     ACT 01 — YOUR DOOR. YOUR HERO.
-     ═══════════════════════════════════════════ -->
-<section class="hero-section">
-  <div class="hero-bg" style="background-image:url('http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg');"></div>
-  <div class="hero-inner">
-    <div class="hero-label">Act 01</div>
-    <h1 class="hero-title">Your front door.</h1>
-    <p class="hero-sub" style="max-width:560px;">What it needs to say before anyone reads a word.<br><span style="display:inline-block;margin-top:8px;opacity:0.7;font-size:14px;">The image that does the talking. Dark, high-contrast, no explanation needed.</span></p>
-    <div class="hero-tag">Your door image</div>
+<!-- ════════════════ REVEAL ════════════════ -->
+<section class="reveal">
+  <div class="label reveal-eyebrow anim-1">Your brand archetype</div>
+  <div class="anim-2">
+    <span class="reveal-the">the</span>
+    <span class="reveal-hero">Hero</span>
   </div>
+  <div class="reveal-sub anim-3">The War Room. Built on proof, not promises.</div>
+  <div class="reveal-rule anim-4"></div>
 </section>
 
-<!-- ═══ RECOGNITION ═══ -->
-<section class="bp-section" style="background:#fef3c7;padding:64px 32px;">
-  <div class="bp-container" style="max-width:600px;text-align:center;">
-    <div style="font-family:var(--font-serif);font-weight:900;font-size:clamp(1.6rem,4vw,2.2rem);color:#1c1917;margin-bottom:28px;letter-spacing:-0.5px;">This is you.</div>
-    <div style="text-align:left;max-width:480px;margin:0 auto;">
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;font-size:15px;line-height:1.6;color:#1c1917;">
-        <span style="color:#f59e0b;font-size:20px;line-height:1;">&#9679;</span>
-        <span>You've done the work and you're done apologizing for it</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;font-size:15px;line-height:1.6;color:#1c1917;">
-        <span style="color:#f59e0b;font-size:20px;line-height:1;">&#9679;</span>
-        <span>You attract clients who want results, not hand-holding</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:12px;font-size:15px;line-height:1.6;color:#1c1917;">
-        <span style="color:#f59e0b;font-size:20px;line-height:1;">&#9679;</span>
-        <span>Your brand should feel like a starting gun, not a welcome mat</span>
-      </div>
+<!-- ════════════════ RECOGNITION ════════════════ -->
+<section class="recognition">
+  <div class="container">
+    <div class="label recognition-eyebrow">This is you</div>
+    <h2>You've earned this.</h2>
+    <div class="rec-row">
+      <span class="rec-num">01</span>
+      <span class="rec-text">You've done the work and you're done apologizing for it</span>
+    </div>
+    <div class="rec-row">
+      <span class="rec-num">02</span>
+      <span class="rec-text">You attract clients who want results, not hand-holding</span>
+    </div>
+    <div class="rec-row">
+      <span class="rec-num">03</span>
+      <span class="rec-text">Your brand should feel like a starting gun, not a welcome mat</span>
     </div>
   </div>
 </section>
 
-<!-- Hero direction cards -->
-<section class="bp-section" style="background:#1c1917;">
-  <div class="bp-container">
-    <div class="bp-block" style="text-align:center;">
-      <div class="hero-label" style="margin-bottom:12px;">Act 01</div>
-      <div class="bp-block-title" style="color:#fef3c7;">What your hero section needs to do</div>
-      <div class="bp-block-desc" style="color:rgba(254,243,199,0.6);">Four decisions. Every Hero website that converts makes all four of them the same way.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Hero section direction</div>
-    </div>
-    <div class="bp-grid-2x2">
-      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Visual</div>
-        Dark background, bold amber accents. High-contrast hero image or no image at all — just words that hit. Nothing decorative.
-      </div>
-      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Headline</div>
-        Short, direct, assumes capability. No questions — a statement. "Stop waiting. Start winning." energy. Active voice, always.
-      </div>
-      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">The proof point</div>
-        One number, one result, one before-and-after. Not a list — a single thing that makes them stop and think: this person is serious.
-      </div>
-      <div class="bp-grid-card" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);color:#fef3c7;">
-        <div style="font-weight:700;margin-bottom:6px;font-size:12px;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">CTA</div>
-        Your CTA is a decision, not an invitation. "Start now." "Get the plan." Never "Learn more" — that's a browser's button, not yours.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DIVIDER ═══ -->
-<div class="bp-divider" style="background:#f59e0b;color:#78350f;border-color:#78350f;">
-  Every visual and verbal decision — made for The Hero. Use this as your brief for everything.
+<!-- ════════════════ AMBER SLASH ════════════════ -->
+<div class="slash slash-amber">
+  <span class="label">Your brand blueprint</span>
+  <div class="slash-rule"></div>
+  <span class="label">Act 02</span>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     ACT 02 — YOUR FULL BLUEPRINT.
-     ═══════════════════════════════════════════ -->
-<section class="bp-section" style="background:#fffbeb;color:#1c1917;">
-  <div class="bp-container">
+<!-- ════════════════ BLUEPRINT ════════════════ -->
+<section class="blueprint">
+  <div class="container">
 
-    <div class="bp-section-header">
-      <div class="bp-section-label" style="color:rgba(245,158,11,0.5);">Act 02</div>
-      <div class="bp-section-title" style="color:#1c1917;">Your full blueprint.</div>
-    </div>
-
-    <!-- 3 Color Palettes -->
-    <div class="bp-block">
-      <div class="bp-block-title" style="color:#1c1917;">3 color palettes</div>
-      <div class="bp-block-desc" style="color:#78350f;">Three palettes, all built from the same DNA. Pick the one that fits your industry — or mix between them.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">3 complete color systems</div>
+    <!-- 1. Color systems -->
+    <div class="bp-sub-section">
+      <div class="label bp-label">Color systems</div>
+      <div class="bp-headline">Three palettes. One DNA.</div>
+      <div class="bp-subline">Pick the one that fits your industry, or mix between them.</div>
 
       <div class="pal-row">
-        <div class="pal-card active" id="pal0" onclick="switchPal(0)" style="border-color:#92400e;">
+        <div class="pal-item">
+          <span class="pal-name">Iron and Gold</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#1c1917;flex:1;"><span class="pal-hex" style="color:#fef3c7;">#1c1917</span></div>
-            <div class="pal-sw" style="background:#92400e;flex:2;"><span class="pal-hex" style="color:#fef3c7;">#92400e</span></div>
-            <div class="pal-sw" style="background:#f59e0b;flex:2;"><span class="pal-hex" style="color:#1c1917;">#f59e0b</span></div>
-            <div class="pal-sw" style="background:#fffbeb;flex:1;"><span class="pal-hex" style="color:#92400e;">#fffbeb</span></div>
-            <div class="pal-sw" style="background:#fef3c7;flex:1;"><span class="pal-hex" style="color:#92400e;">#fef3c7</span></div>
+            <div class="pal-sw" style="background:#1c1917;"></div>
+            <div class="pal-sw" style="background:#92400e;"></div>
+            <div class="pal-sw" style="background:#f59e0b;"></div>
+            <div class="pal-sw" style="background:#fffbeb;"></div>
+            <div class="pal-sw" style="background:#fef3c7;"></div>
           </div>
-          <div class="pal-name" style="color:#92400e;">Iron and Gold</div>
+          <span class="pal-tag">Primary</span>
         </div>
-        <div class="pal-card" id="pal1" onclick="switchPal(1)">
+        <div class="pal-item">
+          <span class="pal-name">Forge</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#0c0a09;flex:1;"><span class="pal-hex" style="color:#fef2f2;">#0c0a09</span></div>
-            <div class="pal-sw" style="background:#b91c1c;flex:2;"><span class="pal-hex" style="color:#fff;">#b91c1c</span></div>
-            <div class="pal-sw" style="background:#dc2626;flex:2;"><span class="pal-hex" style="color:#fff;">#dc2626</span></div>
-            <div class="pal-sw" style="background:#fef2f2;flex:1;"><span class="pal-hex" style="color:#b91c1c;">#fef2f2</span></div>
-            <div class="pal-sw" style="background:#fff5f5;flex:1;"><span class="pal-hex" style="color:#b91c1c;">#fff5f5</span></div>
+            <div class="pal-sw" style="background:#0c0a09;"></div>
+            <div class="pal-sw" style="background:#b91c1c;"></div>
+            <div class="pal-sw" style="background:#dc2626;"></div>
+            <div class="pal-sw" style="background:#fef2f2;"></div>
+            <div class="pal-sw" style="background:#fff5f5;"></div>
           </div>
-          <div class="pal-name" style="color:#b91c1c;">Forge</div>
+          <span class="pal-tag">Bold</span>
         </div>
-        <div class="pal-card" id="pal2" onclick="switchPal(2)">
+        <div class="pal-item">
+          <span class="pal-name">Command</span>
           <div class="pal-swatches">
-            <div class="pal-sw" style="background:#0f172a;flex:1;"><span class="pal-hex" style="color:#eff6ff;">#0f172a</span></div>
-            <div class="pal-sw" style="background:#1e40af;flex:2;"><span class="pal-hex" style="color:#fff;">#1e40af</span></div>
-            <div class="pal-sw" style="background:#3b82f6;flex:2;"><span class="pal-hex" style="color:#fff;">#3b82f6</span></div>
-            <div class="pal-sw" style="background:#f8fafc;flex:1;"><span class="pal-hex" style="color:#1e40af;">#f8fafc</span></div>
-            <div class="pal-sw" style="background:#eff6ff;flex:1;"><span class="pal-hex" style="color:#1e40af;">#eff6ff</span></div>
+            <div class="pal-sw" style="background:#0f172a;"></div>
+            <div class="pal-sw" style="background:#1e40af;"></div>
+            <div class="pal-sw" style="background:#3b82f6;"></div>
+            <div class="pal-sw" style="background:#f8fafc;"></div>
+            <div class="pal-sw" style="background:#eff6ff;"></div>
           </div>
-          <div class="pal-name" style="color:#1e40af;">Command</div>
+          <span class="pal-tag">Corporate</span>
         </div>
       </div>
     </div>
 
-    <!-- Typography Direction -->
-    <div class="bp-block">
-      <div class="bp-block-title" style="color:#1c1917;">Typography direction</div>
-      <div class="bp-block-desc" style="color:#78350f;">What your type says before anyone reads it.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Headline + body direction</div>
-      <div class="bp-type-preview" style="background:#1c1917;padding:24px 28px;margin-bottom:8px;">
-        <div style="font-family:var(--font-serif);font-weight:900;font-size:2rem;color:#f59e0b;line-height:1.1;letter-spacing:-0.5px;margin-bottom:4px;">Stop waiting.</div>
-        <div style="font-family:var(--font-serif);font-weight:900;font-size:2rem;color:#fef3c7;line-height:1.1;letter-spacing:-0.5px;">Start winning.</div>
-      </div>
-      <div style="background:#fef3c7;padding:14px 18px;margin-bottom:8px;">
-        <div style="font-family:var(--font-sans);font-size:13px;line-height:1.7;color:#1c1917;">Your results speak louder than promises. <strong>Every word earns its place.</strong> Clean, direct, no flourishes.</div>
-      </div>
-      <div style="font-size:10px;color:#92400e;font-family:var(--font-sans);letter-spacing:0.5px;">Headlines: Heavy serif, 900 weight &nbsp;·&nbsp; Body: Clean sans-serif, 400 weight</div>
-    </div>
+    <!-- 2. Voice and tone -->
+    <div class="bp-sub-section">
+      <div class="label bp-label">Voice and tone</div>
+      <div class="bp-subline">What your brand actually sounds like, and the version of you that plays it safe.</div>
 
-    <!-- Voice and Tone -->
-    <div class="bp-block">
-      <div class="bp-block-title" style="color:#1c1917;">Voice and tone</div>
-      <div class="bp-block-desc" style="color:#78350f;">What your brand actually sounds like — and the version of you that plays it safe.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Do this / not this examples</div>
-      <div class="bp-voice-cols">
-        <div class="bp-voice-col" style="background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;">
-          <div style="font-size:10px;font-weight:800;color:#92400e;letter-spacing:1px;margin-bottom:8px;">DO THIS</div>
-          <div style="font-size:13px;color:#1c1917;line-height:1.6;font-style:italic;">"You've done the hard part. Now let's build the brand that proves it."</div>
+      <div class="voice-grid">
+        <div class="voice-card voice-do">
+          <span class="voice-badge voice-badge-do">Do this</span>
+          <div class="voice-quote">"You've done the hard part. Now let's build the brand that proves it."</div>
         </div>
-        <div class="bp-voice-col" style="background:rgba(220,38,38,0.04);border-left:3px solid rgba(220,38,38,0.3);">
-          <div style="font-size:10px;font-weight:800;color:rgba(220,38,38,0.6);letter-spacing:1px;margin-bottom:8px;">NOT THIS</div>
-          <div style="font-size:13px;color:rgba(28,25,23,0.45);line-height:1.6;font-style:italic;">"We'd love to help you on your journey towards maybe possibly reaching your goals someday!"</div>
+        <div class="voice-card voice-dont">
+          <span class="voice-badge voice-badge-dont">Not this</span>
+          <div class="voice-quote">"We'd love to help you on your journey towards maybe possibly reaching your goals someday!"</div>
         </div>
       </div>
-      <div style="margin-top:10px;font-size:10px;color:rgba(28,25,23,0.4);font-family:var(--font-sans);letter-spacing:0.5px;">Short sentences &nbsp;·&nbsp; Active voice &nbsp;·&nbsp; Assume capability &nbsp;·&nbsp; No hedging</div>
-    </div>
-
-    <!-- Website Design Specs -->
-    <div class="bp-block">
-      <div class="bp-block-title" style="color:#1c1917;">Website design specs</div>
-      <div class="bp-block-desc" style="color:#78350f;">The small decisions that make a Hero brand feel unmistakably intentional.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">Full visual direction</div>
-      <div class="bp-grid-2x2">
-        <div class="bp-grid-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-weight:800;margin-bottom:6px;font-size:11px;color:#92400e;letter-spacing:1.5px;text-transform:uppercase;">Corners</div>
-          Sharp everywhere. 0px radius. This brand is about precision and strength — rounded corners feel too soft.
-          <div style="display:flex;gap:8px;margin-top:10px;">
-            <div style="width:36px;height:36px;border:2px solid #f59e0b;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:#92400e;background:#fef3c7;">0px</div>
-            <div style="width:36px;height:36px;border:2px solid rgba(245,158,11,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:7px;color:rgba(146,64,14,0.3);opacity:0.4;">12px</div>
-          </div>
-        </div>
-        <div class="bp-grid-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-weight:800;margin-bottom:6px;font-size:11px;color:#92400e;letter-spacing:1.5px;text-transform:uppercase;">White Space</div>
-          Tight, purposeful, no wasted space. Like a training plan — every element has a job. Nothing decorative, nothing extra.
-        </div>
-        <div class="bp-grid-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-weight:800;margin-bottom:6px;font-size:11px;color:#92400e;letter-spacing:1.5px;text-transform:uppercase;">Animation</div>
-          Content rises upward — like it's climbing. Nothing drifts. Movement has direction and purpose. It goes up.
-        </div>
-        <div class="bp-grid-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-weight:800;margin-bottom:6px;font-size:11px;color:#92400e;letter-spacing:1.5px;text-transform:uppercase;">Section Flow</div>
-          Dark → bold amber strike → dark again. Like interval training — push, recover, push. Deliberate and relentless.
-        </div>
+      <div class="pills">
+        <span class="pill">Short sentences</span>
+        <span class="pill">Active voice</span>
+        <span class="pill">Assume capability</span>
+        <span class="pill">No hedging</span>
       </div>
     </div>
 
-    <!-- Brands Doing It Right -->
-    <div class="bp-block">
-      <div class="bp-block-title" style="color:#1c1917;">Brands doing it right</div>
-      <div class="bp-block-desc" style="color:#78350f;">Brands already doing this well. Notice what they have in common.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;">4 real brand examples</div>
-      <div class="bp-brands-row">
-        <a href="https://nike.com" target="_blank" class="bp-brand-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-family:var(--font-serif);font-weight:900;font-size:15px;margin-bottom:6px;color:#1c1917;">Nike</div>
-          <div style="font-size:12px;color:#78350f;line-height:1.5;">Three words. Dark canvas, action photography, copy that assumes capability.</div>
-        </a>
-        <a href="https://underarmour.com" target="_blank" class="bp-brand-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-family:var(--font-serif);font-weight:900;font-size:15px;margin-bottom:6px;color:#1c1917;">Under Armour</div>
-          <div style="font-size:12px;color:#78350f;line-height:1.5;">No shortcuts. Dark and serious. Performance data front and center.</div>
-        </a>
-        <a href="https://crossfit.com" target="_blank" class="bp-brand-card" style="background:#fff;border:1px solid rgba(28,25,23,0.1);color:#1c1917;">
-          <div style="font-family:var(--font-serif);font-weight:900;font-size:15px;margin-bottom:6px;color:#1c1917;">CrossFit</div>
-          <div style="font-size:12px;color:#78350f;line-height:1.5;">Community of results. Real numbers, no apologies for being hard.</div>
-        </a>
-        <div class="bp-brand-card" style="background:#1c1917;border:2px solid #f59e0b;color:#fef3c7;">
-          <div style="font-family:var(--font-serif);font-weight:900;font-size:15px;margin-bottom:6px;color:#f59e0b;">Yours</div>
-          <div style="font-size:12px;color:rgba(254,243,199,0.6);line-height:1.5;">Dark and amber, sharp corners, copy that assumes capability. Starting gun energy.</div>
+    <!-- 3. Design specs (accordion) -->
+    <div class="bp-sub-section">
+      <div class="label bp-label">Design specs</div>
+      <div class="bp-subline">The small decisions that make a Hero brand feel unmistakably intentional.</div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-toggle" onclick="toggleAcc(this)">
+          <span>Corners</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">Sharp everywhere. 0px radius. This brand is about precision and strength. Rounded corners feel too soft.</div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <button class="acc-toggle" onclick="toggleAcc(this)">
+          <span>White space</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">Tight, purposeful, no wasted space. Like a training plan, every element has a job. Nothing decorative, nothing extra.</div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <button class="acc-toggle" onclick="toggleAcc(this)">
+          <span>Animation</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">Content rises upward, like it's climbing. Nothing drifts. Movement has direction and purpose. It goes up.</div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <button class="acc-toggle" onclick="toggleAcc(this)">
+          <span>Section flow</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">Dark, bold amber strike, dark again. Like interval training: push, recover, push. Deliberate and relentless.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Brands like you -->
+    <div class="bp-sub-section">
+      <div class="label bp-label">Brands like you</div>
+      <div class="bp-subline">Notice what they have in common.</div>
+
+      <div class="brands-grid">
+        <div class="brand-card">
+          <div class="brand-card-name">Nike</div>
+          <div class="brand-card-desc">Three words. Dark canvas. Copy that assumes capability.</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-card-name">GoPro</div>
+          <div class="brand-card-desc">No disclaimers. Proof over polish. The result speaks.</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-card-name">CrossFit</div>
+          <div class="brand-card-desc">Real numbers, real people. No apologies for being hard.</div>
+        </div>
+        <div class="brand-card brand-card-yours">
+          <div class="brand-card-name">Yours</div>
+          <div class="brand-card-desc">Dark + amber. Sharp. Starting gun energy.</div>
         </div>
       </div>
     </div>
@@ -473,55 +733,53 @@
   </div>
 </section>
 
-<!-- ═══ CTA CARD ═══ -->
-<section class="bp-section" style="background:#1c1917;padding:64px 32px;">
-  <div class="bp-container" style="max-width:600px;">
-    <div style="background:#0c0a09;border:1px solid rgba(245,158,11,0.15);padding:48px 40px;text-align:center;">
-      <div style="font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,3.5vw,1.8rem);color:#fef3c7;margin-bottom:10px;letter-spacing:-0.3px;">Ready to build it?</div>
-      <div style="font-size:14px;color:rgba(254,243,199,0.5);margin-bottom:28px;font-family:var(--font-sans);">Here's how to work with me</div>
-      <a href="#" style="display:inline-block;padding:14px 36px;background:#f59e0b;color:#1c1917;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;">Let's go</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ AI PROMPT ═══ -->
-<section class="bp-section" style="background:#1c1917;padding:64px 32px;">
-  <div class="bp-container">
-    <div class="bp-section-header">
-      <div class="bp-section-label" style="color:rgba(245,158,11,0.5);">Act 03</div>
-      <div class="bp-section-title" style="color:#fef3c7;">Your brand in one paragraph.</div>
-    </div>
-
-    <div class="bp-block">
-      <div class="bp-block-desc" style="color:rgba(254,243,199,0.5);text-align:center;">Paste this at the start of any AI prompt — ChatGPT, Claude, whatever you use. Every caption, email, and sales page you write from here will sound like you.</div>
-      <div class="bp-tag" style="background:#f59e0b;color:#1c1917;display:block;text-align:center;">Copy-ready AI context block</div>
-      <div class="bp-prompt-block" style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);color:rgba(254,243,199,0.85);">
-        <button class="bp-prompt-copy" style="color:#f59e0b;border-color:rgba(245,158,11,0.3);" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.bp-prompt-text').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500);">Copy</button>
-        <span class="bp-prompt-text">My brand archetype is The Hero (The War Room). My brand voice is direct, confident, and results-focused. I use short, punchy sentences. Active voice always. I assume capability in my audience — no hand-holding, no hedging, no filler. My visual identity uses dark backgrounds (#1c1917), amber accents (#f59e0b), and cream (#fef3c7). Sharp corners everywhere, tight purposeful whitespace, and animations that move upward. My typography pairs a heavy serif for headlines with a clean sans-serif for body. My brand energy feels like a starting gun — earned, not given. When writing for my brand, channel the energy of someone who has done the work and is here to help others do the same. No excuses, no fluff, just results.</span>
-      </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="bp-block" style="margin-top:40px;text-align:center;">
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a href="index.html" style="display:inline-block;padding:12px 28px;background:#f59e0b;color:#1c1917;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;">Retake the quiz</a>
-        <a href="#" onclick="if(navigator.share){navigator.share({title:'I\'m The Hero archetype',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);this.textContent='Link copied!';}" style="display:inline-block;padding:12px 28px;background:transparent;color:#f59e0b;font-family:var(--font-sans);font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.5px;border:2px solid rgba(245,158,11,0.4);cursor:pointer;">Share your result</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<div class="bp-footer" style="background:#f59e0b;color:#78350f;">
-  <em>every archetype gets a different one</em>
+<!-- ════════════════ CREAM SLASH ════════════════ -->
+<div class="slash slash-cream">
+  <span class="label">Take this with you</span>
+  <div class="slash-rule"></div>
+  <span class="label">Act 03</span>
 </div>
-<div style="background:#1c1917;padding:20px 0;text-align:center;">
-  <div style="font-size:12px;color:rgba(254,243,199,0.3);font-family:var(--font-sans);">Brand Archetype Quiz · Built for people who give a damn about their brand</div>
-</div>
+
+<!-- ════════════════ PROMPT ════════════════ -->
+<section class="prompt-section">
+  <div class="container">
+    <div class="prompt-headline">Your brand in one paragraph.</div>
+    <div class="prompt-subline">Paste this at the start of any AI prompt. ChatGPT, Claude, whatever you use. Every caption, email, and sales page you write from here will sound like you.</div>
+    <div class="prompt-box">
+      <button class="prompt-copy-btn" id="copyBtn" onclick="copyPrompt()">Copy</button>
+      <div class="prompt-text" id="promptText">My brand archetype is <span class="hi">The Hero (The War Room)</span>. My brand voice is direct, confident, and results-focused. I use short, punchy sentences. Active voice always. I assume capability in my audience: no hand-holding, no hedging, no filler. My visual identity uses dark backgrounds (<span class="hi">#1c1917</span>), amber accents (<span class="hi">#f59e0b</span>), and cream (<span class="hi">#fef3c7</span>). Sharp corners everywhere, tight purposeful whitespace, and animations that move upward. My typography pairs a heavy serif for headlines with a clean sans-serif for body. My brand energy feels like a starting gun: earned, not given. When writing for my brand, channel the energy of someone who has done the work and is here to help others do the same. No excuses, no fluff, just results.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="site-footer">
+  <div class="footer-line">Brand Archetype Quiz -- Built for people who give a damn about their brand</div>
+  <div class="footer-links">
+    <a href="index.html">Retake quiz</a>
+    <a href="#" onclick="event.preventDefault();if(navigator.share){navigator.share({title:'I\'m The Hero archetype',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href)}">Share your result</a>
+  </div>
+</footer>
 
 <script>
-function switchPal(i){[0,1,2].forEach(j=>{const el=document.getElementById('pal'+j);if(el)el.classList.toggle('active',j===i);});}
+function toggleAcc(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+function copyPrompt() {
+  const text = document.getElementById('promptText').textContent.trim();
+  navigator.clipboard.writeText(text);
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = 'Copied';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.textContent = 'Copy';
+    btn.classList.remove('copied');
+  }, 2000);
+}
 </script>
 </body>
 </html>
