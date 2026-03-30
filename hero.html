@@ -102,6 +102,25 @@
       position: relative;
       overflow: hidden;
     }
+    .reveal-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .reveal-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28,25,23,0.6) 0%,
+        rgba(28,25,23,0.78) 40%,
+        rgba(28,25,23,0.92) 70%,
+        #1c1917 100%
+      );
+    }
     .reveal::before {
       content: '';
       position: absolute;
@@ -113,11 +132,13 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%);
       pointer-events: none;
+      z-index: 1;
     }
     .reveal-eyebrow {
       color: var(--amber);
       margin-bottom: 40px;
       position: relative;
+      z-index: 2;
     }
     .reveal-the {
       font-family: var(--font-head);
@@ -128,6 +149,7 @@
       display: block;
       margin-bottom: 10px;
       position: relative;
+      z-index: 2;
     }
     .reveal-hero {
       font-family: var(--font-hand);
@@ -138,6 +160,7 @@
       letter-spacing: -1px;
       display: block;
       position: relative;
+      z-index: 2;
     }
     .reveal-sub {
       font-size: 19px;
@@ -146,6 +169,7 @@
       margin-top: 32px;
       line-height: 1.7;
       position: relative;
+      z-index: 2;
     }
     .reveal-rule {
       width: 48px;
@@ -153,6 +177,7 @@
       background: var(--amber);
       margin: 40px auto 0;
       position: relative;
+      z-index: 2;
     }
 
     /* --------------------------------------------------------
@@ -650,80 +675,71 @@
     }
 
     /* --------------------------------------------------------
-       FULL-BLEED PHOTO
+       IMAGERY SECTION
     -------------------------------------------------------- */
-    .photo-break {
-      position: relative;
-      width: 100%;
-      height: 680px;
-      overflow: hidden;
-    }
-    .photo-break img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    .photo-break-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(28,25,23,0.45) 0%,
-        rgba(28,25,23,0.55) 50%,
-        rgba(28,25,23,0.65) 100%
-      );
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .imagery-section {
+      background: var(--dark2);
+      padding: 120px 40px;
       text-align: center;
-      padding: 32px;
     }
-    .photo-break-eyebrow {
+    .imagery-eyebrow {
       color: var(--amber);
-      letter-spacing: 0.2em;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-    .photo-break-headline {
+    .imagery-headline {
       font-family: var(--font-head);
       font-weight: 900;
-      font-size: clamp(32px, 6vw, 48px);
+      font-size: clamp(36px, 6vw, 48px);
       color: var(--cream2);
       line-height: 1.15;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .photo-break-sub {
-      font-size: 18px;
+    .imagery-sub {
+      font-size: 17px;
       font-weight: 300;
-      color: var(--stone-light);
-      line-height: 1.7;
+      color: var(--stone);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto 56px;
     }
-    .photo-cards {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 36px;
+    .imagery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .imagery-card {
       position: relative;
-      z-index: 1;
     }
-    .photo-card {
-      width: 180px;
-      height: 240px;
-      overflow: hidden;
-      border: 2px solid rgba(255,255,255,0.15);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .photo-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--amber);
-    }
-    .photo-card img {
+    .imagery-card-img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
       display: block;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .imagery-card:hover .imagery-card-img {
+      transform: translateY(-3px);
+      border-color: var(--amber);
+    }
+    .imagery-callout {
+      margin-top: 16px;
+    }
+    .imagery-callout-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--cream2);
+      margin-bottom: 6px;
+    }
+    .imagery-callout-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.7;
     }
 
     /* --------------------------------------------------------
@@ -776,9 +792,8 @@
       .site-nav { padding: 20px 24px; }
       .reveal { padding: 100px 24px 88px; }
       .reveal-hero { font-size: 72px; }
-      .photo-break { height: auto; min-height: 500px; }
-      .photo-cards { flex-direction: row; gap: 10px; }
-      .photo-card { width: 100px; height: 140px; }
+      .imagery-section { padding: 80px 24px; }
+      .imagery-grid { grid-template-columns: 1fr; gap: 40px; max-width: 360px; }
       .recognition { padding: 80px 24px; }
       .blueprint { padding: 80px 24px; }
       .bp-sub-section { margin-bottom: 80px; }
@@ -807,6 +822,7 @@
 
 <!-- ════════════════ REVEAL ════════════════ -->
 <section class="reveal">
+  <div class="reveal-bg" style="background-image:url('http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg');"></div>
   <div class="label reveal-eyebrow anim-1">Your brand archetype</div>
   <div class="anim-2">
     <span class="reveal-the">the</span>
@@ -838,26 +854,37 @@
   </div>
 </section>
 
-<!-- ════════════════ FULL-BLEED PHOTO ════════════════ -->
-<div class="photo-break fade-in">
-  <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/daniel-b-ramos-am701iSXF8U-unsplash-scaled.jpg" alt="Your front door">
-  <div class="photo-break-overlay">
-    <div class="label photo-break-eyebrow">Your front door</div>
-    <div class="photo-break-headline">The image that does the talking.</div>
-    <div class="photo-break-sub">Dark. High-contrast. No explanation needed.</div>
-    <div class="photo-cards">
-      <div class="photo-card">
-        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/john-livingstone-OuR-FvCQV8Y-unsplash-scaled.jpg" alt="Brand imagery example">
+<!-- ════════════════ IMAGERY ════════════════ -->
+<section class="imagery-section">
+  <div class="fade-in">
+    <div class="label imagery-eyebrow">Your brand imagery</div>
+    <div class="imagery-headline">The images that do the talking.</div>
+    <div class="imagery-sub">Dark. High-contrast. No explanation needed. This is the visual energy your brand should carry everywhere.</div>
+  </div>
+  <div class="imagery-grid fade-in">
+    <div class="imagery-card">
+      <img class="imagery-card-img" src="http://priscillazaehringer.com/wp-content/uploads/2026/03/john-livingstone-OuR-FvCQV8Y-unsplash-scaled.jpg" alt="Moody, high-contrast brand photo">
+      <div class="imagery-callout">
+        <div class="imagery-callout-title">Moody + cinematic</div>
+        <div class="imagery-callout-desc">Deep shadows, warm highlights. Every photo should feel like a scene, not a snapshot.</div>
       </div>
-      <div class="photo-card">
-        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/zafree-pinano-FIpFzF8IfFA-unsplash-scaled.jpg" alt="Brand imagery example">
+    </div>
+    <div class="imagery-card">
+      <img class="imagery-card-img" src="http://priscillazaehringer.com/wp-content/uploads/2026/03/zafree-pinano-FIpFzF8IfFA-unsplash-scaled.jpg" alt="Action-driven brand photo">
+      <div class="imagery-callout">
+        <div class="imagery-callout-title">Action, not posing</div>
+        <div class="imagery-callout-desc">Movement, tension, doing. Your images should feel mid-stride, not mid-smile.</div>
       </div>
-      <div class="photo-card">
-        <img src="http://priscillazaehringer.com/wp-content/uploads/2026/03/hero3-scaled.jpg" alt="Brand imagery example">
+    </div>
+    <div class="imagery-card">
+      <img class="imagery-card-img" src="http://priscillazaehringer.com/wp-content/uploads/2026/03/hero3-scaled.jpg" alt="Bold contrast brand photo">
+      <div class="imagery-callout">
+        <div class="imagery-callout-title">Bold contrast</div>
+        <div class="imagery-callout-desc">Dark backgrounds, a single subject in focus. Nothing competes for attention. The image hits, then you read.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ════════════════ AMBER SLASH ════════════════ -->
 <div class="slash slash-amber">
